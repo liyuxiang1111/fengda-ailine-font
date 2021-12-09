@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <div class="app-container">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -11,6 +13,7 @@ export default {}
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #f5f5f5;
   a {
     text-decoration: none;
   }
@@ -27,6 +30,9 @@ export default {}
   }
   .button {
     cursor: pointer;
+  }
+  .color {
+    background-color: #f5f5f5;
   }
   .white {
     background-color: #ffffff;
@@ -58,6 +64,10 @@ export default {}
   }
   .fr {
     float: right;
+  }
+  .w {
+    width: 1170px;
+    margin: 0 auto;
   }
 }
 </style>

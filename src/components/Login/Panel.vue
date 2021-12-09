@@ -4,18 +4,18 @@
       <li>会员登录</li>
       <div class="menber-content">
         <div class="section-input">
-          <input type="text" name="请输入账号" class="acount" />
+          <input type="text" class="acount" />
         </div>
         <div class="section-input">
-          <input type="password" name="" id="" class="passwd" />
+          <input type="password" class="passwd" />
         </div>
         <div class="section-input">
-          <input type="text" name="" id="" class="code" />
+          <input type="text" class="code" />
         </div>
         <div class="button login-button">登录</div>
       </div>
       <div class="fl">
-        <router-link to=""> 注册 </router-link>
+        <router-link to="/register"> 注册 </router-link>
       </div>
       <div class="fr">
         <router-link to="">忘记密码</router-link>
@@ -28,7 +28,7 @@
 export default {}
 </script>
 
-<style lang="less" scroped>
+<style lang="less">
 .panel-container {
   position: absolute;
   top: 160px;

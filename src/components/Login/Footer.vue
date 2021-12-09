@@ -11,16 +11,15 @@
 export default {}
 </script>
 
-<style lang="less" scroped>
+<style lang="less">
 .copyright-box {
   position: relative;
   text-align: center;
   padding-top: 40px;
   font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, '\5B8B\4F53', sans-serif;
-  height: 100px;
   width: 100%;
+  height: 120px;
   background-color: #f5f5f5;
-  border-bottom: 1px solid #ccc;
   .links {
     margin-bottom: 15px;
   }

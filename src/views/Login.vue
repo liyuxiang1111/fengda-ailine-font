@@ -3,7 +3,7 @@
     <!-- 头部导航 -->
     <Nav></Nav>
     <div class="login-imag">
-      <img src="@/assets/image/壁纸3.jpeg" alt="" />
+      <img src="@/assets/image/壁纸1.jpeg" alt="" />
       <Panel></Panel>
     </div>
     <!-- 注册表 -->

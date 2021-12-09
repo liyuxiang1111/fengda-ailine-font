@@ -2,7 +2,7 @@
   <div class="nav-container">
     <nav>
       <img src="" alt="" />
-      <li>吴彦组欢迎您的到来</li>
+      <router-link to="/login"><li>凤达航空欢迎您</li></router-link>
     </nav>
   </div>
 </template>
@@ -11,12 +11,12 @@
 export default {}
 </script>
 
-<style lang="less" scroped>
+<style lang="less">
 .nav-container {
   nav {
     height: 80px;
-    background-color: pink;
     padding: 20px 0 0 30px;
+    background-color: pink;
     li {
       float: left;
     }
