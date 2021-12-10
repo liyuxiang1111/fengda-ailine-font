@@ -12,7 +12,7 @@
         <div class="section-input">
           <input type="text" class="code" />
         </div>
-        <div class="button login-button">登录</div>
+        <div class="button login-button" @click="login">登录</div>
       </div>
       <div class="fl">
         <router-link to="/register"> 注册 </router-link>
@@ -25,7 +25,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    login() {
+      this.$router.push('home')
+    },
+  },
+}
 </script>
 
 <style lang="less">

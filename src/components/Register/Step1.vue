@@ -10,19 +10,21 @@
     </div>
     <div class="information">
       <form action="">
-        <div class="form-group"><label for="">用户名：</label><input type="text" /></div>
-        <div class="form-group"><label for="">密码：</label><input type="password" /></div>
-        <div class="form-group"><label for="">身份证：</label><input type="text" /></div>
-        <div class="form-group"><label for="">身份证类型：</label><input type="text" /></div>
+        <div class="form-group"><label for="">用户名：</label><el-input class="input-box" v-model="userName" placeholder="请用户名"></el-input></div>
+        <div class="form-group"><label for="">密码：</label><el-input class="input-box" v-model="passwd" placeholder="请输入密码"></el-input></div>
+        <div class="form-group"><label for="">身份证：</label><el-input class="input-box" v-model="id" placeholder="请输入身份证"></el-input></div>
+        <div class="form-group">
+          <label for="">身份证类型：</label>
+          <el-select v-model="value" placeholder="请选择">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          </el-select>
+        </div>
         <div class="form-group">
           <label for="">称谓：</label>
           <div class="gender"><input type="radio" /><span>先生</span> <input type="radio" /><span>女士</span></div>
         </div>
         <div class="form-group">
           <div class="notice fr"><input type="checkbox" class="fl" />我同意遵循<router-link to="">《用户条款》</router-link></div>
-        </div>
-        <div class="form-group">
-          <div class="notice fr"><input type="checkbox" class="fl" />我同意接收凤达航空的最新资讯（会员权限可以随时退订）</div>
         </div>
         <div class="form-group">
           <div class="notice fr">
@@ -36,6 +38,36 @@
 
 <script>
 export default {
+  data() {
+    return {
+      options: [
+        {
+          value: '选项1',
+          label: '身份证',
+        },
+        {
+          value: '选项2',
+          label: '港澳居民居住证',
+        },
+        {
+          value: '选项3',
+          label: '台湾居民居住证',
+        },
+        {
+          value: '选项4',
+          label: '护照',
+        },
+        {
+          value: '选项5',
+          label: '其他',
+        },
+      ],
+      value: '',
+      id: '',
+      userName: '',
+      passwd: '',
+    }
+  },
   methods: {
     next() {
       console.log()
@@ -81,7 +113,7 @@ export default {
           padding: 7px 15px 0;
           text-align: right;
         }
-        input {
+        .input-box {
           width: 281px;
           height: 34px;
           border: 1px solid #cccccc;

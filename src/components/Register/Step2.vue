@@ -10,17 +10,8 @@
     </div>
     <div class="information">
       <form action="">
-        <div class="form-group"><label for="">用户名：</label><input type="text" /></div>
-        <div class="form-group"><label for="">密码：</label><input type="password" /></div>
-        <div class="form-group"><label for="">邮箱：</label><input type="text" /></div>
-        <div class="form-group"><label for="">电话：</label><input type="text" /></div>
-        <div class="form-group">
-          <label for="">称谓：</label>
-          <div class="gender"><input type="radio" /><span>先生</span> <input type="radio" /><span>女士</span></div>
-        </div>
-        <div class="form-group">
-          <div class="notice fr"><input type="checkbox" class="fl" />我同意遵循<router-link to="">《用户条款》</router-link></div>
-        </div>
+        <div class="form-group"><label for="">邮箱：</label><el-input class="input-box" v-model="mail" placeholder="请输入邮箱"></el-input></div>
+        <div class="form-group"><label for="">电话：</label><el-input class="input-box" v-model="telephone" placeholder="请输入联系电话"></el-input></div>
         <div class="form-group">
           <div class="notice fr"><input type="checkbox" class="fl" />我同意接收凤达航空的最新资讯（会员权限可以随时退订）</div>
         </div>
@@ -36,10 +27,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      telephone: '',
+      mail: '',
+    }
+  },
   methods: {
     next() {
       console.log()
-      this.$router.push('/login')
+      this.$router.push('/register/step3')
     },
   },
 }
@@ -81,7 +78,7 @@ export default {
           padding: 7px 15px 0;
           text-align: right;
         }
-        input {
+        .input-box {
           width: 281px;
           height: 34px;
           border: 1px solid #cccccc;
