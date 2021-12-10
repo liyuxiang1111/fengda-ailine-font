@@ -20,8 +20,8 @@ const routes = [
     component: Register,
     children: [
       { path: '', component: Step1 },
-      { path: '/step2', component: Step2 },
-      { path: '/step3', component: Step3 },
+      { path: 'step2', component: Step2 },
+      { path: 'step3', component: Step3 },
     ],
   },
   { path: '/home', component: Home },

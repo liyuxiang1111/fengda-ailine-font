@@ -33,7 +33,7 @@ export default {}
   position: absolute;
   top: 160px;
   right: 300px;
-  width: 343px;
+  width: 283px;
   height: 428px;
   background-color: white;
   padding: 30px;

@@ -12,8 +12,6 @@ export default {}
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  background-color: #f5f5f5;
   a {
     text-decoration: none;
   }
