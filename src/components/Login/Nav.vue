@@ -2,7 +2,7 @@
   <div class="nav-container">
     <nav>
       <img src="" alt="" />
-      <router-link to="/login"><li>凤达航空欢迎您</li></router-link>
+      <router-link to="/login"><img src="@/assets/image/logo.png" alt="" /></router-link>
     </nav>
   </div>
 </template>
@@ -14,11 +14,14 @@ export default {}
 <style lang="less">
 .nav-container {
   nav {
-    height: 80px;
+    height: 60px;
     padding: 20px 0 0 30px;
-    background-color: pink;
-    li {
+    background-color: #ffffff;
+    border-bottom: 4px solid #004385;
+    img {
+      height: 40px;
       float: left;
+      margin-left: 50px;
     }
   }
 }

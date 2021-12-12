@@ -101,7 +101,6 @@ export default {
     padding: 0 15px;
     width: 716px;
     height: 429px;
-    background-color: skyblue;
     form {
       .form-group {
         height: 34px;
@@ -116,8 +115,6 @@ export default {
         .input-box {
           width: 281px;
           height: 34px;
-          border: 1px solid #cccccc;
-          border-radius: 5px;
         }
         .gender {
           padding-top: 7px;

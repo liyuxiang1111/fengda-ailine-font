@@ -66,7 +66,6 @@ export default {
     padding: 0 15px;
     width: 716px;
     height: 429px;
-    background-color: skyblue;
     form {
       .form-group {
         height: 34px;
