@@ -28,6 +28,7 @@ export default {
 <style lang="less">
 .login-container {
   .login-imag {
+    margin-top: -5px;
     position: relative;
     height: 756px;
     img {

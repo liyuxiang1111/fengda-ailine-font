@@ -137,6 +137,8 @@ export default {
             height: 40px;
             background-color: #ff8400;
             border-radius: 5px;
+            text-align: center;
+            line-height: 40px;
           }
         }
       }

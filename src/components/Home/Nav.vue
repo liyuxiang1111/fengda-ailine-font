@@ -2,65 +2,58 @@
   <div class="nav-container">
     <div class="w">
       <div class="fl nav-left">
-        <span class="fl">凤达航空欢迎您</span>
+        <span class="fl"><img src="@/assets/image/logo.png" alt="" /></span>
       </div>
       <ul class="tool fl">
         <li class="fl">
-          <router-link to=""><div>功能区</div></router-link>
+          <router-link to="/home"><div>回到主页</div></router-link>
         </li>
         <li class="fl">
-          <router-link to=""><div>功能区</div></router-link>
+          <router-link to=""><div>我的机票</div></router-link>
         </li>
         <li class="fl">
-          <router-link to=""><div>功能区</div></router-link>
+          <router-link to=""><div>退票处理</div></router-link>
         </li>
         <li class="fl">
-          <router-link to=""><div>功能区</div></router-link>
+          <router-link to=""><div>查看历史</div></router-link>
         </li>
       </ul>
       <div class="fr nav-right">
-        <img src="@/assets/image/一栗小莎子.jpeg" alt="" />
-        <span>一粒小傻子</span>
-      </div>
-    </div>
-    <div class="tool-box">
-      <div class="w">
-        <Tool1></Tool1>
+        <router-link to="/person"><img src="@/assets/image/一栗小莎子.jpeg" alt="" /> <span>一粒小傻子</span></router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Tool1 from '@/components/Home/Tool/Tool1.vue'
-export default {
-  components: {
-    Tool1,
-  },
-}
+export default {}
 </script>
 
 <style lang="less" scoped>
 .nav-container {
   height: 80px;
   padding: 0 30px;
-  background-color: skyblue;
+  background-color: #ffffff;
   border: 1px solid #d7d7d7;
   .nav-left {
-    margin: 31px 60px 25px 0;
+    margin: 26px 60px 25px 0;
     span {
       margin-right: 100px;
+      img {
+        height: 30px;
+        width: 200px;
+      }
     }
   }
   .tool {
     li {
       a {
         div {
-          height: 80px;
-          line-height: 80px;
+          height: 76px;
+          line-height: 76px;
         }
         div:hover {
-          border-bottom: blue;
+          border-bottom: 5px solid #316ad0;
         }
       }
       margin-right: 100px;
