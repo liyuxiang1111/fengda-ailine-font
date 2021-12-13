@@ -2,7 +2,7 @@
   <div class="select-container">
     <Topbar></Topbar>
     <div class="select-box w">
-      <el-empty description="空"></el-empty>
+      <!-- <el-empty description="空"></el-empty> -->
     </div>
   </div>
 </template>

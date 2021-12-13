@@ -13,6 +13,7 @@ import Step2 from '@/components/Register/Step2.vue'
 import Step3 from '@/components/Register/Step3.vue'
 //导入个人页面需要的组件
 import Person from '@/views/Person.vue'
+import Histroy from '@/components/Person/History.vue'
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
@@ -26,7 +27,11 @@ const routes = [
     ],
   },
   { path: '/home', component: Home },
-  { path: '/person', component: Person },
+  {
+    path: '/person',
+    component: Person,
+    children: [{ path: 'history', component: Histroy }],
+  },
 ]
 
 const router = new VueRouter({

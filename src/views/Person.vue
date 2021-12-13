@@ -3,8 +3,8 @@
     <Nav></Nav>
     <div class="person-box">
       <div class="content w">
-        123
         <Sidebar></Sidebar>
+        <router-view></router-view>
       </div>
     </div>
     <Footer></Footer>
@@ -28,7 +28,7 @@ export default {
 .person-container {
   .person-box {
     width: 100%;
-    height: 1400px;
+    height: 600px;
     background-color: #ecf2f7;
     padding-top: 40px;
   }
