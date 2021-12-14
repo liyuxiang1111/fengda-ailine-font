@@ -9,13 +9,13 @@
           <router-link to="/home"><div>回到主页</div></router-link>
         </li>
         <li class="fl">
-          <router-link to=""><div>我的机票</div></router-link>
+          <router-link to="/person/ticket"><div>我的机票</div></router-link>
         </li>
         <li class="fl">
-          <router-link to=""><div>退票处理</div></router-link>
+          <router-link to="/person/back"><div>退票处理</div></router-link>
         </li>
         <li class="fl">
-          <router-link to=""><div>查看历史</div></router-link>
+          <router-link to="/person/history"><div>查看历史</div></router-link>
         </li>
       </ul>
       <div class="fr nav-right">

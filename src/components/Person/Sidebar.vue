@@ -4,10 +4,10 @@
       <img src="@/assets/image/一栗小莎子.jpeg" alt="" />
       <span>一粒小傻子</span>
     </div>
-    <router-link to=""><li class="person-information">我的个人信息</li></router-link>
-    <router-link to=""><li class="air-ticket">我的机票信息</li></router-link>
+    <router-link to="/person/userinfo"><li class="person-information">我的个人信息</li></router-link>
+    <router-link to="/person/ticket"><li class="air-ticket">我的机票信息</li></router-link>
     <router-link to="/person/history"><li class="history">历史订单</li></router-link>
-    <router-link to=""><li class="back">退票处理</li></router-link>
+    <router-link to="/person/back"><li class="back">退票处理</li></router-link>
 
     <router-link to=""><li>积分越换</li></router-link>
     <router-link to=""><li>会员专区</li></router-link>

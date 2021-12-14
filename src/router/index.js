@@ -14,6 +14,11 @@ import Step3 from '@/components/Register/Step3.vue'
 //导入个人页面需要的组件
 import Person from '@/views/Person.vue'
 import Histroy from '@/components/Person/History.vue'
+import Userinfo from '@/components/Person/Userinfo.vue'
+import Ticket from '@/components/Person/Ticket.vue'
+import Back from '@/components/Person/Back.vue'
+//导入home页面需要的组件
+import Select from '@/components/Home/Tool/Select.vue'
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
@@ -26,11 +31,21 @@ const routes = [
       { path: 'step3', component: Step3 },
     ],
   },
-  { path: '/home', component: Home },
+  {
+    path: '/home',
+    component: Home,
+    children: [{ path: '', component: Select }],
+  },
   {
     path: '/person',
     component: Person,
-    children: [{ path: 'history', component: Histroy }],
+    children: [
+      { path: '', component: Ticket },
+      { path: 'history', component: Histroy },
+      { path: 'userinfo', component: Userinfo },
+      { path: 'ticket', component: Ticket },
+      { path: 'back', component: Back },
+    ],
   },
 ]
 

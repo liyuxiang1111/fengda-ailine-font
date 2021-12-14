@@ -1,6 +1,6 @@
 <template>
-  <div class="history-container fr">
-    <div class="history-box">我的历史订单</div>
+  <div class="back-container fr">
+    <div class="back-box">退票处理</div>
     <Flaght></Flaght>
     <div class="page-box">
       <Page></Page>
@@ -20,13 +20,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.history-container {
+.back-container {
   position: relative;
   width: 890px;
   padding: 15px;
   height: 530px;
   background-color: skyblue;
-  .history-box {
+  .back-box {
     height: 60px;
     padding: 0 20px;
     line-height: 60px;

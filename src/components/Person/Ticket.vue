@@ -1,6 +1,6 @@
 <template>
-  <div class="history-container fr">
-    <div class="history-box">我的历史订单</div>
+  <div class="ticket-container fr">
+    <div class="ticket-box">我的机票信息</div>
     <Flaght></Flaght>
     <div class="page-box">
       <Page></Page>
@@ -20,13 +20,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.history-container {
+.ticket-container {
   position: relative;
   width: 890px;
   padding: 15px;
   height: 530px;
   background-color: skyblue;
-  .history-box {
+  .ticket-box {
     height: 60px;
     padding: 0 20px;
     line-height: 60px;
