@@ -11,12 +11,25 @@
 
     <router-link to=""><li>积分越换</li></router-link>
     <router-link to=""><li>会员专区</li></router-link>
-    <router-link to=""><li class="logout">退出登录</li></router-link>
+    <router-link to="" @click.native="logout"><li>退出登录</li></router-link>
   </div>
 </template>
 
 <script>
-export default {}
+import bus from '@/components/eventBus.js'
+export default {
+  data() {
+    return {
+      dialogVisible: true,
+    }
+  },
+  components: {},
+  methods: {
+    logout() {
+      bus.$emit('dialog', this.dialogVisible)
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>

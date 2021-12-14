@@ -7,6 +7,7 @@
         <router-view></router-view>
       </div>
     </div>
+    <Dialog></Dialog>
     <Footer></Footer>
   </div>
 </template>
@@ -15,11 +16,13 @@
 import Nav from '@/components/Home/Nav.vue'
 import Sidebar from '@/components/Person/Sidebar.vue'
 import Footer from '@/components/Login/Footer.vue'
+import Dialog from '@/components/Dialog/Dialog.vue'
 export default {
   components: {
     Sidebar,
     Nav,
     Footer,
+    Dialog,
   },
 }
 </script>

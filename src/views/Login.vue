@@ -3,7 +3,7 @@
     <!-- 头部导航 -->
     <Nav></Nav>
     <div class="login-imag">
-      <img src="@/assets/image/壁纸1.jpeg" alt="" />
+      <img src="@/assets/image/sky/4.png" alt="" />
       <Panel></Panel>
     </div>
     <!-- 注册表 -->
@@ -27,6 +27,7 @@ export default {
 
 <style lang="less">
 .login-container {
+  overflow: auto;
   .login-imag {
     margin-top: -5px;
     position: relative;

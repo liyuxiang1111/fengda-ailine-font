@@ -18,15 +18,37 @@
           <router-link to="/person/history"><div>查看历史</div></router-link>
         </li>
       </ul>
-      <div class="fr nav-right">
-        <router-link to="/person"><img src="@/assets/image/一栗小莎子.jpeg" alt="" /> <span>一粒小傻子</span></router-link>
+      <div @mouseleave="show = false" class="fr nav-right">
+        <router-link @mouseover.native="show = true" to="/person"><img src="@/assets/image/一栗小莎子.jpeg" alt="" /> <span>一粒小傻子</span></router-link>
+        <transition name="el-fade-in-linear">
+          <li @mouseleave="show = false" v-show="show">
+            <span></span>
+            <router-link to="/person/userinfo">个人信息</router-link> |
+            <router-link to="" @click.native="logout">退出</router-link>
+          </li>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import bus from '@/components/eventBus.js'
+export default {
+  data() {
+    return {
+      dialogVisible: true,
+      show: false,
+      flag: true,
+    }
+  },
+  components: {},
+  methods: {
+    logout() {
+      bus.$emit('dialog', this.dialogVisible)
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>
@@ -60,12 +82,35 @@ export default {}
     }
   }
   .nav-right {
-    margin: 25px 0 25px 0;
+    position: relative;
+    padding: 25px 0 25px 0;
+    height: 30px;
     img {
       width: 25px;
       height: 25px;
       border-radius: 50%;
       margin-right: 15px;
+    }
+    li {
+      position: absolute;
+      top: 60px;
+      z-index: 3;
+      margin-top: 5px;
+      height: 25px;
+      line-height: 25px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      span {
+        position: absolute;
+        left: 5px;
+        top: -10px;
+        width: 0;
+        height: 0;
+        line-height: 0;
+        font-size: 0;
+        border: 5px solid transparent;
+        border-bottom-color: #f5f5f5;
+      }
     }
   }
   .tool-box {

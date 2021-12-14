@@ -19,6 +19,7 @@ import Ticket from '@/components/Person/Ticket.vue'
 import Back from '@/components/Person/Back.vue'
 //导入home页面需要的组件
 import Select from '@/components/Home/Tool/Select.vue'
+import Order from '@/components/Home/Tool/Order.vue'
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
@@ -34,7 +35,10 @@ const routes = [
   {
     path: '/home',
     component: Home,
-    children: [{ path: '', component: Select }],
+    children: [
+      { path: '', component: Select },
+      { path: 'order', component: Order },
+    ],
   },
   {
     path: '/person',
