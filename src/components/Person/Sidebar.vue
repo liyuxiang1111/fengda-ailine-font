@@ -34,9 +34,10 @@ export default {
 
 <style lang="less" scoped>
 .sidebar-container {
-  width: 250px;
+  width: 240px;
   height: 500px;
-  background-color: pink;
+  background-color: #ffffff;
+  border-radius: 10px;
   .man {
     padding: 15px;
     border-bottom: 1px solid #cddeea;

@@ -90,8 +90,9 @@ export default {
   border-radius: 5px;
   padding: 30px;
   .tab {
-    border-bottom: 5px solid #3069d0;
+    border-bottom: 5px solid #4a81e8;
     text-align: center;
+    color: #4a81e8;
   }
   .menber-content {
     width: 283px;
@@ -135,7 +136,7 @@ export default {
       line-height: 40px;
       margin-top: 20px;
       text-align: center;
-      background-color: #4e74a6;
+      background-color: #4a81e8;
     }
   }
 }

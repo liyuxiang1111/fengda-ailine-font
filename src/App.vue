@@ -32,11 +32,14 @@ export default {}
   .color {
     background-color: #f5f5f5;
   }
+  .bule {
+    background-color: #2f71bd;
+  }
   .white {
     background-color: #ffffff;
   }
-  .boxshadowcolor {
-    box-shadow: 0 2px 4px 0 var(--cb-color-shadow, rgba(0, 0, 0, 0.16));
+  .boxshadow {
+    box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 30%);
   }
   button,
   input {

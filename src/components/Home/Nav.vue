@@ -75,7 +75,7 @@ export default {
           line-height: 76px;
         }
         div:hover {
-          border-bottom: 5px solid #316ad0;
+          border-bottom: 5px solid #1781b5;
         }
       }
       margin-right: 100px;

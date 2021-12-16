@@ -8,7 +8,7 @@
         <li class="fl"><span>3</span>步骤3</li>
       </ul>
     </div>
-    <div class="information">
+    <div class="information boxshadow">
       <form action="">
         <div class="form-group"><label for="">用户名：</label><el-input class="input-box" v-model="userName" placeholder="请用户名"></el-input></div>
         <div class="form-group"><label for="">密码：</label><el-input class="input-box" v-model="passwd" placeholder="请输入密码"></el-input></div>
@@ -129,6 +129,7 @@ export default {
           height: 27px;
           padding: 0 15px;
           input {
+            margin-top: 5px;
             width: 15px;
             height: 15px;
           }
