@@ -35,7 +35,7 @@ export default {
 <style lang="less" scoped>
 .sidebar-container {
   width: 240px;
-  height: 500px;
+  height: 496px;
   background-color: #ffffff;
   border-radius: 10px;
   .man {
@@ -55,6 +55,9 @@ export default {
       padding: 15px;
       height: 30px;
       line-height: 30px;
+    }
+    li:hover {
+      background-color: #d8eefe;
     }
   }
 }

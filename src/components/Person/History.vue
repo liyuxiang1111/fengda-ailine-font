@@ -24,8 +24,8 @@ export default {
   position: relative;
   width: 890px;
   padding: 15px;
-  height: 530px;
-  background-color: skyblue;
+  height: 540px;
+  background-color: #ffffff;
   .history-box {
     height: 60px;
     padding: 0 20px;
@@ -36,7 +36,7 @@ export default {
     position: absolute;
     left: 50%;
     margin: 0 -200px;
-    bottom: 0;
+    bottom: 10px;
   }
 }
 </style>

@@ -10,6 +10,5 @@ export default {}
 
 <style lang="less" scoped>
 .order-top {
-  height: 500px;
 }
 </style>

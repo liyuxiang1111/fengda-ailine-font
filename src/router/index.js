@@ -20,6 +20,8 @@ import Back from '@/components/Person/Back.vue'
 //导入home页面需要的组件
 import Select from '@/components/Home/Tool/Select.vue'
 import Order from '@/components/Home/Tool/Order.vue'
+import Pay from '@/components/Home/Tool/Pay.vue'
+import End from '@/components/Home/Tool/End.vue'
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
@@ -38,6 +40,8 @@ const routes = [
     children: [
       { path: '', component: Select },
       { path: 'order', component: Order },
+      { path: 'pay', component: Pay },
+      { path: 'end', component: End },
     ],
   },
   {

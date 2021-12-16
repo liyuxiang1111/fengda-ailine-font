@@ -3,6 +3,7 @@
     <Topbar></Topbar>
     <Search></Search>
     <Pricetabel></Pricetabel>
+    <Ispay></Ispay>
     <div class="clearfix w">
       <div class="flaght-box fl">
         <div class="flaght-info-title">单程：厦门-福州 <span>2021-12-13</span></div>
@@ -37,19 +38,19 @@
             <div class="site fl">经济舱</div>
             <div class="price fl"><span>￥</span><strong>123</strong><span>起</span></div>
             <div class="residue fr">剩余票数</div>
-            <div class="fr button">预定</div>
+            <div class="fr button" @click="ispay">预定</div>
           </div>
           <div class="cabin-item">
             <div class="site fl">经济舱</div>
             <div class="price fl"><span>￥</span><strong>123</strong><span>起</span></div>
             <div class="residue fr">剩余票数</div>
-            <div class="fr button">预定</div>
+            <div class="fr button" @click="ispay">预定</div>
           </div>
           <div class="cabin-item">
             <div class="site fl">经济舱</div>
             <div class="price fl"><span>￥</span><strong>123</strong><span>起</span></div>
             <div class="residue fr">剩余票数</div>
-            <div class="fr button">预定</div>
+            <div class="fr button" @click="ispay">预定</div>
           </div>
         </div>
       </div>
@@ -70,12 +71,26 @@ import Topbar from '@/components/Home/Tool/Topbar.vue'
 import Search from '@/components/Home/Select/Search.vue'
 import Pricetabel from '@/components/Home/Select/Pricetabel.vue'
 import Swiper from '@/components/Home/Swiper.vue'
+import bus from '@/components/eventBus.js'
+import Ispay from '@/components/Dialog/Ispay.vue'
 export default {
+  data() {
+    return {
+      dialogVisible: true,
+    }
+  },
   components: {
     Topbar,
     Search,
     Pricetabel,
     Swiper,
+    Ispay,
+  },
+  methods: {
+    ispay() {
+      console.log('ok')
+      bus.$emit('dialog', this.dialogVisible)
+    },
   },
 }
 </script>
