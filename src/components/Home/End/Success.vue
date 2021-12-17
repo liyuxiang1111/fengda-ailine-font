@@ -17,7 +17,7 @@ export default {}
 <style lang="less" scoped>
 .success-container {
   height: 110px;
-  background-color: pink;
+  background-color: #ffffff;
   padding: 20px;
   .text {
     position: relative;

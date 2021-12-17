@@ -65,6 +65,7 @@ export default {
   padding: 20px;
   background-color: #ffffff;
   table {
+    border-spacing: 0;
     th {
       width: 186px;
       height: 40px;
