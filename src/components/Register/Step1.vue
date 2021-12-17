@@ -10,18 +10,22 @@
     </div>
     <div class="information boxshadow">
       <form action="">
-        <div class="form-group"><label for="">用户名：</label><el-input class="input-box" v-model="userName" placeholder="请用户名"></el-input></div>
-        <div class="form-group"><label for="">密码：</label><el-input class="input-box" v-model="passwd" placeholder="请输入密码"></el-input></div>
-        <div class="form-group"><label for="">身份证：</label><el-input class="input-box" v-model="id" placeholder="请输入身份证"></el-input></div>
+        <div class="form-group"><label for="userName">用户名：</label><el-input id="userName" class="input-box" v-model="registerList.userName" placeholder="请用户名"></el-input></div>
+        <div class="form-group"><label for="passwd">密码：</label><el-input id="passwd" class="input-box" v-model="registerList.passwd" placeholder="请输入密码"></el-input></div>
+        <div class="form-group"><label for="id">身份证：</label><el-input id="id" class="input-box" v-model="registerList.id" placeholder="请输入身份证"></el-input></div>
         <div class="form-group">
           <label for="">身份证类型：</label>
-          <el-select v-model="value" placeholder="请选择">
+          <el-select v-model="registerList.idType" placeholder="请选择">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </div>
         <div class="form-group">
           <label for="">称谓：</label>
-          <div class="gender"><input type="radio" /><span>先生</span> <input type="radio" /><span>女士</span></div>
+          <div class="gender">
+            <input type="radio" name="gender" value="1" v-model="registerList.userSex" /><span>先生</span> <input type="radio" name="gender" value="0" v-model="registerList.userSex" /><span
+              >女士</span
+            >
+          </div>
         </div>
         <div class="form-group">
           <div class="notice fr"><input type="checkbox" class="fl" />我同意遵循<router-link to="">《用户条款》</router-link></div>
@@ -37,9 +41,11 @@
 </template>
 
 <script>
+import bus from '@/components/eventBus.js'
 export default {
   data() {
     return {
+      registerList: { id: '', userName: '', passwd: '', idType: '', userSex: '' },
       options: [
         {
           value: '选项1',
@@ -63,14 +69,11 @@ export default {
         },
       ],
       value: '',
-      id: '',
-      userName: '',
-      passwd: '',
     }
   },
   methods: {
     next() {
-      console.log()
+      bus.$emit('getRegisterList', this.registerList)
       this.$router.push('/register/step2')
     },
   },

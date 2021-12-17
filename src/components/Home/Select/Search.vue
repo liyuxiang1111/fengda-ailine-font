@@ -5,25 +5,73 @@
     </div>
     <div class="text-btu">
       <div class="section-input text-first">
-        <input type="text" class="account" placeholder="出发城市" tabindex="4" />
+        <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="beginCity" />
       </div>
       <div class="section-input">
-        <input type="text" class="account" placeholder="到达城市" tabindex="4" />
+        <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="endCity" />
       </div>
       <div class="data-box">
         <el-date-picker class="data" v-model="data" type="datetime" placeholder="选择日期时间" default-time="12:00:00"> </el-date-picker>
       </div>
-      <div class="section-btn fr button">查询</div>
+      <div class="section-btn fr button" @click="search">查询</div>
     </div>
   </div>
 </template>
 
 <script>
+import bus from '@/components/eventBus.js'
 export default {
+  props: {
+    pageSize: {
+      default: 5,
+      type: Number,
+    },
+    pageNum: {
+      default: 1,
+      type: Number,
+    },
+  },
   data() {
     return {
-      data: '',
+      beginCity: '',
+      endCity: '',
+      data: '30',
+      res: {},
+      day: 30,
     }
+  },
+  methods: {
+    /*  async search() {
+      await this.$http({
+        method: 'POST',
+        url: 'flight/search',
+        body: {
+          beginCity: this.beginCity,
+          endCity: this.endCity,
+          pageSize: this.pageSize,
+          pageNum: this.pageNum,
+          day: this.day,
+        },
+      }).then(({ data: res }) => {
+        return {
+          res,
+        }
+      })
+    }, */
+    async search() {
+      await this.$http
+        .post('flight/search', {
+          beginCity: this.beginCity,
+          endCity: this.endCity,
+          pageSize: this.pageSize,
+          pageNum: this.pageNum,
+          day: this.day,
+        })
+        .then(({ data: res }) => {
+          console.log(res)
+          bus.$emit('getFlight', res.data)
+        })
+    },
   },
 }
 </script>

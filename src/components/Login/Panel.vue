@@ -10,7 +10,7 @@
           <input type="password" class="passwd" placeholder="请输入密码" v-model="password" />
         </div>
         <div class="section-input">
-          <input type="text" class="code fl" placeholder="验证码" v-model="code" />
+          <input type="text" class="code fl" placeholder="验证码" v-model="code" @keydown.enter="login" />
           <div class="fl" @click="changeCode()">
             <identify :identifyCode="identifyCode"></identify>
           </div>

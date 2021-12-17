@@ -10,6 +10,7 @@
     </div>
     <div class="information">
       <form action="">
+        <div class="form-group"><label for="">真实信息：</label><el-input class="input-box" v-model="mail" placeholder="请您的真实姓名"></el-input></div>
         <div class="form-group"><label for="">邮箱：</label><el-input class="input-box" v-model="mail" placeholder="请输入邮箱"></el-input></div>
         <div class="form-group"><label for="">电话：</label><el-input class="input-box" v-model="telephone" placeholder="请输入联系电话"></el-input></div>
         <div class="form-group">
@@ -26,11 +27,20 @@
 </template>
 
 <script>
+import bus from '@/components/eventBus.js'
 export default {
+  mounted() {
+    bus.$on('getRegisterList', (val) => {
+      console.log(val)
+      this.registerList = val
+    })
+    console.log(this.registerList)
+  },
   data() {
     return {
       telephone: '',
       mail: '',
+      registerList: { name: '1' },
     }
   },
   methods: {

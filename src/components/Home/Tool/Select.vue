@@ -2,62 +2,81 @@
   <div class="select-container">
     <Topbar></Topbar>
     <Search></Search>
-    <Pricetabel></Pricetabel>
     <Ispay></Ispay>
     <div class="clearfix w">
       <div class="flaght-box fl">
-        <div class="flaght-info-title">单程：厦门-福州 <span>2021-12-13</span></div>
+        <div class="flaght-info-title">单程：- <span></span></div>
         <ul class="sort-box">
           <li class="fr button">其他排序</li>
-          <li class="fr button">出发时刻从早到晚</li>
-          <li class="fr button">价格从高到低</li>
+          <li class="fr button" @click="time">出发时刻从早到晚</li>
+          <li class="fr button" @click="price">价格从低到高</li>
         </ul>
-        <div class="title"><img src="@/assets/image/smalllogo.png" alt="" /></div>
-        <div>
+        <div v-for="item in dataList" :key="item.flightId">
+          <div class="title"><img src="@/assets/image/smalllogo.png" alt="" /></div>
+          <!-- <div v-for="item in dataList" :key="item.flightId"> -->
           <div class="flaght-info">
             <div class="info fl clearfix">
               <div class="start fl">
-                <div class="time">07:25</div>
-                <div class="place">福州长乐</div>
+                <div class="time">{{ item.beginTime }}</div>
+                <div class="place">{{ item.beginCity }}</div>
               </div>
               <div class="active fl">
                 <span class="total-time">3小时15分</span>
                 <div class="line">---------------------></div>
               </div>
               <div class="end fl">
-                <div class="time">07:25</div>
-                <div class="place">福州长乐</div>
+                <div class="time">{{ item.endTime }}</div>
+                <div class="place">{{ item.endCity }}</div>
               </div>
             </div>
             <li class="price-item fr">
-              <div class="price-conbin">全部</div>
-              <div class="price-num">￥1233起</div>
+              <div
+                class="price-conbin button"
+                @click="
+                  item.status = !item.status
+                  chang($event, item.status)
+                "
+              >
+                全部
+              </div>
+              <div class="price-num">￥ {{ item.lastPrice }} 起</div>
             </li>
           </div>
-          <div class="cabin-item">
-            <div class="site fl">经济舱</div>
-            <div class="price fl"><span>￥</span><strong>123</strong><span>起</span></div>
-            <div class="residue fr">剩余票数</div>
-            <div class="fr button" @click="ispay">预定</div>
-          </div>
-          <div class="cabin-item">
-            <div class="site fl">经济舱</div>
-            <div class="price fl"><span>￥</span><strong>123</strong><span>起</span></div>
-            <div class="residue fr">剩余票数</div>
-            <div class="fr button" @click="ispay">预定</div>
-          </div>
-          <div class="cabin-item">
-            <div class="site fl">经济舱</div>
-            <div class="price fl"><span>￥</span><strong>123</strong><span>起</span></div>
-            <div class="residue fr">剩余票数</div>
-            <div class="fr button" @click="ispay">预定</div>
+          <div v-show="item.status">
+            <div class="cabin-item">
+              <div class="site fl">经济舱</div>
+              <div class="price fl">
+                <span>￥</span><strong>{{ item.firstPrice }}</strong
+                ><span>起</span>
+              </div>
+              <div class="residue fr">余票充足</div>
+              <div class="fr button" @click="ispay">预定</div>
+            </div>
+            <div class="cabin-item">
+              <div class="site fl">经济舱</div>
+              <div class="price fl">
+                <span>￥</span><strong>{{ item.economyPrice }}</strong
+                ><span>起</span>
+              </div>
+              <div class="residue fr">余票充足</div>
+              <div class="fr button" @click="ispay">预定</div>
+            </div>
+            <div class="cabin-item">
+              <div class="site fl">经济舱</div>
+              <div class="price fl">
+                <span>￥</span><strong>{{ item.lastPrice }}</strong
+                ><span>起</span>
+              </div>
+              <div class="residue fr">余票充足</div>
+              <div class="fr button" @click="ispay">预定</div>
+            </div>
           </div>
         </div>
       </div>
       <!-- <div class="advertisement fr">123</div> -->
-      <div class="select-box w">
-        <!-- <el-empty description="空"></el-empty> -->
-      </div>
+      <!-- <div class="select-box w">
+        <el-empty description="空"></el-empty>
+      </div> -->
       <div class="swiper-box fl">
         <Swiper></Swiper>
         <div class="advertisement">广告位招租</div>
@@ -74,9 +93,32 @@ import Swiper from '@/components/Home/Swiper.vue'
 import bus from '@/components/eventBus.js'
 import Ispay from '@/components/Dialog/Ispay.vue'
 export default {
+  created() {
+    this.init()
+  },
+  props: {
+    beginCity: {
+      type: String,
+      default: '1',
+    },
+    endCity: {
+      type: String,
+      default: '1',
+    },
+    pageSize: {
+      type: Number,
+      default: 5,
+    },
+    pageNum: {
+      type: Number,
+      default: 1,
+    },
+  },
   data() {
     return {
       dialogVisible: true,
+      dataList: [],
+      flag: false,
     }
   },
   components: {
@@ -91,6 +133,66 @@ export default {
       console.log('ok')
       bus.$emit('dialog', this.dialogVisible)
     },
+    async init() {
+      await this.$http
+        .post('flight/search', {
+          beginCity: this.beginCity,
+          endCity: this.endCity,
+          pageSize: this.pageSize,
+          pageNum: this.pageNum,
+          day: this.day,
+        })
+        .then(({ data: res }) => {
+          console.log('最开始')
+          console.log(res)
+          this.dataList = res.data.dataList
+        })
+    },
+    price() {
+      console.log('price-select')
+      //冒泡排序
+      var arr = this.dataList
+      var low = 0
+      var high = arr.length - 1
+      var temp
+      while (low < high) {
+        for (let j = low; j < high; j++) {
+          if (arr[j].lastPrice > arr[j + 1].lastPrice) {
+            temp = arr[j + 1].lastPrice
+            arr[j + 1].lastPrice = arr[j].lastPrice
+            arr[j].lastPrice = temp
+          }
+        }
+        --high
+      }
+      while (low > high) {
+        //找到最小值
+        for (var j = high; j > low; j--) {
+          if (arr[j].lastPrice > arr[j + 1].lastPrice) {
+            temp = arr[j + 1].lastPrice
+            arr[j + 1].lastPrice = arr[j].lastPrice
+            arr[j].lastPrice = temp
+          }
+        }
+        ++low //修改low值，往后移动一位
+      }
+    },
+    time() {
+      console.log('time-select')
+    },
+    chang(e, flag) {
+      if (flag) {
+        e.target.parentNode.style.backgroundColor = '#ffffff'
+      } else {
+        e.target.parentNode.style.backgroundColor = '#e1f0fd'
+      }
+    },
+  },
+  mounted() {
+    bus.$on('getFlight', (res) => {
+      this.dataList = res.dataList
+      console.log(this.dataList)
+    })
   },
 }
 </script>
@@ -184,6 +286,10 @@ export default {
         .price-conbin {
           padding-top: 5px;
           text-align: center;
+        }
+        .price-conbin::after {
+          content: '';
+          //画个倒三角
         }
         .price-num {
           padding: 12px 0 5px;
