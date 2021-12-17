@@ -4,13 +4,13 @@
       <li class="tab">会员登录</li>
       <div class="menber-content">
         <div class="section-input">
-          <input type="text" class="acount" placeholder="请输入账号" />
+          <input type="text" class="acount" placeholder="请输入账号" v-model="userName" />
         </div>
         <div class="section-input">
-          <input type="password" class="passwd" placeholder="请输入密码" />
+          <input type="password" class="passwd" placeholder="请输入密码" v-model="password" />
         </div>
         <div class="section-input">
-          <input type="text" class="code fl" placeholder="验证码" />
+          <input type="text" class="code fl" placeholder="验证码" v-model="code" />
           <div class="fl" @click="changeCode()">
             <identify :identifyCode="identifyCode"></identify>
           </div>
@@ -37,6 +37,9 @@ export default {
   },
   data() {
     return {
+      userName: '',
+      password: '',
+      code: '',
       // 验证码初始值
       identifyCode: 'm6a8', // 这个就是随机生成的验证码
       // 验证码的随机取值范围
@@ -44,8 +47,27 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.$router.push('home')
+    async login() {
+      if (this.userName === '' && this.password === '') {
+        alert('请输入有效的账号和密码')
+      } else if (this.code === '') {
+        alert('验证错误')
+      } else if (this.code === this.identifyCode) {
+        await this.$http
+          .post('/login', {
+            userName: this.userName,
+            userPwd: this.password,
+          })
+          .then(({ data: res }) => {
+            if (res.data === null) {
+              alert(res.msg)
+            } else {
+              this.token = res.data
+              localStorage.setItem('Authorizatio', res.data)
+              this.$router.push('/home')
+            }
+          })
+      }
     },
     //  下一步按钮 拿到code值跟随机生成的验证码进行对比
     handleSubmit() {
