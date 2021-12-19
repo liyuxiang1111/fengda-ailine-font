@@ -1,7 +1,7 @@
 <template>
   <div class="back-container fr">
     <div class="back-box">退票处理</div>
-    <Flaght></Flaght>
+    <Flight></Flight>
     <div class="page-box">
       <Page></Page>
     </div>
@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import Flaght from '@/components/Person/History/Flaght.vue'
+import Flight from '@/components/Person/Back/Flight.vue'
 import Page from '@/components/Person/Page.vue'
 export default {
   components: {
-    Flaght,
+    Flight,
     Page,
   },
 }

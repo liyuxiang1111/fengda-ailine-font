@@ -1,5 +1,5 @@
 <template>
-  <div class="flaght-contaienr">
+  <div class="flight-contaienr">
     <div class="ticket">
       <div class="ticket-title">
         <img src="@/assets/image/smalllogo.png" alt="" />
@@ -16,18 +16,28 @@
           <span>福州长乐</span>
         </div>
         <div class="customer fl">乘客：一粒小傻子</div>
-        <div class="day fr">日期：2021/12/14</div>
+        <div class="day fr">
+          <el-popconfirm title="确定要退票吗？" @confirm="back">
+            <el-button slot="reference" class="back fr">退票</el-button>
+          </el-popconfirm>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    back() {
+      console.log('123')
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>
-.flaght-contaienr {
+.flight-contaienr {
   .ticket {
     position: relative;
     height: 80px;
@@ -83,6 +93,10 @@ export default {}
         height: 40px;
         line-height: 45px;
         background-color: #e1f0fd;
+        .back {
+          background-color: #ffa500;
+          color: #ffffff;
+        }
       }
     }
   }

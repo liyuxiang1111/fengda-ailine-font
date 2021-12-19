@@ -1,14 +1,14 @@
 <template>
-  <div class="step1-container w white">
+  <div class="step1-container w white boxshadow">
     <div class="title">
       <h2 class="fl">凤达航空会员注册</h2>
       <ul class="fr">
-        <li class="fl"><span>1</span> 步骤1</li>
-        <li class="fl"><span>2</span>步骤2</li>
-        <li class="fl"><span>3</span>步骤3</li>
+        <li class="fl step-box"><span class="step">1</span> 基本信息</li>
+        <li class="fl"><span>2</span>联系信息</li>
+        <li class="fl"><span>3</span>注册完成</li>
       </ul>
     </div>
-    <div class="information boxshadow">
+    <div class="information">
       <form action="">
         <div class="form-group"><label for="userName">用户名：</label><el-input id="userName" class="input-box" v-model="registerList.userName" placeholder="请用户名"></el-input></div>
         <div class="form-group"><label for="passwd">密码：</label><el-input id="passwd" class="input-box" v-model="registerList.passwd" placeholder="请输入密码"></el-input></div>
@@ -95,7 +95,31 @@ export default {
     ul {
       margin-top: 10px;
       li {
+        width: 130px;
         margin-right: 10px;
+        height: 36px;
+        line-height: 36px;
+        color: #b8b8b8;
+        span {
+          display: inline-block;
+          height: 36px;
+          width: 36px;
+          margin-right: 10px;
+          text-align: center;
+          font-size: 14px;
+          background-color: #b8b8b8;
+          border-radius: 50%;
+          color: #ffffff;
+        }
+      }
+      .step-box {
+        margin-top: 0;
+        color: #004385;
+        .step {
+          background-color: #004385;
+          border-radius: 50%;
+          color: #ffffff;
+        }
       }
     }
   }

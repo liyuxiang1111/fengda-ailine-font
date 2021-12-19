@@ -4,7 +4,7 @@
     <Search></Search>
     <Ispay></Ispay>
     <div class="clearfix w">
-      <div class="flaght-box fl">
+      <div class="flaght-box fl boxshadow">
         <div class="flaght-info-title">单程：- <span></span></div>
         <ul class="sort-box">
           <li class="fr button">其他排序</li>
@@ -22,7 +22,7 @@
               </div>
               <div class="active fl">
                 <span class="total-time">3小时15分</span>
-                <div class="line">---------------------></div>
+                <div class="line">-----------------------------></div>
               </div>
               <div class="end fl">
                 <div class="time">{{ item.endTime }}</div>
@@ -39,7 +39,7 @@
               >
                 全部
               </div>
-              <div class="price-num">￥ {{ item.lastPrice }} 起</div>
+              <div class="price-num"><span class="icon">￥</span> {{ item.lastPrice }} <span class="icon">起</span></div>
             </li>
           </div>
           <div v-show="item.status">
@@ -79,7 +79,7 @@
       </div> -->
       <div class="swiper-box fl">
         <Swiper></Swiper>
-        <div class="advertisement">广告位招租</div>
+        <div class="advertisement boxshadow">广告位招租</div>
       </div>
     </div>
   </div>
@@ -207,6 +207,8 @@ export default {
       padding-left: 20px;
       height: 40px;
       line-height: 40px;
+      font-size: 14px;
+      color: #fff;
       background-color: #2f71bd;
       span {
         margin-left: 10px;
@@ -218,6 +220,8 @@ export default {
       line-height: 50px;
       li {
         padding: 0 12px;
+        color: #999;
+        font-size: 12px;
       }
     }
     .advertisement {
@@ -263,6 +267,10 @@ export default {
             font-size: 7px;
             text-align: center;
           }
+          .line {
+            font-size: 12px;
+            color: #7d8995;
+          }
         }
         .end {
           width: 76px;
@@ -286,6 +294,8 @@ export default {
         .price-conbin {
           padding-top: 5px;
           text-align: center;
+          font-size: 12px;
+          color: #242424;
         }
         .price-conbin::after {
           content: '';
@@ -298,6 +308,9 @@ export default {
           line-height: 1;
           color: #ff8214;
           text-align: center;
+          .icon {
+            font-size: 12px;
+          }
         }
       }
     }

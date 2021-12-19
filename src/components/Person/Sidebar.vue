@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-container fl">
+  <div class="sidebar-container fl boxshadow">
     <div class="man">
       <img src="@/assets/image/一栗小莎子.jpeg" alt="" />
       <span>一粒小傻子</span>

@@ -1,11 +1,11 @@
 <template>
-  <div class="step1-container w white">
+  <div class="step1-container w white boxshadow">
     <div class="title">
       <h2 class="fl">凤达航空会员注册</h2>
       <ul class="fr">
-        <li class="fl"><span>1</span> 步骤1</li>
-        <li class="fl"><span>2</span>步骤2</li>
-        <li class="fl"><span>3</span>步骤3</li>
+        <li class="fl"><span>1</span>基本信息</li>
+        <li class="fl step-box"><span class="step">2</span>联系信息</li>
+        <li class="fl"><span>3</span>注册完成</li>
       </ul>
     </div>
     <div class="information">
@@ -67,7 +67,31 @@ export default {
     ul {
       margin-top: 10px;
       li {
+        width: 130px;
         margin-right: 10px;
+        height: 36px;
+        line-height: 36px;
+        color: #b8b8b8;
+        span {
+          display: inline-block;
+          height: 36px;
+          width: 36px;
+          margin-right: 10px;
+          text-align: center;
+          font-size: 14px;
+          background-color: #b8b8b8;
+          border-radius: 50%;
+          color: #ffffff;
+        }
+      }
+      .step-box {
+        margin-top: 0;
+        color: #004385;
+        .step {
+          background-color: #004385;
+          border-radius: 50%;
+          color: #ffffff;
+        }
       }
     }
   }

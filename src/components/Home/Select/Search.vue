@@ -1,5 +1,5 @@
 <template>
-  <div class="search-container w">
+  <div class="search-container w boxshadow">
     <div class="top-btu">
       <div class="btn">单程</div>
     </div>

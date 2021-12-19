@@ -1,6 +1,6 @@
 <template>
   <div class="topbar-container">
-    <div class="topbar-box w">
+    <div ref="active" class="topbar-box w">
       <li class="step active fl">1.选择航班</li>
       <li class="order fl">2.填写订单</li>
       <li class="pay fl">3.确认付款</li>
@@ -10,7 +10,34 @@
 </template>
 
 <script>
-export default {}
+export default {
+  created() {
+    console.log(this.$route.path)
+    this.hash = this.$route.path
+  },
+  mounted() {
+    this.init()
+  },
+  data() {
+    return {
+      hash: '',
+    }
+  },
+  methods: {
+    init() {
+      if (this.hash == '/home/order') {
+        this.$refs.active.childNodes[0].className = 'active fl'
+        this.$refs.active.childNodes[1].className = 'step order fl'
+      } else if (this.hash == '/home/pay') {
+        this.$refs.active.childNodes[0].className = 'active fl'
+        this.$refs.active.childNodes[2].className = 'step pay fl'
+      } else if (this.hash == '/home/end') {
+        this.$refs.active.childNodes[0].className = 'active fl'
+        this.$refs.active.childNodes[3].className = 'step end fl'
+      }
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>

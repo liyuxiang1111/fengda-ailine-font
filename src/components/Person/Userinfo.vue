@@ -1,39 +1,44 @@
 <template>
-  <div class="Userinfo-container fr">
+  <div class="Userinfo-container fr boxshadow">
     <div class="title">
       <el-upload class="avatar-uploader fl" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
       <div class="basic fl">
-        <span class="name fl">123</span>
-        <span class="button">修改</span>
+        <span class="name fl" v-if="flag.name">{{ userinfo.name }}</span>
+        <el-input v-else class="name-input" v-model="userinfo.name"></el-input>
+        <span class="button" @click="flag.name = !flag.name">修改</span>
         <div class="introduce">恭喜你已经成为凤达航空会员</div>
         <div class="gender box">
           <h3 class="fl">性别</h3>
           <div class="fl">
-            <span>女</span>
-            <span>修改</span>
+            <span v-if="flag.genderflag">{{ userinfo.sex }}</span>
+            <el-input v-else class="gender-input" v-model="userinfo.sex"></el-input>
+            <span class="button" @click="flag.genderflag = !flag.genderflag">修改</span>
           </div>
         </div>
         <div class="box">
           <h3 class="fl">邮箱</h3>
           <div class="fl">
-            <span>女</span>
-            <span>修改</span>
+            <span v-if="flag.emilflag">{{ userinfo.emil }}</span>
+            <el-input v-else class="emil-input" v-model="userinfo.emil"></el-input>
+            <span class="button" @click="flag.emilflag = !flag.emilflag">修改</span>
           </div>
         </div>
         <div class="box">
           <h3 class="fl">电话</h3>
           <div class="fl">
-            <span>女</span>
-            <span>修改</span>
+            <span v-if="flag.tel">{{ userinfo.tel }}</span>
+            <el-input v-else class="tel-input" v-model="userinfo.tel"></el-input>
+            <span class="button" @click="flag.tel = !flag.tel">修改</span>
           </div>
         </div>
         <div class="box">
           <h3 class="fl">职业</h3>
           <div class="fl">
             <span>女</span>
+            <el-input class="" v-if="false">女</el-input>
             <span>修改</span>
           </div>
         </div>
@@ -41,6 +46,7 @@
           <h3 class="fl">个人简介</h3>
           <div class="fl">
             <span>女</span>
+            <el-input class="" v-if="false">女</el-input>
             <span>修改</span>
           </div>
         </div>
@@ -48,9 +54,12 @@
           <h3 class="fl">教育经历</h3>
           <div class="fl">
             <span>女</span>
+            <el-input class="" v-if="false">女</el-input>
             <span>修改</span>
           </div>
         </div>
+        <el-button class="userinfo-but" type="primary">提交保存</el-button>
+        <el-button>取消</el-button>
       </div>
     </div>
   </div>
@@ -61,6 +70,18 @@ export default {
   data() {
     return {
       imageUrl: require(`@/assets/image/一栗小莎子.jpeg`),
+      flag: {
+        name: true,
+        genderflag: true,
+        emilflag: true,
+        tel: true,
+      },
+      userinfo: {
+        name: '一粒小傻子',
+        sex: '女',
+        emil: '739559572@qq.com',
+        tel: '11111111111',
+      },
     }
   },
   methods: {
@@ -86,7 +107,7 @@ export default {
 <style lang="less" scoped>
 .Userinfo-container {
   width: 890px;
-  height: 500px;
+  height: 555px;
   padding: 15px;
   background-color: #ffffff;
   .title {
@@ -125,6 +146,11 @@ export default {
       .name {
         margin-right: 30px;
       }
+      .name-input {
+        width: 200px;
+        height: 36px;
+        margin-right: 10px;
+      }
       .introduce {
         height: 43px;
         margin-top: 20px;
@@ -138,15 +164,30 @@ export default {
           display: inline;
           line-height: 36px;
         }
+        .gender-input {
+          width: 80px;
+          margin-right: 10px;
+        }
+        .emil-input {
+          width: 200px;
+          margin-right: 10px;
+        }
+        .tel-input {
+          width: 170px;
+          margin-right: 10px;
+        }
         div {
           margin-left: 20px;
-          width: 100px;
+          width: 295px;
           height: 36px;
           line-height: 36px;
           span {
             margin-right: 10px;
           }
         }
+      }
+      .userinfo-but {
+        margin-top: 10px;
       }
     }
   }

@@ -39,7 +39,7 @@ export default {}
     background-color: #ffffff;
   }
   .boxshadow {
-    box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 30%);
+    box-shadow: 0px 0px 3px 3px #e2e3e3;
   }
   button,
   input {

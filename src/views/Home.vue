@@ -29,5 +29,8 @@ export default {
   height: 100%;
   overflow: auto;
   background-color: #ecf2f7;
+  .footer-box {
+    margin-top: 20px;
+  }
 }
 </style>
