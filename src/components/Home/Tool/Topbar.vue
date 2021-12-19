@@ -1,10 +1,10 @@
 <template>
   <div class="topbar-container">
     <div ref="active" class="topbar-box w">
-      <li class="step active fl">1.选择航班</li>
-      <li class="order fl">2.填写订单</li>
-      <li class="pay fl">3.确认付款</li>
-      <li class="end fl">4.出票完成</li>
+      <li class="step active fl"><span class="icon iconfont">&#xe602;</span>选择航班</li>
+      <li class="order fl"><span class="icon iconfont">&#xe60e;</span>2.填写订单</li>
+      <li class="pay fl"><span class="icon iconfont">&#xe616;</span>确认付款</li>
+      <li class="end fl"><span class="icon iconfont">&#xe613;</span>4.出票完成</li>
     </div>
   </div>
 </template>
@@ -26,14 +26,14 @@ export default {
   methods: {
     init() {
       if (this.hash == '/home/order') {
-        this.$refs.active.childNodes[0].className = 'active fl'
-        this.$refs.active.childNodes[1].className = 'step order fl'
+        this.$refs.active.childNodes[0].className = 'active fl iconfont'
+        this.$refs.active.childNodes[1].className = 'step order fl iconfont'
       } else if (this.hash == '/home/pay') {
-        this.$refs.active.childNodes[0].className = 'active fl'
-        this.$refs.active.childNodes[2].className = 'step pay fl'
+        this.$refs.active.childNodes[0].className = 'active fl iconfont'
+        this.$refs.active.childNodes[2].className = 'step pay fl iconfont'
       } else if (this.hash == '/home/end') {
-        this.$refs.active.childNodes[0].className = 'active fl'
-        this.$refs.active.childNodes[3].className = 'step end fl'
+        this.$refs.active.childNodes[0].className = 'active fl iconfont'
+        this.$refs.active.childNodes[3].className = 'step end fl iconfont'
       }
     },
   },
@@ -52,9 +52,15 @@ export default {
       height: 60px;
       text-align: center;
       line-height: 60px;
+      color: #257fd9;
+      .icon {
+        font-size: 25px;
+        margin-right: 15px;
+      }
     }
     .step {
       background-color: #2f90b9;
+      color: #ffffff;
     }
     .step:before {
       position: absolute;

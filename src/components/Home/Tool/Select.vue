@@ -8,8 +8,8 @@
         <div class="flaght-info-title">单程：- <span></span></div>
         <ul class="sort-box">
           <li class="fr button">其他排序</li>
-          <li class="fr button" @click="time">出发时刻从早到晚</li>
-          <li class="fr button" @click="price">价格从低到高</li>
+          <li class="fr button" @click="time" ref="time"><span class="iconfont">&#xe8c5;</span>出发时刻从早到晚</li>
+          <li class="fr button" @click="price" ref="price"><span class="iconfont">&#xe8ba;</span> 价格从低到高</li>
         </ul>
         <div v-for="item in dataList" :key="item.flightId">
           <div class="title"><img src="@/assets/image/smalllogo.png" alt="" /></div>
@@ -22,7 +22,7 @@
               </div>
               <div class="active fl">
                 <span class="total-time">3小时15分</span>
-                <div class="line">-----------------------------></div>
+                <div class="line">--------------------------></div>
               </div>
               <div class="end fl">
                 <div class="time">{{ item.endTime }}</div>
@@ -148,7 +148,9 @@ export default {
           this.dataList = res.data.dataList
         })
     },
-    price() {
+    price(e) {
+      e.target.style.color = '#257fd9'
+      this.$refs.time.style.color = '#999999'
       console.log('price-select')
       //冒泡排序
       var arr = this.dataList
@@ -177,7 +179,9 @@ export default {
         ++low //修改low值，往后移动一位
       }
     },
-    time() {
+    time(e) {
+      e.target.style.color = '#257fd9'
+      this.$refs.price.style.color = '#999999'
       console.log('time-select')
     },
     chang(e, flag) {
@@ -222,6 +226,9 @@ export default {
         padding: 0 12px;
         color: #999;
         font-size: 12px;
+        span {
+          font-size: 18px;
+        }
       }
     }
     .advertisement {
@@ -245,6 +252,7 @@ export default {
         width: 407px;
         padding: 10px 0;
         .start {
+          position: relative;
           width: 76px;
           height: 60px;
           .time {
@@ -257,6 +265,18 @@ export default {
             font-size: 12px;
             height: 17px;
           }
+        }
+        .start::before {
+          position: absolute;
+          font-family: 'iconfont' !important;
+          top: 10px;
+          left: -20px;
+          font-size: 20px;
+          font-style: normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          content: '';
+          color: #b0cade;
         }
         .active {
           .total-time {
@@ -273,7 +293,8 @@ export default {
           }
         }
         .end {
-          width: 76px;
+          position: relative;
+          width: 88px;
           height: 60px;
           .time {
             color: #39424c;
@@ -285,6 +306,18 @@ export default {
             font-size: 12px;
             height: 17px;
           }
+        }
+        .end::before {
+          position: absolute;
+          font-family: 'iconfont' !important;
+          top: 10px;
+          left: -20px;
+          font-size: 20px;
+          font-style: normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          content: '';
+          color: #b0cade;
         }
       }
       .price-item {

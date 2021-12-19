@@ -8,14 +8,14 @@
       <div class="basic fl">
         <span class="name fl" v-if="flag.name">{{ userinfo.name }}</span>
         <el-input v-else class="name-input" v-model="userinfo.name"></el-input>
-        <span class="button" @click="flag.name = !flag.name">修改</span>
+        <span class="button iconfont" @click="flag.name = !flag.name">&#xe600; 修改</span>
         <div class="introduce">恭喜你已经成为凤达航空会员</div>
         <div class="gender box">
           <h3 class="fl">性别</h3>
           <div class="fl">
             <span v-if="flag.genderflag">{{ userinfo.sex }}</span>
             <el-input v-else class="gender-input" v-model="userinfo.sex"></el-input>
-            <span class="button" @click="flag.genderflag = !flag.genderflag">修改</span>
+            <span class="button iconfont" @click="flag.genderflag = !flag.genderflag">&#xe600;修改</span>
           </div>
         </div>
         <div class="box">
@@ -23,7 +23,7 @@
           <div class="fl">
             <span v-if="flag.emilflag">{{ userinfo.emil }}</span>
             <el-input v-else class="emil-input" v-model="userinfo.emil"></el-input>
-            <span class="button" @click="flag.emilflag = !flag.emilflag">修改</span>
+            <span class="button iconfont" @click="flag.emilflag = !flag.emilflag">&#xe600;修改</span>
           </div>
         </div>
         <div class="box">
@@ -31,15 +31,16 @@
           <div class="fl">
             <span v-if="flag.tel">{{ userinfo.tel }}</span>
             <el-input v-else class="tel-input" v-model="userinfo.tel"></el-input>
-            <span class="button" @click="flag.tel = !flag.tel">修改</span>
+            <span class="button iconfont" @click="flag.tel = !flag.tel">&#xe600;修改</span>
           </div>
         </div>
+
         <div class="box">
           <h3 class="fl">职业</h3>
           <div class="fl">
             <span>女</span>
             <el-input class="" v-if="false">女</el-input>
-            <span>修改</span>
+            <span class="iconfont">&#xe600; 修改</span>
           </div>
         </div>
         <div class="box">

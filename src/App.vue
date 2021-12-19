@@ -10,6 +10,18 @@ export default {}
 
 <style lang="less">
 * {
+  @font-face {
+    font-family: 'iconfont';
+    src: url('./assets/css/iconfont.woff2?t=1639906299268') format('woff2'), url('./assets/css/iconfont.woff?t=1639906299268') format('woff'),
+      url('./assets/css/iconfont.ttf?t=1639906299268') format('truetype');
+  }
+  .iconfont {
+    font-family: 'iconfont' !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   margin: 0;
   padding: 0;
   a {

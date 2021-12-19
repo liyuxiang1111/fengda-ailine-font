@@ -4,14 +4,28 @@
       <img src="@/assets/image/一栗小莎子.jpeg" alt="" />
       <span>一粒小傻子</span>
     </div>
-    <router-link to="/person/userinfo"><li class="person-information">我的个人信息</li></router-link>
-    <router-link to="/person/ticket"><li class="air-ticket">我的机票信息</li></router-link>
-    <router-link to="/person/history"><li class="history">历史订单</li></router-link>
-    <router-link to="/person/back"><li class="back">退票处理</li></router-link>
+    <router-link to="/person/userinfo"
+      ><li class="person-information"><span class="iconfont">&#xe617;</span>我的个人信息</li></router-link
+    >
+    <router-link to="/person/ticket"
+      ><li class="air-ticket"><span class="iconfont">&#xe66f;</span>我的机票信息</li></router-link
+    >
+    <router-link to="/person/history"
+      ><li class="history"><span class="iconfont">&#xe8d5;</span>历史订单</li></router-link
+    >
+    <router-link to="/person/back"
+      ><li class="back"><span class="iconfont">&#xe684;</span>退票处理</li></router-link
+    >
 
-    <router-link to=""><li>积分越换</li></router-link>
-    <router-link to=""><li>会员专区</li></router-link>
-    <router-link to="" @click.native="logout"><li>退出登录</li></router-link>
+    <router-link to=""
+      ><li><span class="iconfont">&#xe617;</span>积分越换</li></router-link
+    >
+    <router-link to=""
+      ><li><span class="iconfont">&#xe886;</span>会员专区</li></router-link
+    >
+    <router-link to="" @click.native="logout"
+      ><li><span class="iconfont">&#xe601;</span>退出登录</li></router-link
+    >
   </div>
 </template>
 
@@ -55,6 +69,9 @@ export default {
       padding: 15px;
       height: 30px;
       line-height: 30px;
+      span {
+        margin-right: 10px;
+      }
     }
     li:hover {
       background-color: #d8eefe;
