@@ -15,6 +15,7 @@ export default {}
 .copyright-box {
   position: relative;
   text-align: center;
+  margin-top: 100px;
   padding-top: 40px;
   font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, '\5B8B\4F53', sans-serif;
   width: 100%;

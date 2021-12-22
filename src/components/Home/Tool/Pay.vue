@@ -1,9 +1,9 @@
 <template>
   <div class="pay-contaienr">
     <Topbar></Topbar>
-    <div class="pay-box w">
+    <div class="pay-box w clearfix">
       <Top></Top>
-      <div class="payment-box">
+      <div class="payment-box fl">
         <div class="payment-top">订单信息</div>
         <div class="sub-title">乘机人信息</div>
         <div class="passengers">
@@ -25,6 +25,14 @@
           <div class="next fr button" @click="next">下一步</div>
         </div>
       </div>
+      <div class="swiper-box fr">
+        <Swiper></Swiper>
+        <div class="tip">
+          <div class="title">注意事项：</div>
+          <p>1.预订价格可能发生变动，请以实际价格为准！ 2.所有航班起抵时间均为当地时间（24小时制），请注意安排行程。</p>
+        </div>
+        <div class="advertisement">广告位招租</div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +40,7 @@
 <script>
 import Topbar from '@/components/Home/Tool/Topbar.vue'
 import Top from '@/components/Home/Order/Top.vue'
+import Swiper from '@/components/Home/Swiper.vue'
 export default {
   data() {
     return {
@@ -42,6 +51,7 @@ export default {
   components: {
     Topbar,
     Top,
+    Swiper,
   },
   methods: {
     back() {
@@ -145,6 +155,37 @@ export default {
         text-align: center;
         line-height: 38px;
       }
+    }
+  }
+  .swiper-box {
+    /deep/ img {
+      width: 270px;
+    }
+    width: 270px;
+    .tip {
+      margin-top: 10px;
+      height: 110px;
+      background-color: #ffecca;
+      padding: 20px;
+      border-top: 5px solid #fd8923;
+      border-bottom: 5px solid #fd8923;
+      .title {
+        margin-bottom: 14px;
+        color: #8f5727;
+        font-size: 16px;
+      }
+      p {
+        font-size: 12px;
+        color: #8f5727;
+        line-height: 1.8;
+      }
+    }
+    .advertisement {
+      margin-top: 10px;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      background-color: #fd8923;
     }
   }
 }

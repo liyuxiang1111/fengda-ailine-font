@@ -70,6 +70,9 @@ export default {
   .tool {
     li {
       a {
+        color: #515151;
+        font-weight: normal;
+        font-size: 14px;
         div {
           height: 76px;
           line-height: 76px;

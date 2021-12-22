@@ -1,9 +1,9 @@
 <template>
   <div class="order-contaienr">
     <Topbar></Topbar>
-    <div class="order-box w">
+    <div class="order-box w clearfix">
       <Top></Top>
-      <div class="passenger-box">
+      <div class="passenger-box fl">
         <div class="passenger-top">乘机人信息</div>
         <div class="passenger-body-box">
           <div class="passenger-body">
@@ -44,6 +44,15 @@
           </div>
         </div>
       </div>
+      <div class="swiper-box fr">
+        <Swiper></Swiper>
+        <div class="top-tip"><p>所有航班起抵时间均为当地时间（24小时制），请注意安排行程。</p></div>
+        <div class="tip">
+          <div class="title">温馨提示：</div>
+          <p>厦航官网暂不接受重要旅客（VIP)、孕妇、病残旅客等特殊旅客购票。如您有需要，请到厦航自营售票处咨询。</p>
+        </div>
+        <div class="advertisement">广告位招租</div>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +60,7 @@
 <script>
 import Topbar from '@/components/Home/Tool/Topbar.vue'
 import Top from '@/components/Home/Order/Top.vue'
+import Swiper from '@/components/Home/Swiper.vue'
 export default {
   data() {
     return {
@@ -113,6 +123,7 @@ export default {
   components: {
     Topbar,
     Top,
+    Swiper,
   },
   methods: {
     back() {
@@ -220,6 +231,47 @@ export default {
             line-height: 38px;
           }
         }
+      }
+    }
+    .swiper-box {
+      /deep/ img {
+        width: 270px;
+      }
+      width: 270px;
+      .top-tip {
+        height: 60px;
+        padding: 20px;
+        margin-top: 10px;
+        background-color: #ffecca;
+        border-top: 5px solid #fd8923;
+        border-bottom: 5px solid #fd8923;
+        p {
+          font-size: 12px;
+          color: #8f5727;
+          line-height: 1.8;
+        }
+      }
+      .tip {
+        height: 110px;
+        background-color: #ffecca;
+        padding: 20px;
+        .title {
+          margin-bottom: 14px;
+          color: #8f5727;
+          font-size: 16px;
+        }
+        p {
+          font-size: 12px;
+          color: #8f5727;
+          line-height: 1.8;
+        }
+      }
+      .advertisement {
+        margin-top: 10px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        background-color: #fd8923;
       }
     }
   }

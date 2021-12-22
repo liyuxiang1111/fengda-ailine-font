@@ -11,72 +11,75 @@
           <li class="fr button" @click="time" ref="time"><span class="iconfont">&#xe8c5;</span>出发时刻从早到晚</li>
           <li class="fr button" @click="price" ref="price"><span class="iconfont">&#xe8ba;</span> 价格从低到高</li>
         </ul>
-        <div v-for="item in dataList" :key="item.flightId">
-          <div class="title"><img src="@/assets/image/smalllogo.png" alt="" /></div>
-          <!-- <div v-for="item in dataList" :key="item.flightId"> -->
-          <div class="flaght-info">
-            <div class="info fl clearfix">
-              <div class="start fl">
-                <div class="time">{{ item.beginTime }}</div>
-                <div class="place">{{ item.beginCity }}</div>
+        <div v-if="dataList.length != 0">
+          <div v-for="item in dataList" :key="item.flightId">
+            <div class="title"><img src="@/assets/image/smalllogo.png" alt="" /></div>
+            <!-- <div v-for="item in dataList" :key="item.flightId"> -->
+            <div class="flaght-info">
+              <div class="info fl clearfix">
+                <div class="start fl">
+                  <div class="time">{{ item.beginTime }}</div>
+                  <div class="place">{{ item.beginCity }}</div>
+                </div>
+                <div class="active fl">
+                  <span class="total-time">3小时15分</span>
+                  <div class="line"></div>
+                </div>
+                <div class="end fl">
+                  <div class="time">{{ item.endTime }}</div>
+                  <div class="place">{{ item.endCity }}</div>
+                </div>
               </div>
-              <div class="active fl">
-                <span class="total-time">3小时15分</span>
-                <div class="line">--------------------------></div>
-              </div>
-              <div class="end fl">
-                <div class="time">{{ item.endTime }}</div>
-                <div class="place">{{ item.endCity }}</div>
-              </div>
+              <li class="price-item fr">
+                <div
+                  class="price-conbin button"
+                  @click="
+                    item.status = !item.status
+                    chang($event, item.status)
+                  "
+                >
+                  全部
+                </div>
+                <div class="price-num"><span class="icon">￥</span> {{ item.lastPrice }} <span class="icon">起</span></div>
+              </li>
             </div>
-            <li class="price-item fr">
-              <div
-                class="price-conbin button"
-                @click="
-                  item.status = !item.status
-                  chang($event, item.status)
-                "
-              >
-                全部
+            <div v-show="item.status">
+              <div class="cabin-item">
+                <div class="site fl">经济舱</div>
+                <div class="price fl">
+                  <span>￥</span><strong>{{ item.firstPrice }}</strong
+                  ><span>起</span>
+                </div>
+                <div class="residue fr">余票充足</div>
+                <div class="fr button" @click="ispay">预定</div>
               </div>
-              <div class="price-num"><span class="icon">￥</span> {{ item.lastPrice }} <span class="icon">起</span></div>
-            </li>
-          </div>
-          <div v-show="item.status">
-            <div class="cabin-item">
-              <div class="site fl">经济舱</div>
-              <div class="price fl">
-                <span>￥</span><strong>{{ item.firstPrice }}</strong
-                ><span>起</span>
+              <div class="cabin-item">
+                <div class="site fl">经济舱</div>
+                <div class="price fl">
+                  <span>￥</span><strong>{{ item.economyPrice }}</strong
+                  ><span>起</span>
+                </div>
+                <div class="residue fr">余票充足</div>
+                <div class="fr button" @click="ispay">预定</div>
               </div>
-              <div class="residue fr">余票充足</div>
-              <div class="fr button" @click="ispay">预定</div>
-            </div>
-            <div class="cabin-item">
-              <div class="site fl">经济舱</div>
-              <div class="price fl">
-                <span>￥</span><strong>{{ item.economyPrice }}</strong
-                ><span>起</span>
+              <div class="cabin-item">
+                <div class="site fl">经济舱</div>
+                <div class="price fl">
+                  <span>￥</span><strong>{{ item.lastPrice }}</strong
+                  ><span>起</span>
+                </div>
+                <div class="residue fr">余票充足</div>
+                <div class="fr button" @click="ispay">预定</div>
               </div>
-              <div class="residue fr">余票充足</div>
-              <div class="fr button" @click="ispay">预定</div>
-            </div>
-            <div class="cabin-item">
-              <div class="site fl">经济舱</div>
-              <div class="price fl">
-                <span>￥</span><strong>{{ item.lastPrice }}</strong
-                ><span>起</span>
-              </div>
-              <div class="residue fr">余票充足</div>
-              <div class="fr button" @click="ispay">预定</div>
             </div>
           </div>
         </div>
+        <div class="select-box" v-else>
+          <el-empty description="空"></el-empty>
+        </div>
       </div>
       <!-- <div class="advertisement fr">123</div> -->
-      <!-- <div class="select-box w">
-        <el-empty description="空"></el-empty>
-      </div> -->
+
       <div class="swiper-box fl">
         <Swiper></Swiper>
         <div class="advertisement boxshadow">广告位招租</div>
@@ -231,6 +234,12 @@ export default {
         }
       }
     }
+    .select-box {
+      width: 872px;
+      .el-empty {
+        width: 872px;
+      }
+    }
     .advertisement {
       width: 300px;
     }
@@ -288,14 +297,20 @@ export default {
             text-align: center;
           }
           .line {
+            background: url('~@/assets/image/ticket/arrive.png') no-repeat;
+            background-size: 100% 100%;
+            height: 4px;
+            margin: 0 16px;
             font-size: 12px;
             color: #7d8995;
+            text-align: center;
           }
         }
         .end {
           position: relative;
           width: 88px;
           height: 60px;
+          margin-left: 20px;
           .time {
             color: #39424c;
             font-size: 30px;
@@ -316,7 +331,7 @@ export default {
           font-style: normal;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          content: '';
+          content: '';
           color: #b0cade;
         }
       }

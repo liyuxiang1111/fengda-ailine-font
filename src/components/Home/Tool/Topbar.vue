@@ -1,7 +1,7 @@
 <template>
   <div class="topbar-container">
     <div ref="active" class="topbar-box w">
-      <li class="step active fl"><span class="icon iconfont">&#xe602;</span>选择航班</li>
+      <li class="step active fl"><span class="icon iconfont">&#xe602;</span>1.选择航班</li>
       <li class="order fl"><span class="icon iconfont">&#xe60e;</span>2.填写订单</li>
       <li class="pay fl"><span class="icon iconfont">&#xe616;</span>确认付款</li>
       <li class="end fl"><span class="icon iconfont">&#xe613;</span>4.出票完成</li>
