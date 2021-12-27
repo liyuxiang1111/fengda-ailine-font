@@ -26,7 +26,9 @@
           </td>
           <td style="line-height: 25px"><span> 已取消 </span></td>
           <td class="modify">
-            <p><a href="#" target="_blank"> 查看详情 </a></p>
+            <p>
+              <el-popconfirm title="这是一段内容确定删除吗？"><span class="button" slot="reference">去购买</span></el-popconfirm>
+            </p>
           </td>
         </tr>
       </table>

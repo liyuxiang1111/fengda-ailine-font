@@ -3,8 +3,8 @@
     <div v-for="item in ticketList" :key="item.ticketId">
       <div class="minTit">
         <span class="num">订单号：{{ item.ticketId }}</span>
-        <span class="time">航班时间：{{ item.beginTime }} - {{ item.endTime }}</span>
-        <span class="price">￥{{ item.price }}</span>
+        <span class="time">订单时间：{{ item.ticketDay }} - {{ item.beginTime }}</span>
+        <span class="price">￥{{ item.ticketPrice }}</span>
       </div>
       <div class="ticketInfo">
         <table>
@@ -28,7 +28,7 @@
             <td style="line-height: 25px"><span> 已取消 </span></td>
             <td class="modify">
               <p>
-                <el-popconfirm title="这是一段内容确定删除吗？"><span class="button" slot="reference">退票</span></el-popconfirm>
+                <el-popconfirm title="这是一段内容确定删除吗？"><span class="button" slot="reference">改签</span></el-popconfirm>
               </p>
             </td>
           </tr>

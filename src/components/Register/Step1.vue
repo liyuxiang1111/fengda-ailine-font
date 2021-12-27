@@ -43,29 +43,28 @@
 <script>
 import bus from '@/components/eventBus.js'
 export default {
-  name: step1,
   data() {
     return {
       registerList: { id: '', userName: '', passwd: '', idType: '', userSex: '' },
       options: [
         {
-          value: '选项1',
+          value: '1',
           label: '身份证',
         },
         {
-          value: '选项2',
+          value: '2',
           label: '港澳居民居住证',
         },
         {
-          value: '选项3',
+          value: '3',
           label: '台湾居民居住证',
         },
         {
-          value: '选项4',
+          value: '4',
           label: '护照',
         },
         {
-          value: '选项5',
+          value: '5',
           label: '其他',
         },
       ],
@@ -74,9 +73,11 @@ export default {
   },
   methods: {
     next() {
-      bus.$emit('getRegisterList', this.registerList)
       this.$router.push('/register/step2')
     },
+  },
+  beforeDestroy() {
+    bus.$emit('getRegisterList', this.registerList)
   },
 }
 </script>

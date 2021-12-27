@@ -11,6 +11,14 @@
         <span class="button iconfont" @click="flag.name = !flag.name">&#xe600; 修改</span>
         <div class="introduce">恭喜你已经成为凤达航空会员</div>
         <div class="gender box">
+          <h3 class="fl">姓名：</h3>
+          <div class="fl">
+            <span v-if="flag.nameflag">{{ userinfo.realname }}</span>
+            <el-input v-else class="gender-input" v-model="userinfo.realname"></el-input>
+            <span class="button iconfont" @click="flag.nameflag = !flag.nameflag">&#xe600;修改</span>
+          </div>
+        </div>
+        <div class="gender box">
           <h3 class="fl">性别</h3>
           <div class="fl">
             <span v-if="flag.genderflag">{{ userinfo.sex }}</span>
@@ -34,31 +42,6 @@
             <span class="button iconfont" @click="flag.tel = !flag.tel">&#xe600;修改</span>
           </div>
         </div>
-
-        <div class="box">
-          <h3 class="fl">职业</h3>
-          <div class="fl">
-            <span>女</span>
-            <el-input class="" v-if="false">女</el-input>
-            <span class="iconfont">&#xe600; 修改</span>
-          </div>
-        </div>
-        <div class="box">
-          <h3 class="fl">个人简介</h3>
-          <div class="fl">
-            <span>女</span>
-            <el-input class="" v-if="false">女</el-input>
-            <span>修改</span>
-          </div>
-        </div>
-        <div class="box">
-          <h3 class="fl">教育经历</h3>
-          <div class="fl">
-            <span>女</span>
-            <el-input class="" v-if="false">女</el-input>
-            <span>修改</span>
-          </div>
-        </div>
         <el-button class="userinfo-but" type="primary">提交保存</el-button>
         <el-button>取消</el-button>
       </div>
@@ -73,6 +56,7 @@ export default {
       imageUrl: require(`@/assets/image/一栗小莎子.jpeg`),
       flag: {
         name: true,
+        nameflag: true,
         genderflag: true,
         emilflag: true,
         tel: true,
@@ -82,6 +66,7 @@ export default {
         sex: '女',
         emil: '739559572@qq.com',
         tel: '11111111111',
+        realname: 'lyx',
       },
     }
   },
@@ -108,7 +93,7 @@ export default {
 <style lang="less" scoped>
 .Userinfo-container {
   width: 890px;
-  height: 555px;
+  height: 466px;
   padding: 15px;
   background-color: #ffffff;
   .title {

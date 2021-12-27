@@ -2,7 +2,7 @@
   <div class="person-container">
     <Nav></Nav>
     <div class="person-box">
-      <div class="content w">
+      <div class="content clearfix w">
         <Sidebar></Sidebar>
         <router-view></router-view>
       </div>
@@ -35,6 +35,7 @@ export default {
     height: 600px;
 
     padding-top: 40px;
+    padding-bottom: 90px;
   }
 }
 </style>

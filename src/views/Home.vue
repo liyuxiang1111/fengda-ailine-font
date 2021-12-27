@@ -3,7 +3,9 @@
     <!-- 首页导航栏 -->
     <Nav></Nav>
 
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <div class="footer-box">
       <Footer></Footer>
     </div>
@@ -30,7 +32,7 @@ export default {
   overflow: auto;
   background-color: #ecf2f7;
   .footer-box {
-    margin-top: 20px;
+    margin-top: 60px;
   }
 }
 </style>

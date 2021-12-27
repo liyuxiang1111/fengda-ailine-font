@@ -24,7 +24,7 @@ export default {
   position: relative;
   width: 890px;
   padding: 15px;
-  height: 540px;
+  height: 600px;
   background-color: #ffffff;
   .history-box {
     height: 60px;

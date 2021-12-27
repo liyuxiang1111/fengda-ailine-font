@@ -10,7 +10,7 @@
     </div>
     <div class="information">
       <div class="text">
-        <div class="ico-success fl">123</div>
+        <div class="ico-success fl icon iconfont">&#xe608;</div>
         <div class="success-text fl">
           <div class="sub-submit-text">恭喜您称为凤达航空大家庭中的一员</div>
           <p>可以点击下面按钮直接登录或者返回登录页登录</p>
@@ -94,6 +94,8 @@ export default {
       .ico-success {
         width: 44px;
         height: 44px;
+        font-size: 44px;
+        color: #78c601;
       }
       .success-text {
         position: relative;

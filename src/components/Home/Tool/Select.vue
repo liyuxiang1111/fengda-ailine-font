@@ -45,7 +45,7 @@
             </div>
             <div v-show="item.status">
               <div class="cabin-item">
-                <div class="site fl">经济舱</div>
+                <div class="site fl">普通舱</div>
                 <div class="price fl">
                   <span>￥</span><strong>{{ item.firstPrice }}</strong
                   ><span>起</span>
@@ -63,9 +63,9 @@
                 <div class="fr button" @click="ispay">预定</div>
               </div>
               <div class="cabin-item">
-                <div class="site fl">经济舱</div>
+                <div class="site fl">商务仓</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.lastPrice }}</strong
+                  <span>￥</span><strong>{{ item.businessPrice }}</strong
                   ><span>起</span>
                 </div>
                 <div class="residue fr">余票充足</div>
@@ -347,8 +347,9 @@ export default {
           color: #242424;
         }
         .price-conbin::after {
-          content: '';
-          //画个倒三角
+          font-family: 'iconfont' !important;
+          content: '';
+          color: #42a9fe;
         }
         .price-num {
           padding: 12px 0 5px;
@@ -398,6 +399,9 @@ export default {
         background-color: #a3d6ff;
         color: #ffffff;
         border-radius: 20px;
+      }
+      .button:hover {
+        background-color: #67bafe;
       }
     }
   }

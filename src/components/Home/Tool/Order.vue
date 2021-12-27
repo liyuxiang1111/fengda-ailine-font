@@ -28,14 +28,11 @@
           </div>
           <div class="list-group">
             <span class="gh">手机号码</span>
-            <el-select class="tel-type" v-model="value" placeholder="请选择">
-              <el-option v-for="item in tel" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-            </el-select>
             <el-input class="input-tel" v-model="input" placeholder="手机号码"></el-input>
           </div>
           <div class="list-group">
-            <span class="gh">Email</span>
-            <el-input class="input-email" v-model="input" placeholder="请填写邮箱"></el-input>
+            <!--  <span class="gh">Email</span>
+            <el-input class="input-email" v-model="input" placeholder="请填写邮箱"></el-input> -->
           </div>
           <div class="list-group"></div>
           <div class="list-group">
@@ -49,7 +46,7 @@
         <div class="top-tip"><p>所有航班起抵时间均为当地时间（24小时制），请注意安排行程。</p></div>
         <div class="tip">
           <div class="title">温馨提示：</div>
-          <p>厦航官网暂不接受重要旅客（VIP)、孕妇、病残旅客等特殊旅客购票。如您有需要，请到厦航自营售票处咨询。</p>
+          <p>凤航官网暂不接受重要旅客（VIP)、孕妇、病残旅客等特殊旅客购票。如您有需要，请到凤航自营售票处咨询。</p>
         </div>
         <div class="advertisement">广告位招租</div>
       </div>
@@ -67,27 +64,27 @@ export default {
       input: '',
       options: [
         {
-          value: '选项1',
+          value: '1',
           label: '身份证',
         },
         {
-          value: '选项2',
+          value: '2',
           label: '港澳台居住证',
         },
         {
-          value: '选项3',
+          value: '3',
           label: '台湾居民居住证',
         },
         {
-          value: '选项4',
+          value: '4',
           label: '护照',
         },
         {
-          value: '选项5',
+          value: '5',
           label: '港澳居民来往内地通行证',
         },
         {
-          value: '选项6',
+          value: '6',
           label: '台湾居民来往大陆通行证',
         },
       ],
@@ -118,6 +115,8 @@ export default {
         },
       ],
       value: '',
+      username: '',
+      certificate: '',
     }
   },
   components: {
@@ -189,6 +188,7 @@ export default {
           height: 40px;
           line-height: 40px;
           .input-name {
+            border-radius: 20px;
             width: 400px;
           }
           .id-type {
@@ -200,11 +200,8 @@ export default {
           .input-email {
             width: 400px;
           }
-          .tel-type {
-            width: 150px;
-          }
           .input-tel {
-            width: 250px;
+            width: 400px;
           }
           .gh {
             display: inline-block;

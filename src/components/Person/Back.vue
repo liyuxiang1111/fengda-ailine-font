@@ -1,7 +1,7 @@
 <template>
-  <div class="back-container fr">
+  <div class="back-container fr boxshadow">
     <div class="back-box">退票处理</div>
-    <Flight></Flight>
+    <Flight :ticketList="backList"></Flight>
     <div class="page-box">
       <Page></Page>
     </div>
@@ -12,9 +12,43 @@
 import Flight from '@/components/Person/Back/Flight.vue'
 import Page from '@/components/Person/Page.vue'
 export default {
+  created() {
+    this.token = localStorage.getItem('Authorizatio')
+    this.initBackList()
+  },
   components: {
     Flight,
     Page,
+  },
+  data() {
+    return {
+      backList: [],
+      token: '',
+      pageNum: 0,
+      pageSize: 3,
+    }
+  },
+  methods: {
+    async initBackList() {
+      await this.$http({
+        url: '/ticket/search/return',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          this.backList = res.data.dataList
+          console.log(this.backList)
+        }
+      })
+    },
   },
 }
 </script>
@@ -24,7 +58,7 @@ export default {
   position: relative;
   width: 890px;
   padding: 15px;
-  height: 540px;
+  height: 600px;
   background-color: #ffffff;
   .back-box {
     height: 60px;

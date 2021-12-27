@@ -104,6 +104,7 @@ export default {
     height: 99px;
     margin: 0 auto;
     background-color: #fff;
+    padding: 0 10px;
     .section-input {
       float: left;
       width: 160px;
