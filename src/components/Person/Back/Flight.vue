@@ -14,7 +14,7 @@
             <th style="width: 22%">出发</th>
             <th style="width: 22%">到达</th>
             <th style="width: 17%">状态</th>
-            <th style="width: 13%">操作</th>
+            <th style="width: 13%">退票理由</th>
           </tr>
           <tr>
             <td>{{ item.buyerName }}</td>
@@ -28,7 +28,7 @@
             <td style="line-height: 25px"><span> 已取消 </span></td>
             <td class="modify">
               <p>
-                <el-popconfirm title="这是一段内容确定删除吗？"><span class="button" slot="reference">退票</span></el-popconfirm>
+                {{ item.resource }}
               </p>
             </td>
           </tr>

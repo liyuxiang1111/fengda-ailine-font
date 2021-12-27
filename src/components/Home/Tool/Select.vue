@@ -2,7 +2,6 @@
   <div class="select-container">
     <Topbar></Topbar>
     <Search @shareCity="getCity"></Search>
-    <Ispay></Ispay>
     <div class="clearfix w">
       <div class="flaght-box fl boxshadow">
         <div class="flaght-info-title">单程：{{ city.beginCity }} - {{ city.endCity }} <span></span></div>
@@ -36,6 +35,7 @@
                   @click="
                     item.status = !item.status
                     chang($event, item.status)
+                    ticketnum($event, item.flightId)
                   "
                 >
                   全部
@@ -50,8 +50,8 @@
                   <span>￥</span><strong>{{ item.firstPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr">余票充足</div>
-                <div class="fr button" @click="ispay">预定</div>
+                <div class="residue fr">还剩{{ num.firstSeat }}张</div>
+                <div class="fr button">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">经济舱</div>
@@ -59,8 +59,8 @@
                   <span>￥</span><strong>{{ item.economyPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr">余票充足</div>
-                <div class="fr button" @click="ispay">预定</div>
+                <div class="residue fr">还剩{{ num.economySeat }}张</div>
+                <div class="fr button">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">商务仓</div>
@@ -68,8 +68,8 @@
                   <span>￥</span><strong>{{ item.businessPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr">余票充足</div>
-                <div class="fr button" @click="ispay">预定</div>
+                <div class="residue fr">还剩{{ num.businessSeat }}张</div>
+                <div class="fr button">预定</div>
               </div>
             </div>
           </div>
@@ -94,7 +94,6 @@ import Search from '@/components/Home/Select/Search.vue'
 import Pricetabel from '@/components/Home/Select/Pricetabel.vue'
 import Swiper from '@/components/Home/Swiper.vue'
 import bus from '@/components/eventBus.js'
-import Ispay from '@/components/Dialog/Ispay.vue'
 export default {
   created() {
     this.init()
@@ -111,13 +110,13 @@ export default {
   },
   data() {
     return {
-      dialogVisible: true,
       dataList: [],
       flag: false,
       city: {
         beginCity: '1',
         endCity: '1',
       },
+      num: {},
     }
   },
   components: {
@@ -125,13 +124,8 @@ export default {
     Search,
     Pricetabel,
     Swiper,
-    Ispay,
   },
   methods: {
-    ispay() {
-      console.log('ok')
-      bus.$emit('dialog', this.dialogVisible)
-    },
     async init() {
       await this.$http
         .post('flight/search', {
@@ -193,6 +187,23 @@ export default {
     getCity(val) {
       this.city.beginCity = val.beginCity
       this.city.endCity = val.endCity
+    },
+    async ticketnum(e, id) {
+      console.log(id)
+      await this.$http({
+        url: '/flight/seat',
+        method: 'post',
+        data: {
+          flightId: id,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          this.num = res.data
+          console.log(this.num)
+        }
+      })
     },
   },
   mounted() {
