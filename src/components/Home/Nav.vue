@@ -88,11 +88,16 @@ export default {
     position: relative;
     padding: 25px 0 25px 0;
     height: 30px;
-    img {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      margin-right: 15px;
+    a {
+      color: #515151;
+      font-weight: normal;
+      font-size: 14px;
+      img {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
     }
     li {
       position: absolute;
@@ -113,6 +118,11 @@ export default {
         font-size: 0;
         border: 5px solid transparent;
         border-bottom-color: #f5f5f5;
+      }
+      a {
+        color: #515151;
+        font-weight: normal;
+        font-size: 8px;
       }
     }
   }

@@ -29,6 +29,7 @@
 <script>
 import bus from '@/components/eventBus.js'
 export default {
+  name: step2,
   mounted() {
     bus.$on('getRegisterList', (val) => {
       console.log(val)

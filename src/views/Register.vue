@@ -3,7 +3,9 @@
     <!-- 头部栏 -->
     <Nav></Nav>
     <div class="step-box">
-      <router-view></router-view>
+      <keep-alive include="step1">
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <Footer></Footer>
   </div>

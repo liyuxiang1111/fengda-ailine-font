@@ -1,5 +1,5 @@
 <template>
-  <div class="history-container fr">
+  <div class="history-container fr boxshadow">
     <div class="history-box">我的历史订单</div>
     <Flaght></Flaght>
     <div class="page-box">

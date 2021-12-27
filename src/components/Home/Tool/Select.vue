@@ -1,11 +1,11 @@
 <template>
   <div class="select-container">
     <Topbar></Topbar>
-    <Search></Search>
+    <Search @shareCity="getCity"></Search>
     <Ispay></Ispay>
     <div class="clearfix w">
       <div class="flaght-box fl boxshadow">
-        <div class="flaght-info-title">单程：- <span></span></div>
+        <div class="flaght-info-title">单程：{{ city.beginCity }} - {{ city.endCity }} <span></span></div>
         <ul class="sort-box">
           <li class="fr button">其他排序</li>
           <li class="fr button" @click="time" ref="time"><span class="iconfont">&#xe8c5;</span>出发时刻从早到晚</li>
@@ -100,14 +100,6 @@ export default {
     this.init()
   },
   props: {
-    beginCity: {
-      type: String,
-      default: '1',
-    },
-    endCity: {
-      type: String,
-      default: '1',
-    },
     pageSize: {
       type: Number,
       default: 5,
@@ -122,6 +114,10 @@ export default {
       dialogVisible: true,
       dataList: [],
       flag: false,
+      city: {
+        beginCity: '1',
+        endCity: '1',
+      },
     }
   },
   components: {
@@ -139,8 +135,8 @@ export default {
     async init() {
       await this.$http
         .post('flight/search', {
-          beginCity: this.beginCity,
-          endCity: this.endCity,
+          beginCity: this.city.beginCity,
+          endCity: this.city.endCity,
           pageSize: this.pageSize,
           pageNum: this.pageNum,
           day: this.day,
@@ -194,6 +190,10 @@ export default {
         e.target.parentNode.style.backgroundColor = '#e1f0fd'
       }
     },
+    getCity(val) {
+      this.city.beginCity = val.beginCity
+      this.city.endCity = val.endCity
+    },
   },
   mounted() {
     bus.$on('getFlight', (res) => {
@@ -236,6 +236,7 @@ export default {
     }
     .select-box {
       width: 872px;
+      height: 320px;
       .el-empty {
         width: 872px;
       }

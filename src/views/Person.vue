@@ -29,10 +29,11 @@ export default {
 
 <style lang="less" scoped>
 .person-container {
+  background-color: #ecf2f7;
   .person-box {
     width: 100%;
     height: 600px;
-    background-color: #ecf2f7;
+
     padding-top: 40px;
   }
 }

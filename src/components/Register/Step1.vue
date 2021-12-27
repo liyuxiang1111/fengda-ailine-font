@@ -43,6 +43,7 @@
 <script>
 import bus from '@/components/eventBus.js'
 export default {
+  name: step1,
   data() {
     return {
       registerList: { id: '', userName: '', passwd: '', idType: '', userSex: '' },

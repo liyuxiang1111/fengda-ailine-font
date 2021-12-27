@@ -5,10 +5,10 @@
     </div>
     <div class="text-btu">
       <div class="section-input text-first">
-        <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="beginCity" />
+        <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" />
       </div>
       <div class="section-input">
-        <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="endCity" />
+        <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="city.endCity" />
       </div>
       <div class="data-box">
         <el-date-picker class="data" v-model="data" type="datetime" placeholder="选择日期时间" default-time="12:00:00"> </el-date-picker>
@@ -33,8 +33,10 @@ export default {
   },
   data() {
     return {
-      beginCity: '',
-      endCity: '',
+      city: {
+        beginCity: '',
+        endCity: '',
+      },
       data: '30',
       res: {},
       day: 30,
@@ -61,8 +63,8 @@ export default {
     async search() {
       await this.$http
         .post('flight/search', {
-          beginCity: this.beginCity,
-          endCity: this.endCity,
+          beginCity: this.city.beginCity,
+          endCity: this.city.endCity,
           pageSize: this.pageSize,
           pageNum: this.pageNum,
           day: this.day,
@@ -70,6 +72,7 @@ export default {
         .then(({ data: res }) => {
           console.log(res)
           bus.$emit('getFlight', res.data)
+          this.$emit('shareCity', this.city)
         })
     },
   },

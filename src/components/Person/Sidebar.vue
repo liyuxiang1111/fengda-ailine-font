@@ -69,12 +69,14 @@ export default {
       padding: 15px;
       height: 30px;
       line-height: 30px;
+      font-size: 14px;
+      color: #999;
       span {
         margin-right: 10px;
       }
     }
     li:hover {
-      background-color: #d8eefe;
+      background-color: #90d7ec;
     }
   }
 }
