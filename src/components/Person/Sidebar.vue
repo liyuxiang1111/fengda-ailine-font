@@ -2,7 +2,7 @@
   <div class="sidebar-container fl boxshadow">
     <div class="man">
       <img src="@/assets/image/一栗小莎子.jpeg" alt="" />
-      <span>一粒小傻子</span>
+      <span>凤达航空欢迎您</span>
     </div>
     <router-link to="/person/userinfo"
       ><li class="person-information"><span class="iconfont">&#xe617;</span>我的个人信息</li></router-link

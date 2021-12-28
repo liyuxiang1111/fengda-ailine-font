@@ -34,7 +34,7 @@ export default {
         url: '/pay/search',
         method: 'post',
         headers: {
-          Authorization: this.token,
+          Authorization: localStorage.getItem('Authorizatio'),
         },
         data: {
           pageNum: this.pageNum,

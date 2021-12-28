@@ -21,8 +21,11 @@
         <div class="gender box">
           <h3 class="fl">性别</h3>
           <div class="fl">
-            <span v-if="flag.genderflag"><span v-if="userinfo.gender">女</span><span v-else>男</span></span>
-            <el-input v-else class="gender-input" v-model="userinfo.gender ? '女' : '男'"></el-input>
+            <span v-if="flag.genderflag"><span v-if="userinfo.gender">男</span><span v-else>女</span></span>
+            <div v-else class="gender-input">
+              <el-radio v-model="sex" label="1" class="fl" style="height: 30px">男</el-radio>
+              <el-radio v-model="sex" label="0" class="fl" style="height: 30px">女</el-radio>
+            </div>
             <span class="button iconfont" @click="flag.genderflag = !flag.genderflag">&#xe600;修改</span>
           </div>
         </div>
@@ -42,7 +45,7 @@
             <span class="button iconfont" @click="flag.tel = !flag.tel">&#xe600;修改</span>
           </div>
         </div>
-        <el-button class="userinfo-but" type="primary" @click="post">提交保存</el-button>
+        <el-button class="userinfo-but" type="primary" @click="post($event, userinfo.telephone, userinfo.email, userinfo.nickName, sex, userinfo.realName)">提交保存</el-button>
         <el-button>取消</el-button>
       </div>
     </div>
@@ -67,6 +70,7 @@ export default {
         tel: true,
       },
       userinfo: {},
+      sex: '',
     }
   },
   methods: {
@@ -96,28 +100,32 @@ export default {
         },
       }).then(({ data: res }) => {
         this.userinfo = res.data
+        this.sex = this.userinfo.gender
         console.log(this.userinfo)
       })
     },
-    async post() {
+    async post(e, phone, email, nickname, gender, realname) {
+      console.log(this.token)
       await this.$http({
         url: 'passenger/informations',
         method: 'post',
-        Headers: {
-          Authorization: this.token,
+        headers: {
+          Authorization: localStorage.getItem('Authorizatio'),
         },
         data: {
-          telephoneNumber: this.userinfo.telephoneNumber,
-          email: this.userinfo.emil,
-          nickname: this.userinfo.nickname,
-          gender: this.userinfo.gender,
-          realname: this.userinfo.realname,
+          telephoneNumber: phone,
+          email: email,
+          nickname: nickname,
+          gender: gender,
+          realname: realname,
         },
       }).then(({ data: res }) => {
-        if (res.data === null) {
-          alert(res.msg)
+        if (res.msg === 'success') {
+          console.log(res)
+          this.token = res.data
+          localStorage.setItem('Authorizatio', this.token)
         } else {
-          console.log(res.data)
+          alert(res.msg)
         }
       })
       this.$nextTick(() => {

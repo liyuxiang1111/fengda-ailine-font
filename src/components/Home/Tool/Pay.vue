@@ -58,6 +58,7 @@ export default {
   },
   data() {
     return {
+      payId: '',
       passengerName: '',
       certificate: '',
       telephone: '',
@@ -75,8 +76,36 @@ export default {
     back() {
       this.$router.push('/home/order')
     },
-    next() {
-      this.$router.push('/home/end')
+    async next() {
+      await this.$http({
+        url: 'buyer',
+        method: 'post',
+        headers: {
+          Authorization: localStorage.getItem('Authorizatio'),
+        },
+        data: {
+          price: localStorage.getItem('price'),
+          grade: localStorage.getItem('grade'),
+          flightId: localStorage.getItem('flightId'),
+          seat: localStorage.getItem('seat'),
+          day: localStorage.getItem('day'),
+          passengerName: localStorage.getItem('passengerName'),
+          certificate: localStorage.getItem('certificate'),
+          certificateType: localStorage.getItem('certificateType'),
+          telephone: localStorage.getItem('telephone'),
+          email: localStorage.getItem('email'),
+        },
+      }).then(({ data: res }) => {
+        if (res.msg === 'success') {
+          alert('订单生成成功')
+          this.payId = res.data
+          console.log(res.data)
+          localStorage.setItem('payId', this.payId)
+          this.$router.push('/home/end')
+        } else {
+          alert('失败')
+        }
+      })
     },
   },
 }

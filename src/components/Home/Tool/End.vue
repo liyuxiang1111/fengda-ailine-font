@@ -6,7 +6,7 @@
     </div>
     <div class="flaght w">
       <Top></Top>
-      <div class="sub-title">订单编号：2021121623405213587614</div>
+      <div class="sub-title">订单编号：{{ payId }}</div>
       <div class="passager">
         <table>
           <thead>
@@ -43,6 +43,7 @@ export default {
     this.price = localStorage.getItem('price')
     this.name = localStorage.getItem('price')
     this.total = parseInt(this.price) + 50 + 20
+    this.payId = localStorage.getItem('payId')
   },
   data() {
     return {
@@ -50,6 +51,7 @@ export default {
       price: '',
       name: '',
       total: '',
+      payId: '',
     }
   },
   components: {
@@ -58,23 +60,25 @@ export default {
     Top,
   },
   methods: {
-    pay() {
-      console.log('pay')
-    },
     async endpay() {
       await this.$http({
-        url: 'buyer',
+        url: 'buyer/again',
         method: 'post',
-        Headers: {
-          Authorization: this.token,
+        headers: {
+          Authorization: localStorage.getItem('Authorizatio'),
+        },
+        data: {
+          payId: localStorage.getItem('payId'),
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
-        } else {
-          console.log('购买完成')
+          alert('支付成功')
+          this.$router.push('home')
         }
       })
+    },
+    pay() {
+      this.endpay()
     },
   },
 }

@@ -4,19 +4,19 @@
       <div class="flight-simple"></div>
       <div class="logo-num">
         <div class="logo"></div>
-        <span class="flight-num">MF8157</span>
+        <span class="flight-num">航班编号：{{ flightId }}</span>
       </div>
       <div class="flight-item">
         <div class="start">
-          <div class="airport">福州-长乐</div>
-          <div class="time">2021-12-24 13:15</div>
+          <div class="airport">{{ beginCity }}</div>
+          <div class="time">{{ day }} {{ beginTime }}</div>
         </div>
         <div class="od-line">
           <div class="direct"></div>
         </div>
         <div class="end">
-          <div class="airport">武汉-天河T3</div>
-          <div class="time">2021-12-24 15:10</div>
+          <div class="airport">{{ endCity }}</div>
+          <div class="time">{{ day }} {{ endTime }}</div>
         </div>
       </div>
       <div class="equipment">
@@ -25,7 +25,9 @@
       <div class="duration">1小时55分</div>
     </div>
     <div class="extra w">
-      <div class="cabin extra-item">商务舱(I)</div>
+      <div class="cabin extra-item" v-if="grade == 0">普通舱(N)</div>
+      <div class="cabin extra-item" v-if="grade == 1">商务舱(I)</div>
+      <div class="cabin extra-item" v-if="grade == 2">商务舱(I)</div>
       <div class="rule extra-item">
         <div class="wrapper">行李|机票规定</div>
         <span class="alert"></span>
@@ -40,9 +42,25 @@
 
 <script>
 export default {
-  created() {},
+  created() {
+    this.day = localStorage.getItem('day')
+    this.flightId = localStorage.getItem('flightId')
+    this.grade = localStorage.getItem('grade')
+    this.beginTime = localStorage.getItem('beginTime')
+    this.endTime = localStorage.getItem('endTime')
+    this.beginCity = localStorage.getItem('beginCity')
+    this.endCity = localStorage.getItem('endCity')
+  },
   data() {
-    return {}
+    return {
+      day: '',
+      flightId: '',
+      grade: '',
+      beginTime: '',
+      endTime: '',
+      beginCity: '',
+      endCity: '',
+    }
   },
 }
 </script>

@@ -2,8 +2,8 @@
   <div class="flight-container">
     <div v-for="item in ticketList" :key="item.id">
       <div class="minTit">
-        <span class="num">订单号：{{ item.ticketId }}</span>
-        <span class="time">机票号：{{ item.id }}</span>
+        <span class="num">订单号：{{ item.payId }}</span>
+        <span class="time">机票号：{{ item.ticketId }}</span>
         <span class="price">￥780</span>
       </div>
       <div class="ticketInfo">
@@ -29,7 +29,7 @@
             <td class="modify">
               <p>
                 <span v-if="item.ispay">已购无需操作</span>
-                <el-popconfirm title="是否要重新购买？" v-else @confirm="pay($event, item.id)"><span class="button" slot="reference">去购买</span></el-popconfirm>
+                <el-popconfirm title="是否要重新购买？" v-else @confirm="pay($event, item.payId)"><span class="button" slot="reference">去购买</span></el-popconfirm>
               </p>
             </td>
           </tr>
@@ -51,14 +51,14 @@ export default {
         url: '/buyer/again',
         method: 'post',
         headers: {
-          Authorization: this.token,
+          Authorization: localStorage.getItem('Authorizatio'),
         },
         data: {
           payId: id,
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          alert('成功')
         } else {
           console.log(res.data)
         }

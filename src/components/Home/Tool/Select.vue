@@ -49,29 +49,29 @@
               <div class="cabin-item">
                 <div class="site fl">普通舱</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.firstPrice }}</strong
+                  <span>￥</span><strong>{{ item.economyPrice }}</strong
                   ><span>起</span>
                 </div>
                 <div class="residue fr">还剩{{ num.firstSeat }}张</div>
-                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId, num.firstSeat)">预定</div>
+                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId, num.firstSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">经济舱</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.economyPrice }}</strong
+                  <span>￥</span><strong>{{ item.businessPrice }}</strong
                   ><span>起</span>
                 </div>
                 <div class="residue fr">还剩{{ num.economySeat }}张</div>
-                <div class="fr button" @click="pay($event, item.economyPrice, 1, item.flightId, num.economySeat)">预定</div>
+                <div class="fr button" @click="pay($event, item.economyPrice, 1, item.flightId, num.economySeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">商务仓</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.businessPrice }}</strong
+                  <span>￥</span><strong>{{ item.firstPrice }}</strong
                   ><span>起</span>
                 </div>
                 <div class="residue fr">还剩{{ num.businessSeat }}张</div>
-                <div class="fr button" @click="pay($event, item.businessPrice, 2, item.flightId, num.businessSeat)">预定</div>
+                <div class="fr button" @click="pay($event, item.businessPrice, 2, item.flightId, num.businessSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
             </div>
           </div>
@@ -214,11 +214,15 @@ export default {
         }
       })
     },
-    pay(e, price, grade, id, seat) {
+    pay(e, price, grade, id, seat, beginTime, endTime, beginCity, endCity) {
       localStorage.setItem('price', price)
       localStorage.setItem('grade', grade)
       localStorage.setItem('flightId', id)
       localStorage.setItem('seat', seat)
+      localStorage.setItem('beginTime', beginTime)
+      localStorage.setItem('endTime', endTime)
+      localStorage.setItem('beginCity', beginCity)
+      localStorage.setItem('endCity', endCity)
       this.$router.push('/home/order')
     },
   },
