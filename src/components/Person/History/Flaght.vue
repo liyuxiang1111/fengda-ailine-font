@@ -1,43 +1,74 @@
 <template>
   <div class="flight-container">
-    <div class="minTit">
-      <span class="num">订单号：2021122523080814551953</span>
-      <span class="time">订单时间：2021-12-25 23:08:08</span>
-      <span class="price">￥780</span>
-    </div>
-    <div class="ticketInfo">
-      <table>
-        <tr>
-          <th style="width: 13%">联系人</th>
-          <th style="width: 13%">航班</th>
-          <th style="width: 22%">出发</th>
-          <th style="width: 22%">到达</th>
-          <th style="width: 17%">状态</th>
-          <th style="width: 13%">操作</th>
-        </tr>
-        <tr>
-          <td>CZY</td>
-          <td>MF8071</td>
-          <td>
-            <p>福州</p>
-          </td>
-          <td>
-            <p>哈尔滨</p>
-          </td>
-          <td style="line-height: 25px"><span> 已取消 </span></td>
-          <td class="modify">
-            <p>
-              <el-popconfirm title="这是一段内容确定删除吗？"><span class="button" slot="reference">去购买</span></el-popconfirm>
-            </p>
-          </td>
-        </tr>
-      </table>
+    <div v-for="item in ticketList" :key="item.id">
+      <div class="minTit">
+        <span class="num">订单号：{{ item.ticketId }}</span>
+        <span class="time">机票号：{{ item.id }}</span>
+        <span class="price">￥780</span>
+      </div>
+      <div class="ticketInfo">
+        <table>
+          <tr>
+            <th style="width: 13%">联系人</th>
+            <th style="width: 13%">航班</th>
+            <th style="width: 22%">出发</th>
+            <th style="width: 22%">到达</th>
+            <th style="width: 17%">状态</th>
+            <th style="width: 13%">操作</th>
+          </tr>
+          <tr>
+            <td>CZY</td>
+            <td>MF8071</td>
+            <td>
+              <p>福州</p>
+            </td>
+            <td>
+              <p>哈尔滨</p>
+            </td>
+            <td style="line-height: 25px"><span v-if="item.ispay"> 已购 </span><span v-else> 已取消 </span></td>
+            <td class="modify">
+              <p>
+                <span v-if="item.ispay">已购无需操作</span>
+                <el-popconfirm title="是否要重新购买？" v-else @confirm="pay($event, item.id)"><span class="button" slot="reference">去购买</span></el-popconfirm>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    ticketList: [],
+  },
+  methods: {
+    async pay(e, id) {
+      console.log('pay')
+      await this.$http({
+        url: '/buyer/again',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          payId: id,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          console.log(res.data)
+        }
+      })
+      this.$nextTick(() => {
+        this.$router.go(0)
+      })
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>

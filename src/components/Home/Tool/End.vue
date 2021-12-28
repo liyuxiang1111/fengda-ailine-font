@@ -10,26 +10,26 @@
       <div class="passager">
         <table>
           <thead>
-            <th>123</th>
-            <th>123</th>
-            <th>123</th>
-            <th>123</th>
-            <th>123</th>
-            <th>123</th>
+            <th>姓名</th>
+            <th>机票价格</th>
+            <th>保险</th>
+            <th>机场建设费</th>
+            <th>燃油税</th>
+            <th>支付总额</th>
           </thead>
           <tbody>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td class="price">1</td>
+            <td>{{ name }}</td>
+            <td>¥{{ price }}</td>
+            <td>¥0</td>
+            <td>¥50</td>
+            <td>¥20</td>
+            <td class="price">¥{{ total }}</td>
           </tbody>
         </table>
       </div>
     </div>
     <div class="button-box w">
-      <div class="button">支付订单</div>
+      <div class="button" @click="pay">支付订单</div>
     </div>
   </div>
 </template>
@@ -39,10 +39,43 @@ import Topbar from '@/components/Home/Tool/Topbar.vue'
 import Success from '@/components/Home/End/Success.vue'
 import Top from '@/components/Home/Order/Top.vue'
 export default {
+  created() {
+    this.price = localStorage.getItem('price')
+    this.name = localStorage.getItem('price')
+    this.total = parseInt(this.price) + 50 + 20
+  },
+  data() {
+    return {
+      token: '',
+      price: '',
+      name: '',
+      total: '',
+    }
+  },
   components: {
     Topbar,
     Success,
     Top,
+  },
+  methods: {
+    pay() {
+      console.log('pay')
+    },
+    async endpay() {
+      await this.$http({
+        url: 'buyer',
+        method: 'post',
+        Headers: {
+          Authorization: this.token,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          console.log('购买完成')
+        }
+      })
+    },
   },
 }
 </script>

@@ -33,11 +33,9 @@
 </template>
 
 <script>
-import bus from '@/components/eventBus.js'
 export default {
   data() {
     return {
-      dialogVisible: true,
       show: false,
       flag: true,
     }
@@ -45,7 +43,7 @@ export default {
   components: {},
   methods: {
     logout() {
-      bus.$emit('dialog', this.dialogVisible)
+      this.$router.push('/login')
     },
   },
 }

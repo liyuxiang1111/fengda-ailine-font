@@ -28,7 +28,9 @@
             <td style="line-height: 25px"><span> 已取消 </span></td>
             <td class="modify">
               <p>
-                <el-popconfirm title="这是一段内容确定删除吗？"><span class="button" slot="reference">退票</span></el-popconfirm>
+                <el-popconfirm title="是否要退票吗？" @confirm="back($event, item.ticketId)"><span class="button" slot="reference">退票</span></el-popconfirm>
+                <span> | </span>
+                <el-popconfirm title="是否要延期一天？" @confirm="change($event, item.ticketDay, item.ticketId)"><span class="button" slot="reference">改签</span></el-popconfirm>
               </p>
             </td>
           </tr>
@@ -40,8 +42,80 @@
 
 <script>
 export default {
+  created() {
+    this.token = localStorage.getItem('Authorizatio')
+  },
+  data() {
+    return {
+      token: '',
+    }
+  },
   props: {
     ticketList: [],
+  },
+  methods: {
+    async back(e, id) {
+      console.log('退票')
+      console.log(this.token)
+      await this.$http({
+        url: '/ticket/return',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          ticketId: id,
+          resource: '七天无理由',
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          console.log(res.data)
+        }
+      })
+      this.$nextTick(() => {
+        this.$router.go(0)
+      })
+    },
+    async change(e, day, id) {
+      console.log(day)
+      // 修改日期
+      var arr = day.split('-')
+      var ans = ''
+      var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+      if (month[arr[0] - 1] === parseInt(arr[1])) {
+        if (arr[0] === '12') {
+          ans = '1-'
+        } else {
+          ans = parseInt(arr[0]) + 1 + '-1'
+        }
+      } else {
+        var flag = parseInt(arr[1]) + 1
+        ans = arr[0] + '-' + flag
+      }
+      // http请求
+      await this.$http({
+        url: '/ticket/modify',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          ticketDay: ans,
+          ticketId: id,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          console.log(res.data)
+        }
+      })
+      this.$nextTick(() => {
+        this.$router.go(0)
+      })
+    },
   },
 }
 </script>

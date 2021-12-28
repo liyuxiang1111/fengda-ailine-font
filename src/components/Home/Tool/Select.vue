@@ -4,7 +4,9 @@
     <Search @shareCity="getCity"></Search>
     <div class="clearfix w">
       <div class="flaght-box fl boxshadow">
-        <div class="flaght-info-title">单程：{{ city.beginCity }} - {{ city.endCity }} <span></span></div>
+        <div class="flaght-info-title">
+          单程：{{ city.beginCity }} - {{ city.endCity }} <span>{{ date }}</span>
+        </div>
         <ul class="sort-box">
           <li class="fr button">其他排序</li>
           <li class="fr button" @click="time" ref="time"><span class="iconfont">&#xe8c5;</span>出发时刻从早到晚</li>
@@ -51,7 +53,7 @@
                   ><span>起</span>
                 </div>
                 <div class="residue fr">还剩{{ num.firstSeat }}张</div>
-                <div class="fr button">预定</div>
+                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId, num.firstSeat)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">经济舱</div>
@@ -60,7 +62,7 @@
                   ><span>起</span>
                 </div>
                 <div class="residue fr">还剩{{ num.economySeat }}张</div>
-                <div class="fr button">预定</div>
+                <div class="fr button" @click="pay($event, item.economyPrice, 1, item.flightId, num.economySeat)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">商务仓</div>
@@ -69,7 +71,7 @@
                   ><span>起</span>
                 </div>
                 <div class="residue fr">还剩{{ num.businessSeat }}张</div>
-                <div class="fr button">预定</div>
+                <div class="fr button" @click="pay($event, item.businessPrice, 2, item.flightId, num.businessSeat)">预定</div>
               </div>
             </div>
           </div>
@@ -96,6 +98,12 @@ import Swiper from '@/components/Home/Swiper.vue'
 import bus from '@/components/eventBus.js'
 export default {
   created() {
+    let d = new Date()
+    const today = d.getDate()
+    const month = d.getMonth()
+    this.date = month + 1 + '-' + today
+    console.log(this.date)
+    localStorage.setItem('day', this.date)
     this.init()
   },
   props: {
@@ -117,6 +125,7 @@ export default {
         endCity: '1',
       },
       num: {},
+      date: '',
     }
   },
   components: {
@@ -133,7 +142,7 @@ export default {
           endCity: this.city.endCity,
           pageSize: this.pageSize,
           pageNum: this.pageNum,
-          day: this.day,
+          day: this.date,
         })
         .then(({ data: res }) => {
           console.log('最开始')
@@ -204,6 +213,13 @@ export default {
           console.log(this.num)
         }
       })
+    },
+    pay(e, price, grade, id, seat) {
+      localStorage.setItem('price', price)
+      localStorage.setItem('grade', grade)
+      localStorage.setItem('flightId', id)
+      localStorage.setItem('seat', seat)
+      this.$router.push('/home/order')
     },
   },
   mounted() {

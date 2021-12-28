@@ -17,22 +17,22 @@
         <div class="member-body">
           <div class="list-group">
             <span class="gh"> 姓名</span>
-            <el-input class="input-name" v-model="input" placeholder="请输入乘客姓名"></el-input>
+            <el-input class="input-name" v-model="username" placeholder="请输入乘客姓名"></el-input>
           </div>
           <div class="list-group">
             <span class="gh">证件信息</span>
             <el-select class="id-type" v-model="value" placeholder="请选择">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
-            <el-input class="input-id" v-model="input" placeholder="证件号码"></el-input>
+            <el-input class="input-id" v-model="certificate" placeholder="证件号码"></el-input>
           </div>
           <div class="list-group">
             <span class="gh">手机号码</span>
-            <el-input class="input-tel" v-model="input" placeholder="手机号码"></el-input>
+            <el-input class="input-tel" v-model="tel" placeholder="手机号码"></el-input>
           </div>
           <div class="list-group">
-            <!--  <span class="gh">Email</span>
-            <el-input class="input-email" v-model="input" placeholder="请填写邮箱"></el-input> -->
+            <span class="gh">Email</span>
+            <el-input class="input-email" v-model="email" placeholder="请填写邮箱"></el-input>
           </div>
           <div class="list-group"></div>
           <div class="list-group">
@@ -61,7 +61,6 @@ import Swiper from '@/components/Home/Swiper.vue'
 export default {
   data() {
     return {
-      input: '',
       options: [
         {
           value: '1',
@@ -88,35 +87,11 @@ export default {
           label: '台湾居民来往大陆通行证',
         },
       ],
-      tel: [
-        {
-          value: '选项1',
-          label: '身份证',
-        },
-        {
-          value: '选项2',
-          label: '港澳台居住证',
-        },
-        {
-          value: '选项3',
-          label: '台湾居民居住证',
-        },
-        {
-          value: '选项4',
-          label: '护照',
-        },
-        {
-          value: '选项5',
-          label: '港澳居民来往内地通行证',
-        },
-        {
-          value: '选项6',
-          label: '台湾居民来往大陆通行证',
-        },
-      ],
       value: '',
       username: '',
       certificate: '',
+      email: '',
+      tel: '',
     }
   },
   components: {
@@ -129,6 +104,11 @@ export default {
       this.$router.push('/home')
     },
     next() {
+      localStorage.setItem('passengerName', this.username)
+      localStorage.setItem('certificate', this.certificate)
+      localStorage.setItem('certificateType', this.value)
+      localStorage.setItem('telephone', this.tel)
+      localStorage.setItem('email', this.email)
       this.$router.push('/home/pay')
     },
   },

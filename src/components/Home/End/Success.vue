@@ -1,9 +1,9 @@
 <template>
   <div class="success-container">
     <div class="text">
-      <div class="ico-success fl">123</div>
+      <div class="ico-success fl icon iconfont">&#xe619;</div>
       <div class="success-text fl">
-        <div class="sub-submit-text">预定成功，请您尽快付款，您的订单总金额为：￥460</div>
+        <div class="sub-submit-text">预定成功，请您尽快付款，您的订单总金额为：￥{{ price }}</div>
         <p>欢迎您选择凤达航空，请尽快完成支付</p>
       </div>
     </div>
@@ -11,7 +11,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  created() {
+    this.price = localStorage.getItem('price')
+  },
+  data() {
+    return {
+      price: '',
+    }
+  },
+}
 </script>
 
 <style lang="less" scoped>
@@ -27,6 +36,8 @@ export default {}
     .ico-success {
       width: 44px;
       height: 44px;
+      font-size: 40px;
+      color: #78c601;
     }
     .success-text {
       position: relative;

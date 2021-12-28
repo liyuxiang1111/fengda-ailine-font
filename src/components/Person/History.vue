@@ -1,7 +1,7 @@
 <template>
   <div class="history-container fr boxshadow">
     <div class="history-box">我的历史订单</div>
-    <Flaght></Flaght>
+    <Flaght :ticketList="history"></Flaght>
     <div class="page-box">
       <Page></Page>
     </div>
@@ -15,6 +15,41 @@ export default {
   components: {
     Flaght,
     Page,
+  },
+  data() {
+    return {
+      history: [],
+      token: '',
+      pageNum: 0,
+      pageSize: 3,
+    }
+  },
+  created() {
+    this.token = localStorage.getItem('Authorizatio')
+    this.initHistory()
+  },
+  methods: {
+    async initHistory() {
+      await this.$http({
+        url: '/pay/search',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          console.log(res.data)
+          this.history = res.data.dataList
+          console.log('ok')
+        }
+      })
+    },
   },
 }
 </script>

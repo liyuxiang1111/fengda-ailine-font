@@ -6,43 +6,43 @@
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
       <div class="basic fl">
-        <span class="name fl" v-if="flag.name">{{ userinfo.name }}</span>
-        <el-input v-else class="name-input" v-model="userinfo.name"></el-input>
+        <span class="name fl" v-if="flag.name">{{ userinfo.nickName }}</span>
+        <el-input v-else class="name-input" v-model="userinfo.nickName"></el-input>
         <span class="button iconfont" @click="flag.name = !flag.name">&#xe600; 修改</span>
         <div class="introduce">恭喜你已经成为凤达航空会员</div>
         <div class="gender box">
           <h3 class="fl">姓名：</h3>
           <div class="fl">
-            <span v-if="flag.nameflag">{{ userinfo.realname }}</span>
-            <el-input v-else class="gender-input" v-model="userinfo.realname"></el-input>
+            <span v-if="flag.nameflag">{{ userinfo.realName }}</span>
+            <el-input v-else class="gender-input" v-model="userinfo.realName"></el-input>
             <span class="button iconfont" @click="flag.nameflag = !flag.nameflag">&#xe600;修改</span>
           </div>
         </div>
         <div class="gender box">
           <h3 class="fl">性别</h3>
           <div class="fl">
-            <span v-if="flag.genderflag">{{ userinfo.sex }}</span>
-            <el-input v-else class="gender-input" v-model="userinfo.sex"></el-input>
+            <span v-if="flag.genderflag"><span v-if="userinfo.gender">女</span><span v-else>男</span></span>
+            <el-input v-else class="gender-input" v-model="userinfo.gender ? '女' : '男'"></el-input>
             <span class="button iconfont" @click="flag.genderflag = !flag.genderflag">&#xe600;修改</span>
           </div>
         </div>
         <div class="box">
           <h3 class="fl">邮箱</h3>
           <div class="fl">
-            <span v-if="flag.emilflag">{{ userinfo.emil }}</span>
-            <el-input v-else class="emil-input" v-model="userinfo.emil"></el-input>
+            <span v-if="flag.emilflag">{{ userinfo.email }}</span>
+            <el-input v-else class="emil-input" v-model="userinfo.email"></el-input>
             <span class="button iconfont" @click="flag.emilflag = !flag.emilflag">&#xe600;修改</span>
           </div>
         </div>
         <div class="box">
           <h3 class="fl">电话</h3>
           <div class="fl">
-            <span v-if="flag.tel">{{ userinfo.tel }}</span>
-            <el-input v-else class="tel-input" v-model="userinfo.tel"></el-input>
+            <span v-if="flag.tel">{{ userinfo.telephone }}</span>
+            <el-input v-else class="tel-input" v-model="userinfo.telephone"></el-input>
             <span class="button iconfont" @click="flag.tel = !flag.tel">&#xe600;修改</span>
           </div>
         </div>
-        <el-button class="userinfo-but" type="primary">提交保存</el-button>
+        <el-button class="userinfo-but" type="primary" @click="post">提交保存</el-button>
         <el-button>取消</el-button>
       </div>
     </div>
@@ -51,8 +51,13 @@
 
 <script>
 export default {
+  created() {
+    this.token = localStorage.getItem('Authorizatio')
+    this.getInformation()
+  },
   data() {
     return {
+      token: '',
       imageUrl: require(`@/assets/image/一栗小莎子.jpeg`),
       flag: {
         name: true,
@@ -61,19 +66,14 @@ export default {
         emilflag: true,
         tel: true,
       },
-      userinfo: {
-        name: '一粒小傻子',
-        sex: '女',
-        emil: '739559572@qq.com',
-        tel: '11111111111',
-        realname: 'lyx',
-      },
+      userinfo: {},
     }
   },
   methods: {
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
     },
+    // 用户图片
     beforeAvatarUpload(file) {
       const isJPG = file.type === 'image/jpeg'
       const isLt2M = file.size / 1024 / 1024 < 2
@@ -85,6 +85,44 @@ export default {
         this.$message.error('上传头像图片大小不能超过 2MB!')
       }
       return isJPG && isLt2M
+    },
+    async getInformation() {
+      console.log(this.token)
+      await this.$http({
+        url: 'passenger',
+        method: 'get',
+        headers: {
+          Authorization: this.token,
+        },
+      }).then(({ data: res }) => {
+        this.userinfo = res.data
+        console.log(this.userinfo)
+      })
+    },
+    async post() {
+      await this.$http({
+        url: 'passenger/informations',
+        method: 'post',
+        Headers: {
+          Authorization: this.token,
+        },
+        data: {
+          telephoneNumber: this.userinfo.telephoneNumber,
+          email: this.userinfo.emil,
+          nickname: this.userinfo.nickname,
+          gender: this.userinfo.gender,
+          realname: this.userinfo.realname,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          alert(res.msg)
+        } else {
+          console.log(res.data)
+        }
+      })
+      this.$nextTick(() => {
+        this.$router.go(0)
+      })
     },
   },
 }
