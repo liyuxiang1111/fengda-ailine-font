@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       token: '',
-      imageUrl: require(`@/assets/image/一栗小莎子.jpeg`),
+      imageUrl: require(`@/assets/image/头像.png`),
       flag: {
         name: true,
         nameflag: true,

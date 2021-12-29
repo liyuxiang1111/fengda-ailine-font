@@ -50,7 +50,7 @@ export default {
     async login() {
       if (this.userName === '' && this.password === '') {
         alert('请输入有效的账号和密码')
-      } else if (this.code === '') {
+      } else if (this.code === '' || this.code != this.identifyCode) {
         alert('验证错误')
       } else if (this.code === this.identifyCode) {
         await this.$http

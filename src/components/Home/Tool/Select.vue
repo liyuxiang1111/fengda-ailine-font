@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import { time } from '@/util/time.js'
 import Topbar from '@/components/Home/Tool/Topbar.vue'
 import Search from '@/components/Home/Select/Search.vue'
 import Pricetabel from '@/components/Home/Select/Pricetabel.vue'
@@ -126,6 +127,7 @@ export default {
       },
       num: {},
       date: '',
+      history: '',
     }
   },
   components: {

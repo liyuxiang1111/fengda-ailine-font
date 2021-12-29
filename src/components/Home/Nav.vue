@@ -19,7 +19,7 @@
         </li>
       </ul>
       <div @mouseleave="show = false" class="fr nav-right">
-        <router-link @mouseover.native="show = true" to="/person"><img src="@/assets/image/一栗小莎子.jpeg" alt="" /> <span>凤达航空欢迎您</span></router-link>
+        <router-link @mouseover.native="show = true" to="/person"><img src="@/assets/image/头像.png" alt="" /> <span>凤达航空欢迎您</span></router-link>
         <transition name="el-fade-in-linear">
           <li @mouseleave="show = false" v-show="show">
             <span></span>

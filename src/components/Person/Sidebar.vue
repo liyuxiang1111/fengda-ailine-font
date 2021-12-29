@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-container fl boxshadow">
     <div class="man">
-      <img src="@/assets/image/一栗小莎子.jpeg" alt="" />
+      <img src="@/assets/image/头像.png" alt="" />
       <span>凤达航空欢迎您</span>
     </div>
     <router-link to="/person/userinfo"
