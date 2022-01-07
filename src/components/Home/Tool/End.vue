@@ -73,7 +73,7 @@ export default {
       }).then(({ data: res }) => {
         if (res.data === null) {
           alert('支付成功')
-          this.$router.push('home')
+          this.$router.push('/home')
         }
       })
     },
