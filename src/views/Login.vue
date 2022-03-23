@@ -25,14 +25,16 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .login-container {
-  overflow: auto;
   .login-imag {
-    margin-top: -5px;
     position: relative;
-    height: 756px;
+    width: 100%;
+    height: calc(100vh - 245px);
     img {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
     }

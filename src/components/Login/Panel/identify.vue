@@ -1,6 +1,6 @@
 <template>
-  <div class="s-canvas">
-    <canvas id="s-canvas" :width="contentWidth" :height="contentHeight"></canvas>
+  <div class="s-canvas button">
+    <canvas title="点击刷新验证码" id="s-canvas" :width="contentWidth" :height="contentHeight"></canvas>
   </div>
 </template>
 <script>

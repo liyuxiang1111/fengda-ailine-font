@@ -63,7 +63,7 @@ export default {
               alert(res.msg)
             } else {
               this.token = res.data
-              localStorage.setItem('Authorizatio', res.data)
+              localStorage.setItem('Authorization', res.data)
               this.$router.push('/home')
             }
           })
@@ -104,8 +104,8 @@ export default {
 <style lang="less">
 .panel-container {
   position: absolute;
-  top: 160px;
-  right: 300px;
+  top: 10vh;
+  right: 15vw;
   width: 283px;
   height: 428px;
   background-color: white;

@@ -24,9 +24,10 @@ import Pay from '@/components/Home/Tool/Pay.vue'
 import End from '@/components/Home/Tool/End.vue'
 const routes = [
   { path: '/', redirect: '/login' },
-  { path: '/login', component: Login },
+  { path: '/login', name: 'Login', component: Login },
   {
     path: '/register',
+    name: 'Register',
     component: Register,
     children: [
       { path: '', component: Step1 },
@@ -36,6 +37,7 @@ const routes = [
   },
   {
     path: '/home',
+    name: 'Home',
     component: Home,
     children: [
       { path: '', component: Select },
@@ -46,6 +48,7 @@ const routes = [
   },
   {
     path: '/person',
+    name: 'Person',
     component: Person,
     children: [
       { path: '', component: Ticket },
@@ -61,6 +64,12 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('Authorization')
+  if (to.name !== 'Login' && !token) next({ name: 'Login' })
+  else next()
 })
 
 export default router
