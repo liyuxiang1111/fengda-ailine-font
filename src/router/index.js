@@ -22,12 +22,13 @@ import Select from '@/components/Home/Tool/Select.vue'
 import Order from '@/components/Home/Tool/Order.vue'
 import Pay from '@/components/Home/Tool/Pay.vue'
 import End from '@/components/Home/Tool/End.vue'
+// 错误
+import Error404 from '@/components/Common/404.vue' //404
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', name: 'Login', component: Login },
   {
     path: '/register',
-    name: 'Register',
     component: Register,
     children: [
       { path: '', component: Step1 },
@@ -37,18 +38,17 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'Home',
     component: Home,
     children: [
       { path: '', component: Select },
       { path: 'order', component: Order },
       { path: 'pay', component: Pay },
       { path: 'end', component: End },
+      { path: 'error', component: Error404 },
     ],
   },
   {
     path: '/person',
-    name: 'Person',
     component: Person,
     children: [
       { path: '', component: Ticket },
@@ -68,7 +68,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('Authorization')
-  if (to.name !== 'Login' && !token) next({ name: 'Login' })
+  if (to.path !== 'Login' && !token) next({ name: 'Login' })
   else next()
 })
 

@@ -4,13 +4,14 @@
       <li class="tab">会员登录</li>
       <div class="menber-content">
         <div class="section-input">
-          <input type="text" class="acount" placeholder="请输入账号" v-model="userName" />
+          <inputBox class="acount" :id="'username'" :tip="usernameTip" :type="'text'" @shareText="getText"></inputBox>
         </div>
         <div class="section-input">
-          <input type="password" class="passwd" placeholder="请输入密码" v-model="password" />
+          <inputBox class="passwd" :id="'password'" :tip="passwdTip" :type="'password'" @shareText="getPwd"></inputBox>
         </div>
         <div class="section-input">
-          <input type="text" class="code fl" placeholder="验证码" v-model="code" @keydown.enter="login" />
+          <inputBox class="code fl" :id="'code'" :tip="codeTip" :type="'text'" @shareText="getCode"></inputBox>
+          <!-- <input type="text" class="code fl" placeholder="验证码" v-model="code" @keydown.enter="login" /> -->
           <div class="fl" @click="changeCode()">
             <identify :identifyCode="identifyCode"></identify>
           </div>
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+import inputBox from '@/components/Login/Panel/Inputbox.vue'
 import identify from '@/components/Login/Panel/identify.vue'
 export default {
   mounted() {
@@ -37,9 +39,14 @@ export default {
   },
   data() {
     return {
+      // 提示框
       userName: '',
       password: '',
       code: '',
+      // tips
+      usernameTip: '请输入用户名',
+      passwdTip: '请输入密码',
+      codeTip: '请输入验证码',
       // 验证码初始值
       identifyCode: 'm6a8', // 这个就是随机生成的验证码
       // 验证码的随机取值范围
@@ -47,11 +54,31 @@ export default {
     }
   },
   methods: {
+    // 获得用户名 可以判断用户名是否存在
+    getText(val) {
+      this.userName = val
+      // 进行axios请求判断用户名是否存在
+    },
+    getPwd(val) {
+      this.password = val
+      console.log(this.password)
+    },
+    getCode(val) {
+      this.code = val
+      console.log(this.code)
+    },
+    // 账号是否存在验证
     async login() {
       if (this.userName === '' && this.password === '') {
-        alert('请输入有效的账号和密码')
+        this.$message({
+          message: '账号密码为空',
+          type: 'error',
+        })
       } else if (this.code === '' || this.code != this.identifyCode) {
-        alert('验证错误')
+        this.$message({
+          message: '验证码有误请重新输入',
+          type: 'error',
+        })
       } else if (this.code === this.identifyCode) {
         await this.$http
           .post('/login', {
@@ -60,10 +87,13 @@ export default {
           })
           .then(({ data: res }) => {
             if (res.data === null) {
-              alert(res.msg)
+              this.$message({
+                message: res.msg,
+                type: 'error',
+              })
             } else {
               this.token = res.data
-              localStorage.setItem('Authorization', res.data)
+              localStorage.setItem('Authorization', 'Bearer ' + res.data)
               this.$router.push('/home')
             }
           })
@@ -97,6 +127,7 @@ export default {
   },
   components: {
     identify,
+    inputBox,
   },
 }
 </script>
