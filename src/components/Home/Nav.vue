@@ -18,14 +18,29 @@
           <router-link to="/person/history"><div>查看历史</div></router-link>
         </li>
       </ul>
-      <div @mouseleave="show = false" class="fr nav-right">
-        <router-link @mouseover.native="show = true" to="/person"><img src="@/assets/image/头像.png" alt="" /> <span>凤达航空欢迎您</span></router-link>
+      <div class="userInfo nav-right" @mousemove="show = true">
+        <router-link to="/person"
+          ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span>{{ $store.state.name }}</span></router-link
+        >
+        <!-- <ul > -->
         <transition name="el-fade-in-linear">
-          <li @mouseleave="show = false" v-show="show">
-            <span></span>
-            <router-link to="/person/userinfo">个人信息</router-link> |
-            <router-link to="" @click.native="logout">退出</router-link>
-          </li>
+          <ul ref="info" @mouseleave="show = false" v-show="show">
+            <li>
+              <router-link to="/person/userinfo">个人信息</router-link>
+            </li>
+            <li>
+              <router-link to="/person/ticket">机票信息</router-link>
+            </li>
+            <li>
+              <router-link to="/person/back">退票信息</router-link>
+            </li>
+            <li>
+              <router-link to="/person/history">历史订单</router-link>
+            </li>
+            <li>
+              <router-link to="" @click.native="logout">退出登录</router-link>
+            </li>
+          </ul>
         </transition>
       </div>
     </div>
@@ -45,11 +60,15 @@ export default {
     logout() {
       this.$router.push('/login')
     },
+    img() {
+      console.log('img')
+    },
   },
 }
 </script>
 
 <style lang="less" scoped>
+@import url(../../assets/less/value.less);
 .nav-container {
   height: 80px;
   padding: 0 30px;
@@ -68,15 +87,16 @@ export default {
   .tool {
     li {
       a {
-        color: #515151;
+        color: #492d22;
         font-weight: normal;
         font-size: 14px;
         div {
           height: 76px;
           line-height: 76px;
-        }
-        div:hover {
-          border-bottom: 5px solid #1781b5;
+          transition: all 0.1s;
+          &:hover {
+            border-bottom: 5px solid #1781b5;
+          }
         }
       }
       margin-right: 100px;
@@ -85,9 +105,8 @@ export default {
   .nav-right {
     position: relative;
     padding: 25px 0 25px 0;
-    height: 30px;
     a {
-      color: #515151;
+      color: #492d22;
       font-weight: normal;
       font-size: 14px;
       img {
@@ -97,30 +116,48 @@ export default {
         margin-right: 15px;
       }
     }
-    li {
+  }
+  .userInfo {
+    float: right;
+    position: relative;
+    z-index: 5;
+    ul {
+      top: 70px;
+      left: -40px;
       position: absolute;
-      top: 60px;
-      z-index: 3;
-      margin-top: 5px;
-      height: 25px;
-      line-height: 25px;
-      background-color: #f5f5f5;
-      border-radius: 8px;
-      span {
+      width: 100px;
+      &::before {
         position: absolute;
-        left: 5px;
+        content: '';
+        left: 45px;
         top: -10px;
         width: 0;
         height: 0;
         line-height: 0;
         font-size: 0;
         border: 5px solid transparent;
-        border-bottom-color: #f5f5f5;
+        border-bottom-color: @bkg-color;
       }
-      a {
-        color: #515151;
-        font-weight: normal;
-        font-size: 8px;
+      li {
+        line-height: 40px;
+        height: 40px;
+        padding: 0.2rem 0 0.2rem 0;
+        background-color: @bkg-color;
+        &:hover {
+          background-color: #918081;
+          a {
+            color: #fff;
+          }
+        }
+        a {
+          text-align: center;
+          display: block;
+          color: #a59d97;
+          font-weight: normal;
+          font-size: 8px;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

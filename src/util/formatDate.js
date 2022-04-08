@@ -1,5 +1,5 @@
 import moment from 'moment'
-function formatDate(value) {
+export function formatDate(value) {
   if (value) {
     if (typeof value === 'string') {
       return moment(String(value)).format('YYYY-MM-DD')
@@ -9,7 +9,7 @@ function formatDate(value) {
   }
 }
 
-function formatDateTimeSec(value) {
+export function formatDateTimeSec(value) {
   if (value) {
     if (typeof value === 'string') {
       return moment(String(value)).format('YYYY-MM-DD HH:mm:ss')
@@ -17,9 +17,4 @@ function formatDateTimeSec(value) {
       return moment.unix(value / 1000).format('YYYY-MM-DD HH:mm:ss')
     }
   }
-}
-
-export default {
-  formatDate,
-  formatDateTimeSec,
 }

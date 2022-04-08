@@ -5,6 +5,7 @@
 </template>
 
 <style lang="less">
+@import url(./assets/less/value.less);
 * {
   @font-face {
     font-family: 'iconfont';
@@ -36,12 +37,6 @@
   }
   .button {
     cursor: pointer;
-  }
-  .color {
-    background-color: #f5f5f5;
-  }
-  .bule {
-    background-color: #2f71bd;
   }
   .white {
     background-color: #ffffff;
