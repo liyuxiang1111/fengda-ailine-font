@@ -59,26 +59,26 @@ export default {
       }
     }
     .step {
-      background-color: #2f90b9;
+      background-color: #2f71bd;
       color: #ffffff;
-    }
-    .step:before {
-      position: absolute;
-      left: 0;
-      content: '';
-      border-top: 30px solid transparent;
-      border-right: 30px solid transparent;
-      border-bottom: 30px solid #d0dfe6;
-      border-left: 30px solid #d0dfe6;
-    }
-    .step:after {
-      position: absolute;
-      right: 0;
-      content: '';
-      border-top: 30px solid #d0dfe6;
-      border-right: 30px solid #d0dfe6;
-      border-bottom: 30px solid transparent;
-      border-left: 30px solid transparent;
+      &::before {
+        position: absolute;
+        left: 0;
+        content: '';
+        border-top: 30px solid transparent;
+        border-right: 30px solid transparent;
+        border-bottom: 30px solid #d0dfe6;
+        border-left: 30px solid #d0dfe6;
+      }
+      &::after {
+        position: absolute;
+        right: 0;
+        content: '';
+        border-top: 30px solid #d0dfe6;
+        border-right: 30px solid #d0dfe6;
+        border-bottom: 30px solid transparent;
+        border-left: 30px solid transparent;
+      }
     }
   }
 }

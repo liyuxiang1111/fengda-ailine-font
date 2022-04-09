@@ -14,32 +14,36 @@
           </div>
         </div>
         <div class="member-top">乘机人</div>
-        <div class="member-body">
+        <el-form class="member-body" :model="menuberForm" :rules="menuberRules">
           <div class="list-group">
-            <span class="gh"> 姓名</span>
-            <el-input class="input-name" v-model="username" placeholder="请输入乘客姓名"></el-input>
+            <el-form-item label="姓名：">
+              <el-input class="input-name" v-model="menuberForm.username" placeholder="请输入乘客姓名"></el-input>
+            </el-form-item>
           </div>
           <div class="list-group">
-            <span class="gh">证件信息</span>
-            <el-select class="id-type" v-model="value" placeholder="请选择">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-            </el-select>
-            <el-input class="input-id" v-model="certificate" placeholder="证件号码"></el-input>
+            <el-form-item label="证件信息：">
+              <el-select class="id-type" v-model="menuberForm.value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+              </el-select>
+              <el-input class="input-id" v-model="menuberForm.certificate" placeholder="证件号码"></el-input>
+            </el-form-item>
           </div>
           <div class="list-group">
-            <span class="gh">手机号码</span>
-            <el-input class="input-tel" v-model="tel" placeholder="手机号码"></el-input>
+            <el-form-item label="手机号码：" prop="tel">
+              <el-input class="input-tel" v-model="menuberForm.tel" placeholder="手机号码" type="text" autocomplete="off" autofocus="true"></el-input>
+            </el-form-item>
           </div>
           <div class="list-group">
-            <span class="gh">Email</span>
-            <el-input class="input-email" v-model="email" placeholder="请填写邮箱"></el-input>
+            <el-form-item label="Email：" prop="email">
+              <el-input class="input-email" v-model="menuberForm.email" placeholder="请填写邮箱" type="text" autocomplete="off" autofocus="true"></el-input>
+            </el-form-item>
           </div>
           <div class="list-group"></div>
           <div class="list-group">
             <div class="back fl button" @click="back">重新选择</div>
             <div class="next fr button" @click="next">下一步</div>
           </div>
-        </div>
+        </el-form>
       </div>
       <div class="swiper-box fr">
         <Swiper></Swiper>
@@ -87,11 +91,24 @@ export default {
           label: '台湾居民来往大陆通行证',
         },
       ],
-      value: '',
-      username: '',
-      certificate: '',
-      email: '',
-      tel: '',
+      menuberForm: {
+        value: '',
+        username: '',
+        certificate: '',
+        email: '',
+        tel: '',
+      },
+      // 正则规则
+      menuberRules: {
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '请输入合法邮箱' },
+        ],
+        tel: [
+          { required: true, message: '请输入手机号码', trigger: 'blur' },
+          { pattern: /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-3,5-8])|(9[1,8,9]))\d{8}$/, message: '请输入正确的手机号码' },
+        ],
+      },
     }
   },
   components: {
@@ -182,14 +199,6 @@ export default {
           }
           .input-tel {
             width: 400px;
-          }
-          .gh {
-            display: inline-block;
-            width: 150px;
-            height: 21.54px;
-            line-height: 21.54px;
-            text-align: right;
-            margin-right: 20px;
           }
           .button {
             width: 150px;

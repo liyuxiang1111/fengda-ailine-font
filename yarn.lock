@@ -1081,6 +1081,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/geojson@*":
+  "integrity" "sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA=="
+  "resolved" "https://registry.npmmirror.com/@types/geojson/-/geojson-7946.0.8.tgz"
+  "version" "7946.0.8"
+
 "@types/glob@^7.1.1":
   "integrity" "sha1-vBtb86qS8lvV3TnzXFc2G9zlsus="
   "resolved" "https://registry.npmmirror.com/@types/glob/download/@types/glob-7.2.0.tgz"
@@ -1100,6 +1105,13 @@
   "integrity" "sha1-l+3JA36gw4WFMgsolk3eOznkZg0="
   "resolved" "https://registry.npmmirror.com/@types/json-schema/download/@types/json-schema-7.0.9.tgz"
   "version" "7.0.9"
+
+"@types/leaflet@^1.5.7":
+  "integrity" "sha512-H8vPgD49HKzqM41ArHGZM70g/tfhp8W+JcPxfnF+5H/Xvp+xiP+KQOUNWU8U89fqS1Jj3cpRY/+nbnaHFzwnFA=="
+  "resolved" "https://registry.npmmirror.com/@types/leaflet/-/leaflet-1.7.9.tgz"
+  "version" "1.7.9"
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/mime@^1":
   "integrity" "sha1-k+Jb+e51/g/YC1lLxP6w6GIRG1o="
@@ -5386,6 +5398,11 @@
     "chalk" "^2.3.0"
     "shell-quote" "^1.6.1"
 
+"leaflet@^1.3.4", "leaflet@^1.7.1":
+  "integrity" "sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw=="
+  "resolved" "https://registry.npmmirror.com/leaflet/-/leaflet-1.7.1.tgz"
+  "version" "1.7.1"
+
 "less-loader@^5.0.0":
   "integrity" "sha1-SY3eOmxsT4h0WO6e0/CGoSrRtGY="
   "resolved" "https://registry.npmmirror.com/less-loader/download/less-loader-5.0.0.tgz?cache=0&sync_timestamp=1634563207805&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fless-loader%2Fdownload%2Fless-loader-5.0.0.tgz"
@@ -8587,6 +8604,11 @@
   "integrity" "sha1-5RqlJQJQ1Wmj+606ilpofWA24jU="
   "resolved" "https://registry.npmmirror.com/vue/download/vue-2.6.14.tgz"
   "version" "2.6.14"
+
+"vue2-leaflet@^2.7.1":
+  "integrity" "sha512-K7HOlzRhjt3Z7+IvTqEavIBRbmCwSZSCVUlz9u4Rc+3xGCLsHKz4TAL4diAmfHElCQdPPVdZdJk8wPUt2fu6WQ=="
+  "resolved" "https://registry.npmmirror.com/vue2-leaflet/-/vue2-leaflet-2.7.1.tgz"
+  "version" "2.7.1"
 
 "vuex@^3.6.2":
   "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="

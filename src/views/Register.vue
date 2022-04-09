@@ -3,9 +3,13 @@
     <!-- 头部栏 -->
     <Nav></Nav>
     <div class="step-box">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
-    <Footer></Footer>
+    <div class="foot">
+      <Footer></Footer>
+    </div>
   </div>
 </template>
 
@@ -26,11 +30,14 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .register-container {
+  height: 100vh;
+  width: 100vw;
   background-color: #f5f5f5;
   .step-box {
-    margin-top: 50px;
+    margin-top: 10vh;
+    margin-bottom: 9.8vh;
   }
 }
 </style>

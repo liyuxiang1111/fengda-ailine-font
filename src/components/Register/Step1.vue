@@ -9,8 +9,8 @@
       </ul>
     </div>
     <div class="information">
-      <form action="">
-        <div class="form-group"><label for="userName">用户名：</label><el-input id="userName" class="input-box" v-model="registerList.userName" placeholder="请用户名"></el-input></div>
+      <el-form action="">
+        <div class="form-group"><label for="userName">用户名：</label><el-input id="userName" class="input-box" v-model="registerList.userName" placeholder="请输入用户名"></el-input></div>
         <div class="form-group"><label for="passwd">密码：</label><el-input id="passwd" class="input-box" v-model="registerList.passwd" placeholder="请输入密码"></el-input></div>
         <div class="form-group"><label for="id">身份证：</label><el-input id="id" class="input-box" v-model="registerList.id" placeholder="请输入身份证"></el-input></div>
         <div class="form-group">
@@ -35,7 +35,7 @@
             <div class="button next" @click="next">下一步</div>
           </div>
         </div>
-      </form>
+      </el-form>
     </div>
   </div>
 </template>

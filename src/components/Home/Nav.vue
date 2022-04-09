@@ -18,13 +18,13 @@
           <router-link to="/person/history"><div>查看历史</div></router-link>
         </li>
       </ul>
-      <div class="userInfo nav-right" @mousemove="show = true">
+      <div class="userInfo nav-right" @mouseover="show = true">
         <router-link to="/person"
           ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span>{{ $store.state.name }}</span></router-link
         >
         <!-- <ul > -->
         <transition name="el-fade-in-linear">
-          <ul ref="info" @mouseleave="show = false" v-show="show">
+          <ul ref="info" v-show="show" @mouseleave="show = false">
             <li>
               <router-link to="/person/userinfo">个人信息</router-link>
             </li>
