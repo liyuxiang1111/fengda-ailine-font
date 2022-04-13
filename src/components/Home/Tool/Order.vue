@@ -14,14 +14,14 @@
           </div>
         </div>
         <div class="member-top">乘机人</div>
-        <el-form class="member-body" :model="menuberForm" :rules="menuberRules">
+        <el-form class="member-body" :model="menuberForm" :rules="menuberRules" label-width="100px" :show-message="false" ref="form">
           <div class="list-group">
-            <el-form-item label="姓名：">
+            <el-form-item label="乘客姓名：" prop="username">
               <el-input class="input-name" v-model="menuberForm.username" placeholder="请输入乘客姓名"></el-input>
             </el-form-item>
           </div>
           <div class="list-group">
-            <el-form-item label="证件信息：">
+            <el-form-item label="证件信息：" prop="certificate">
               <el-select class="id-type" v-model="menuberForm.value" placeholder="请选择">
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
               </el-select>
@@ -34,14 +34,15 @@
             </el-form-item>
           </div>
           <div class="list-group">
-            <el-form-item label="Email：" prop="email">
+            <el-form-item label="E-mail：" prop="email">
               <el-input class="input-email" v-model="menuberForm.email" placeholder="请填写邮箱" type="text" autocomplete="off" autofocus="true"></el-input>
             </el-form-item>
           </div>
           <div class="list-group"></div>
           <div class="list-group">
             <div class="back fl button" @click="back">重新选择</div>
-            <div class="next fr button" @click="next">下一步</div>
+            <!-- <div class="next fr button" @click="next">下一步</div> -->
+            <button class="next fr button" @click="next" :disabled="nextFlag">下一步</button>
           </div>
         </el-form>
       </div>
@@ -65,6 +66,8 @@ import Swiper from '@/components/Home/Swiper.vue'
 export default {
   data() {
     return {
+      // 按钮的flag
+      nextFlag: true,
       options: [
         {
           value: '1',
@@ -100,6 +103,14 @@ export default {
       },
       // 正则规则
       menuberRules: {
+        username: [
+          { required: true, message: '请输入姓名', trigger: 'blur' },
+          { pattern: /^[\u4e00-\u9fa5]{0,}$/, message: '请输入中文姓名' },
+        ],
+        certificate: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { pattern: /^\d{15}|\d{18}$/, message: '请输入合法身份证号' },
+        ],
         email: [
           { required: true, message: '请输入邮箱', trigger: 'blur' },
           { pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '请输入合法邮箱' },
@@ -121,12 +132,32 @@ export default {
       this.$router.push('/home')
     },
     next() {
-      localStorage.setItem('passengerName', this.username)
-      localStorage.setItem('certificate', this.certificate)
-      localStorage.setItem('certificateType', this.value)
-      localStorage.setItem('telephone', this.tel)
-      localStorage.setItem('email', this.email)
+      this.$store.state.menberName = this.menuberForm.username
+      this.$store.state.certificate = this.menuberForm.certificate
+      this.$store.state.certificateType = this.menuberForm.value
+      this.$store.state.telephone = this.menuberForm.tel
+      this.$store.state.email = this.menuberForm.email
+      localStorage.setItem('passengerName', this.menuberForm.username)
+      localStorage.setItem('certificate', this.menuberForm.certificate)
+      localStorage.setItem('certificateType', this.menuberForm.value)
+      localStorage.setItem('telephone', this.menuberForm.tel)
+      localStorage.setItem('email', this.menuberForm.email)
       this.$router.push('/home/pay')
+    },
+  },
+  watch: {
+    menuberForm: {
+      handler() {
+        console.log('监听')
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.nextFlag = false
+          } else {
+            this.nextFlag = true
+          }
+        })
+      },
+      deep: true,
     },
   },
 }
@@ -178,7 +209,7 @@ export default {
       }
       .member-body {
         height: 360px;
-        padding: 20px;
+        padding: 20px 60px 20px 60px;
         background-color: #fff;
         .list-group {
           margin-top: 20px;
@@ -190,9 +221,10 @@ export default {
           }
           .id-type {
             width: 150px;
+            margin-right: 20px;
           }
           .input-id {
-            width: 250px;
+            width: 230px;
           }
           .input-email {
             width: 400px;

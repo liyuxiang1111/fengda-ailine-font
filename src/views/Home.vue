@@ -3,9 +3,7 @@
     <!-- 首页导航栏 -->
     <Nav></Nav>
 
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <router-view></router-view>
     <div class="footer-box">
       <Footer></Footer>
     </div>

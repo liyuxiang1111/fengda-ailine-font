@@ -30,7 +30,8 @@
         </div>
         <div class="button-box">
           <div class="back fl button" @click="back">重新选择</div>
-          <div class="next fr button" @click="next">下一步</div>
+          <!-- <div class="next fr button" @click="next">下一步</div> -->
+          <button class="next fr button" @click="next" :disabled="!checked">下一步</button>
         </div>
       </div>
       <div class="swiper-box fr">
@@ -51,10 +52,11 @@ import Top from '@/components/Home/Order/Top.vue'
 import Swiper from '@/components/Home/Swiper.vue'
 export default {
   created() {
-    this.passengerName = localStorage.getItem('passengerName')
-    this.certificate = localStorage.getItem('certificate')
-    this.telephone = localStorage.getItem('telephone')
-    this.email = localStorage.getItem('email')
+    console.log('store' + this.$store.state.menberName)
+    this.passengerName = this.$store.state.menberName
+    this.certificate = this.$store.state.certificate
+    this.telephone = this.$store.state.telephone
+    this.email = this.$store.state.email
   },
   data() {
     return {
@@ -89,11 +91,6 @@ export default {
           flightId: localStorage.getItem('flightId'),
           seat: localStorage.getItem('seat'),
           day: localStorage.getItem('day'),
-          passengerName: localStorage.getItem('passengerName'),
-          certificate: localStorage.getItem('certificate'),
-          certificateType: localStorage.getItem('certificateType'),
-          telephone: localStorage.getItem('telephone'),
-          email: localStorage.getItem('email'),
         },
       }).then(({ data: res }) => {
         if (res.msg === 'success') {
