@@ -93,7 +93,7 @@ export default {
               })
             } else {
               this.token = res.data
-              localStorage.setItem('Authorization', 'Bearer ' + res.data)
+              localStorage.setItem('Authorization', res.data)
               this.$router.push('/home')
             }
           })

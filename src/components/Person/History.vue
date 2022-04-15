@@ -25,7 +25,7 @@ export default {
     }
   },
   created() {
-    this.token = localStorage.getItem('Authorizatio')
+    this.token = localStorage.getItem('Authorization')
     this.initHistory()
   },
   methods: {
@@ -34,7 +34,7 @@ export default {
         url: '/pay/search',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           pageNum: this.pageNum,

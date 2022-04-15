@@ -34,7 +34,7 @@ export default {
         url: '/ticket/search/normal',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           pageNum: this.pageNum,

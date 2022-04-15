@@ -13,7 +13,7 @@ import Flight from '@/components/Person/Back/Flight.vue'
 import Page from '@/components/Person/Page.vue'
 export default {
   created() {
-    this.token = localStorage.getItem('Authorizatio')
+    this.token = localStorage.getItem('Authorization')
     this.initBackList()
   },
   components: {
@@ -34,7 +34,7 @@ export default {
         url: '/ticket/search/return',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           pageNum: this.pageNum,

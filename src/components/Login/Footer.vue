@@ -13,8 +13,11 @@ export default {}
 
 <style lang="less">
 .copyright-box {
+  position: relative;
   text-align: center;
   padding-top: 40px;
+  height: 100px;
+  margin-top: -100px;
   font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, '\5B8B\4F53', sans-serif;
   width: 100%;
   height: 120px;

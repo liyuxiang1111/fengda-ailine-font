@@ -6,6 +6,10 @@
 
 <style lang="less">
 @import url(./assets/less/value.less);
+body {
+  height: 1000px;
+  width: 100%;
+}
 * {
   @font-face {
     font-family: 'iconfont';

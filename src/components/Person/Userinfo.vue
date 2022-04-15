@@ -1,7 +1,7 @@
 <template>
   <div class="Userinfo-container fr boxshadow">
     <div class="title">
-      <el-upload class="avatar-uploader fl" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+      <el-upload class="avatar-uploader fl" action="http://localhost:8888/uploadFile" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
@@ -55,8 +55,9 @@
 <script>
 export default {
   created() {
-    this.token = localStorage.getItem('Authorizatio')
+    this.token = localStorage.getItem('Authorization')
     this.getInformation()
+    console.log(this.token)
   },
   data() {
     return {
@@ -74,7 +75,9 @@ export default {
     }
   },
   methods: {
+    // 头像上传成功
     handleAvatarSuccess(res, file) {
+      console.log(res)
       this.imageUrl = URL.createObjectURL(file.raw)
     },
     // 用户图片
@@ -90,6 +93,7 @@ export default {
       }
       return isJPG && isLt2M
     },
+    // 获取用户信息
     async getInformation() {
       console.log(this.token)
       await this.$http({
@@ -101,16 +105,21 @@ export default {
       }).then(({ data: res }) => {
         this.userinfo = res.data
         this.sex = this.userinfo.gender
-        console.log(this.userinfo)
+        console.log('@', res)
       })
     },
+    // 修改密码
+    /**
+     * @param phone, email, nickname, gender, realname
+     * @returns token
+     */
     async post(e, phone, email, nickname, gender, realname) {
       console.log(this.token)
       await this.$http({
         url: 'passenger/informations',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           telephoneNumber: phone,
@@ -121,11 +130,13 @@ export default {
         },
       }).then(({ data: res }) => {
         if (res.msg === 'success') {
-          console.log(res)
           this.token = res.data
-          localStorage.setItem('Authorizatio', this.token)
+          localStorage.setItem('Authorization', this.token)
         } else {
-          alert(res.msg)
+          this.$message({
+            message: res.msg,
+            type: 'error',
+          })
         }
       })
       this.$nextTick(() => {

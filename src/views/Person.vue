@@ -32,8 +32,8 @@ export default {
   background-color: #ecf2f7;
   .person-box {
     width: 100%;
-    height: calc(100vh - 372px);
     padding-top: 40px;
+    min-height: 100%;
     padding-bottom: 90px;
   }
 }
