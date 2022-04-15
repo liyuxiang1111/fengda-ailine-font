@@ -6,10 +6,6 @@
 
 <style lang="less">
 @import url(./assets/less/value.less);
-body {
-  height: 1000px;
-  width: 100%;
-}
 * {
   @font-face {
     font-family: 'iconfont';
@@ -22,6 +18,10 @@ body {
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    height: 100%;
+    width: 100%;
   }
   margin: 0;
   padding: 0;

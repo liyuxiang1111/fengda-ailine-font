@@ -30,10 +30,13 @@ export default {
 <style lang="less" scoped>
 .person-container {
   background-color: #ecf2f7;
+  height: 100%;
+  width: 100%;
   .person-box {
     width: 100%;
+    min-height: calc(100vh - 700px);
+    height: 600px;
     padding-top: 40px;
-    min-height: 100%;
     padding-bottom: 90px;
   }
 }
