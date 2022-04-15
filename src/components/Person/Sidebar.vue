@@ -5,17 +5,17 @@
       <span>凤达航空欢迎您</span>
     </div>
     <router-link to="/person/userinfo"
-      ><li class="person-information"><span class="iconfont">&#xe617;</span>我的个人信息</li></router-link
+      ><li class="person-information" :class="{ active: $route.path === '/person/userinfo' }"><span class="iconfont">&#xe617;</span>我的个人信息</li></router-link
     >
     <router-link to="/person/ticket"
-      ><li class="air-ticket"><span class="iconfont">&#xe66f;</span>我的机票信息</li></router-link
+      ><li class="air-ticket" :class="{ active: $route.path === '/person/ticket' }"><span class="iconfont">&#xe66f;</span>我的机票信息</li></router-link
     >
 
     <router-link to="/person/back"
-      ><li class="back"><span class="iconfont">&#xe684;</span>退票处理</li></router-link
+      ><li class="back" :class="{ active: $route.path === '/person/back' }"><span class="iconfont">&#xe684;</span>退票处理</li></router-link
     >
     <router-link to="/person/history"
-      ><li class="history"><span class="iconfont">&#xe8d5;</span>历史订单</li></router-link
+      ><li class="history" :class="{ active: $route.path === '/person/history' }"><span class="iconfont">&#xe8d5;</span>历史订单</li></router-link
     >
     <router-link to=""
       ><li><span class="iconfont">&#xe8ba;</span>积分越换</li></router-link
@@ -35,9 +35,9 @@ export default {
   data() {
     return {
       dialogVisible: true,
+      colcor: 'background-color: #90d7ec',
     }
   },
-  components: {},
   methods: {
     logout() {
       bus.$emit('dialog', this.dialogVisible)
@@ -73,8 +73,11 @@ export default {
       span {
         margin-right: 10px;
       }
+      &:hover {
+        background-color: #90d7ec;
+      }
     }
-    li:hover {
+    .active {
       background-color: #90d7ec;
     }
   }
