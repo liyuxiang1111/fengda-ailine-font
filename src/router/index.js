@@ -66,7 +66,7 @@ const router = new VueRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   if (to.path === '/home') {
     next() //访问的是主页，直接放行
   }else if (to.path !== ('/login')) {
@@ -79,6 +79,6 @@ router.beforeEach((to, from, next) => {
   }else{
     next() //访问的不是后台主页，直接放行
   }
-})
+}) */
 
 export default router
