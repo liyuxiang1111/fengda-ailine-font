@@ -9,8 +9,8 @@
 * {
   @font-face {
     font-family: 'iconfont';
-    src: url('./assets/css/iconfont.woff2?t=1639906299268') format('woff2'), url('./assets/css/iconfont.woff?t=1639906299268') format('woff'),
-      url('./assets/css/iconfont.ttf?t=1639906299268') format('truetype');
+    src: url('./assets/fonts/iconfont.woff2?t=1639906299268') format('woff2'), url('./assets/fonts/iconfont.woff?t=1639906299268') format('woff'),
+      url('./assets/fonts/iconfont.ttf?t=1639906299268') format('truetype');
   }
   .iconfont {
     font-family: 'iconfont' !important;

@@ -8,6 +8,7 @@ import '@/assets/css/iconfont.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+
 // 引入antd
 // 引入地图全局样式
 import 'leaflet/dist/leaflet.css'

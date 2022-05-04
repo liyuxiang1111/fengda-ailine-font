@@ -6,25 +6,19 @@
     <div class="text-btu">
       <div class="section-input text-first">
         <el-select v-model="index1" filterable placeholder="出发城市">
-          <el-option
-            v-for="(item,index) in options1"
-            :key="index"
-            :label="item"
-            :value="index+1"
-            @focus="getindex1(index)">
-          </el-option>
-         </el-select>
+          <template #prefix>
+            <span class="iconfont icon-chengshi"></span>
+          </template>
+          <el-option v-for="(item, index) in options1" :key="index" :label="item" :value="index + 1" @focus="getindex1(index)"> </el-option>
+        </el-select>
         <!-- <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" /> -->
       </div>
       <div class="section-input">
         <el-select v-model="index2" filterable placeholder="到达城市">
-          <el-option
-            v-for="(item,index) in options2"
-            :key="index"
-            :label="item"
-            :value="index+1"
-            @focus="getindex2(index)">
-          </el-option>
+          <template #prefix>
+            <span class="iconfont icon-chengshi"></span>
+          </template>
+          <el-option v-for="(item, index) in options2" :key="index" :label="item" :value="index + 1" @focus="getindex2(index)"> </el-option>
         </el-select>
         <!-- <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="city.endCity" /> -->
       </div>
@@ -38,6 +32,7 @@
 
 <script>
 import bus from '@/components/eventBus.js'
+
 export default {
   props: {
     pageSize: {
@@ -58,12 +53,10 @@ export default {
       data: '30',
       res: {},
       day: 30,
-      options1:[
-      ],
-      options2:[
-      ],
-      index1:'',
-      index2:'',
+      options1: [],
+      options2: [],
+      index1: '',
+      index2: '',
     }
   },
   methods: {
@@ -100,31 +93,25 @@ export default {
         })
     },
     async getOption1() {
-      await this.$http
-        .get('/flight/city/begin', {
-        })
-        .then(({ data: res }) => {
-          this.options1 = res.data
-          console.log(this.options1)
-        })
+      await this.$http.get('/flight/city/begin', {}).then(({ data: res }) => {
+        this.options1 = res.data
+        console.log(this.options1)
+      })
     },
     async getOption2() {
-      await this.$http
-        .get('flight/city/end', {
-        })
-        .then(({ data: res }) => {
-          this.options2 = res.data
-          console.log(this.options2)
-        })
+      await this.$http.get('flight/city/end', {}).then(({ data: res }) => {
+        this.options2 = res.data
+        console.log(this.options2)
+      })
     },
-    getindex1(i){
+    getindex1(i) {
       this.index1 = i
     },
-    getindex2(i){
+    getindex2(i) {
       this.index2 = i
-    }
+    },
   },
-  created(){
+  created() {
     this.getOption1()
     this.getOption2()
   },
@@ -158,16 +145,16 @@ export default {
     background-color: #fff;
     padding: 0 10px;
     .section-input {
+      position: relative;
       float: left;
       width: 160px;
       height: 40px;
       margin-top: 30px;
-      margin-left: 30px;
-      border: 1px dotted rgb(211, 208, 208);
-      border-radius: 5px;
-      input {
-        margin-top: 10px;
-        margin-left: 5px;
+      margin-left: 40px;
+      span {
+        position: absolute;
+        top: 0.8rem;
+        left: 0.2rem;
       }
     }
     .data-box {
