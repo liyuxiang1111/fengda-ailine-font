@@ -66,7 +66,7 @@ export default {
       console.log('img')
     },
     getToken(){
-      this.token = localStorage.getItem('token');
+      this.token = localStorage.getItem('Authorization');
     }
   },
   created(){

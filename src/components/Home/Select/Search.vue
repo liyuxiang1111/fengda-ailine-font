@@ -5,10 +5,28 @@
     </div>
     <div class="text-btu">
       <div class="section-input text-first">
-        <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" />
+        <el-select v-model="index1" filterable placeholder="出发城市">
+          <el-option
+            v-for="(item,index) in options1"
+            :key="index"
+            :label="item"
+            :value="index+1"
+            @focus="getindex1(index)">
+          </el-option>
+         </el-select>
+        <!-- <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" /> -->
       </div>
       <div class="section-input">
-        <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="city.endCity" />
+        <el-select v-model="index2" filterable placeholder="到达城市">
+          <el-option
+            v-for="(item,index) in options2"
+            :key="index"
+            :label="item"
+            :value="index+1"
+            @focus="getindex2(index)">
+          </el-option>
+        </el-select>
+        <!-- <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="city.endCity" /> -->
       </div>
       <div class="data-box">
         <el-date-picker class="data" v-model="data" type="datetime" placeholder="选择日期时间" default-time="12:00:00"> </el-date-picker>
@@ -40,6 +58,12 @@ export default {
       data: '30',
       res: {},
       day: 30,
+      options1:[
+      ],
+      options2:[
+      ],
+      index1:'',
+      index2:'',
     }
   },
   methods: {
@@ -75,6 +99,34 @@ export default {
           this.$emit('shareCity', this.city)
         })
     },
+    async getOption1() {
+      await this.$http
+        .get('/flight/city/begin', {
+        })
+        .then(({ data: res }) => {
+          this.options1 = res.data
+          console.log(this.options1)
+        })
+    },
+    async getOption2() {
+      await this.$http
+        .get('flight/city/end', {
+        })
+        .then(({ data: res }) => {
+          this.options2 = res.data
+          console.log(this.options2)
+        })
+    },
+    getindex1(i){
+      this.index1 = i
+    },
+    getindex2(i){
+      this.index2 = i
+    }
+  },
+  created(){
+    this.getOption1()
+    this.getOption2()
   },
 }
 </script>

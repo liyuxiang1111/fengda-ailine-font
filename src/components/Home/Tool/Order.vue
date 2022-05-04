@@ -132,9 +132,6 @@ export default {
       this.$router.push('/home')
     },
     next() {
-      if(this.menuberForm.value = this.menuberForm.username = this.menuberForm.certificate = this.menuberForm.email = this.menuberForm.tel){
-        console.log('不能为空')
-      }else{
         this.$store.state.menberName = this.menuberForm.username
         this.$store.state.certificate = this.menuberForm.certificate
         this.$store.state.certificateType = this.menuberForm.value
@@ -146,7 +143,6 @@ export default {
         localStorage.setItem('telephone', this.menuberForm.tel)
         localStorage.setItem('email', this.menuberForm.email)
         this.$router.push('/home/pay')
-      }
     },
   },
   watch: {

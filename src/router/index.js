@@ -66,19 +66,19 @@ const router = new VueRouter({
   routes,
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/home') {
-//     next() //访问的是主页，直接放行
-//   }else if (to.path !== ('/login')) {
-//     const token = localStorage.getItem( 'token')
-//     if (token) {
-//       next() //访问的是后台主页，且有token 的值
-//     }else {
-//       next('/login') //访问的是后台主页，但是没有token 的值
-//     }
-//   }else{
-//     next() //访问的不是后台主页，直接放行
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.path === '/home') {
+    next() //访问的是主页，直接放行
+  }else if (to.path !== ('/login')) {
+    const token = localStorage.getItem( 'Authorization')
+    if (token) {
+      next() //访问的是后台主页，且有token 的值
+    }else {
+      next('/login') //访问的是后台主页，但是没有token 的值
+    }
+  }else{
+    next() //访问的不是后台主页，直接放行
+  }
+})
 
 export default router
