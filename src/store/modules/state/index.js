@@ -5,7 +5,6 @@ const certificate = ''
 const certificateType = ''
 const telephone = ''
 const email = ''
-const token = ''
 
 export default {
   name,
@@ -14,5 +13,4 @@ export default {
   certificateType,
   telephone,
   email,
-  token,
 }
