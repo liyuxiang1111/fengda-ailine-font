@@ -66,6 +66,7 @@ const router = new VueRouter({
   routes,
 })
 
+
 router.beforeEach((to, from, next) => {
   if (to.path === '/home') {
     next() //访问的是主页，直接放行

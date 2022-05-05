@@ -43,7 +43,7 @@
 <script>
 export default {
   created() {
-    this.token = localStorage.getItem('Authorization')
+    this.token = localStorage.getItem('Authorizatio')
   },
   data() {
     return {

@@ -54,7 +54,7 @@ export default {
     return {
       show: false,
       flag: true,
-      token: null,
+      token: null ,
     }
   },
   components: {},
@@ -62,11 +62,14 @@ export default {
     logout() {
       this.$router.push('/login')
     },
-    getToken() {
-      this.token = localStorage.getItem('Authorization')
+    img() {
+      console.log('img')
     },
+    getToken(){
+      this.token = localStorage.getItem('Authorization');
+    }
   },
-  created() {
+  created(){
     this.getToken()
   },
 }

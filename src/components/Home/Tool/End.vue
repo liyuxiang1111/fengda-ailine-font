@@ -65,7 +65,7 @@ export default {
         url: 'buyer/again',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorization'),
+          Authorization: localStorage.getItem('Authorizatio'),
         },
         data: {
           payId: localStorage.getItem('payId'),
