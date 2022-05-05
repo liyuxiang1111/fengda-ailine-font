@@ -12,7 +12,7 @@ Vue.use(ElementUI)
 // 引入地图全局样式
 import 'leaflet/dist/leaflet.css'
 //确定默认请求路径
-axios.defaults.baseURL = 'http://127.0.0.1:8888'
+axios.defaults.baseURL = 'http://heyongqiang.work:8888'
 Vue.prototype.$http = axios
 //导入公用组件 如果多可以自行添加文件
 import { Message } from 'element-ui'

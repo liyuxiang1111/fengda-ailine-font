@@ -19,7 +19,7 @@ export default {}
   font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, '\5B8B\4F53', sans-serif;
   background: linear-gradient(180deg, #2f71bd, #057aca);
   color: #fff;
-  width: 100vw;
+  
   min-width: 504px;
   .links {
     margin-bottom: 15px;
