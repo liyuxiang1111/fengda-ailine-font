@@ -19,11 +19,12 @@
         </li>
       </ul>
       <div class="userInfo nav-right" @mouseover="show = true">
-        <router-link to="/person"
+        <router-link v-if="this.$store.state.token === null" to="/login"><span>登录</span></router-link>
+        <router-link v-else to="/person"
           ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span>{{ $store.state.name }}</span></router-link
         >
         <!-- <ul > -->
-        <transition name="el-fade-in-linear">
+        <transition v-if="this.$store.state.token !== null" name="el-fade-in-linear">
           <ul ref="info" v-show="show" @mouseleave="show = false">
             <li>
               <router-link to="/person/userinfo">个人信息</router-link>
@@ -63,6 +64,9 @@ export default {
     img() {
       console.log('img')
     },
+  },
+  created(){
+    this.$store.commit('getToken')
   },
 }
 </script>
