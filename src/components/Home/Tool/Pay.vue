@@ -83,7 +83,7 @@ export default {
         url: 'buyer',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorization'),
+          Authorization: localStorage.getItem('Authorizatio'),
         },
         data: {
           price: localStorage.getItem('price'),
