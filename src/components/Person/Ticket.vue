@@ -13,7 +13,7 @@ import Flaght from '@/components/Person/Ticket/Flight.vue'
 import Page from '@/components/Person/Page.vue'
 export default {
   created() {
-    this.token = localStorage.getItem('Authorization')
+    this.token = localStorage.getItem('Authorizatio')
     this.initTicketList()
   },
   components: {

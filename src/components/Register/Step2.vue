@@ -66,7 +66,7 @@ export default {
           alert(res.msg)
         } else {
           this.token = res.data
-          localStorage.setItem('Authorization', res.data)
+          localStorage.setItem('Authorizatio', res.data)
           this.$router.push('/register/step3')
         }
       })
