@@ -73,20 +73,10 @@ export default {};
 
 <style lang="less" scoped>
 .copyright-container {
-  font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB,
-    "\5B8B\4F53", sans-serif;
-  background: linear-gradient(180deg, #2f71bd, #057aca);
-  color: #fff;
-
-  min-width: 504px;
-  .links {
-    margin-bottom: 15px;
-  }
-  .copyright {
-    line-height: 20px;
-    background: linear-gradient(180deg, rgb(255, 255, 255), #ffffff);
-    color: #757575;
-    min-width: 1170px;
+   font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, '\5B8B\4F53', sans-serif;
+  background: linear-gradient(180deg, rgb(255, 255, 255), #ffffff);
+  color: #757575;
+  min-width: 1170px;
     .copyright-box {
       position: relative;
       height: 200px;
@@ -174,5 +164,4 @@ export default {};
       }
     }
   }
-}
 </style>
