@@ -72,7 +72,13 @@ export default {
         emilflag: true,
         tel: true,
       },
-      userinfo: {},
+      userinfo: {
+        nickName:'',
+        realName:'',
+        gender:'',
+        email:'',
+        telephone:'',
+      },
       sex: '',
     }
   },
@@ -105,8 +111,13 @@ export default {
           Authorization: this.token,
         },
       }).then(({ data: res }) => {
-        this.userinfo = res.data
-        this.sex = this.userinfo.gender
+        // userinfo
+        this.userinfo.nickName = res.data.nickName
+        this.userinfo.realName = res.data.realName
+        this.sex = res.data.gender
+        this.userinfo.email = res.data.email
+        this.userinfo.telephone = res.data.telephone
+        // this.userinfo = res.data
         console.log('@', res)
       })
     },

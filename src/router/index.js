@@ -31,7 +31,7 @@ const routes = [
     path: '/register',
     component: Register,
     children: [
-      { path: '', component: Step1 },
+      { path: '', component: Step1},
       { path: 'step2', component: Step2 },
       { path: 'step3', component: Step3 },
     ],
@@ -79,6 +79,10 @@ router.beforeEach((to, from, next) => {
   }else{
     next() //访问的不是后台主页，直接放行
   }
+  // 注册的逻辑
+  // 在第一步不能跳到第二步以及第三步
+  
 })
+
 
 export default router

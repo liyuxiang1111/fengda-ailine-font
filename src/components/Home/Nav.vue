@@ -76,7 +76,6 @@ export default {
 @import url(../../assets/less/value.less);
 .nav-container {
   height: 80px;
-  padding: 0 30px;
   background-color: #ffffff;
   border: 1px solid #d7d7d7;
   .nav-left {
@@ -109,7 +108,7 @@ export default {
   }
   .nav-right {
     position: relative;
-    padding: 25px 0 25px 0;
+    padding: 25px 10px 25px 0;
     a {
       color: #492d22;
       font-weight: normal;
