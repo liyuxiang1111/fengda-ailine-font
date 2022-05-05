@@ -23,7 +23,7 @@
 import bus from '@/components/eventBus.js'
 export default {
   mounted() {
-    this.token = localStorage.getItem('Authorizatio')
+    this.token = localStorage.getItem('Authorization')
     bus.$on('dialog', (val) => {
       this.dialogVisible = val
       console.log('ok')
@@ -52,7 +52,7 @@ export default {
         url: '/passenger/password',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           userPwd: this.passwd,
@@ -61,7 +61,7 @@ export default {
         if (res.msg === 'success') {
           alert('密码修改成功')
           this.token = res.data
-          localStorage.setItem('Authorizatio', this.token)
+          localStorage.setItem('Authorization', this.token)
         } else {
           alert('修改失败')
           console.log(res)
