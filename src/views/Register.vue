@@ -32,8 +32,6 @@ export default {
 
 <style lang="less" scoped>
 .register-container {
-  height: 100vh;
-  width: 100vw;
   background-color: #f5f5f5;
   .step-box {
     margin-top: 10vh;

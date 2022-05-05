@@ -132,17 +132,17 @@ export default {
       this.$router.push('/home')
     },
     next() {
-      this.$store.state.menberName = this.menuberForm.username
-      this.$store.state.certificate = this.menuberForm.certificate
-      this.$store.state.certificateType = this.menuberForm.value
-      this.$store.state.telephone = this.menuberForm.tel
-      this.$store.state.email = this.menuberForm.email
-      localStorage.setItem('passengerName', this.menuberForm.username)
-      localStorage.setItem('certificate', this.menuberForm.certificate)
-      localStorage.setItem('certificateType', this.menuberForm.value)
-      localStorage.setItem('telephone', this.menuberForm.tel)
-      localStorage.setItem('email', this.menuberForm.email)
-      this.$router.push('/home/pay')
+        this.$store.state.menberName = this.menuberForm.username
+        this.$store.state.certificate = this.menuberForm.certificate
+        this.$store.state.certificateType = this.menuberForm.value
+        this.$store.state.telephone = this.menuberForm.tel
+        this.$store.state.email = this.menuberForm.email
+        localStorage.setItem('passengerName', this.menuberForm.username)
+        localStorage.setItem('certificate', this.menuberForm.certificate)
+        localStorage.setItem('certificateType', this.menuberForm.value)
+        localStorage.setItem('telephone', this.menuberForm.tel)
+        localStorage.setItem('email', this.menuberForm.email)
+        this.$router.push('/home/pay')
     },
   },
   watch: {

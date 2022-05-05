@@ -12,7 +12,6 @@
 <script>
 export default {
   created() {
-    console.log(this.$route.path)
     this.hash = this.$route.path
   },
   mounted() {
