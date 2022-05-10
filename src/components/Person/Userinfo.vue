@@ -7,46 +7,46 @@
       </el-upload>
       <div class="basic fl">
         <span class="name fl" v-if="flag.name">{{ userinfo.nickName }}</span>
-        <el-input v-else class="name-input" v-model="userinfo.nickName"></el-input>
+        <el-input v-else class="name-input" v-model="userinfo.nickName" @blur="pen('name',flag.name)"></el-input>
         <span class="button iconfont" @click="flag.name = !flag.name">&#xe600; 修改</span>
         <div class="introduce">恭喜你已经成为凤达航空会员</div>
-        <div class="gender box">
+        <div class="gender box" @mouseleave="pen('nameflag',false,'0')">
           <h3 class="fl">姓名：</h3>
           <div class="fl">
             <span v-if="flag.nameflag">{{ userinfo.realName }}</span>
-            <el-input v-else class="gender-input" v-model="userinfo.realName"></el-input>
-            <span class="button iconfont" @click="flag.nameflag = !flag.nameflag">&#xe600;修改</span>
+            <el-input v-else class="gender-input" v-model="userinfo.realName" ></el-input>
+            <span class="button iconfont pen" @click="flag.nameflag = !flag.nameflag">&#xe600;修改</span>
           </div>
         </div>
-        <div class="gender box">
+        <div class="gender box" @mouseleave="pen('flag.genderflag',false,'1')">
           <h3 class="fl">性别</h3>
           <div class="fl">
             <span v-if="flag.genderflag"><span v-if="userinfo.gender">男</span><span v-else>女</span></span>
-            <div v-else class="gender-input">
+            <div v-else class="gender-input" >
               <el-radio v-model="sex" label="1" class="fl" style="height: 30px">男</el-radio>
               <el-radio v-model="sex" label="0" class="fl" style="height: 30px">女</el-radio>
             </div>
-            <span class="button iconfont" @click="flag.genderflag = !flag.genderflag">&#xe600;修改</span>
+            <span class="button iconfont pen" @click="flag.genderflag = !flag.genderflag">&#xe600;修改</span>
           </div>
         </div>
-        <div class="box">
+        <div class="box" @mouseleave="pen('emilflag',false,'2')">
           <h3 class="fl">邮箱</h3>
           <div class="fl">
             <span v-if="flag.emilflag">{{ userinfo.email }}</span>
             <el-input v-else class="emil-input" v-model="userinfo.email"></el-input>
-            <span class="button iconfont" @click="flag.emilflag = !flag.emilflag">&#xe600;修改</span>
+            <span class="button iconfont pen" @click="flag.emilflag = !flag.emilflag">&#xe600;修改</span>
           </div>
         </div>
-        <div class="box">
+        <div class="box" @mouseleave="pen('tel',false,'3')">
           <h3 class="fl">电话</h3>
           <div class="fl">
             <span v-if="flag.tel">{{ userinfo.telephone }}</span>
             <el-input v-else class="tel-input" v-model="userinfo.telephone"></el-input>
-            <span class="button iconfont" @click="flag.tel = !flag.tel">&#xe600;修改</span>
+            <span class="button iconfont pen" @click="flag.tel = !flag.tel">&#xe600;修改</span>
           </div>
         </div>
         <el-button class="userinfo-but" type="primary" @click="post($event, userinfo.telephone, userinfo.email, userinfo.nickName, sex, userinfo.realName)">提交保存</el-button>
-        <el-button>取消</el-button>
+        <el-button>重置</el-button>
       </div>
     </div>
   </div>
@@ -156,6 +156,13 @@ export default {
         this.$router.go(0)
       })
     },
+    /**
+     * 文本框失去焦点
+     */
+    pen(flagName, flag, index) {
+      this.flag[flagName] = !flag
+      const pen = document.getElementsByClassName('pen');
+    }
   },
 }
 </script>
@@ -237,8 +244,14 @@ export default {
           width: 295px;
           height: 36px;
           line-height: 36px;
-          span {
+          .pen {
+            display: none;
             margin-right: 10px;
+          }
+        }
+        &:hover {
+          .pen {
+            display: inline;
           }
         }
       }

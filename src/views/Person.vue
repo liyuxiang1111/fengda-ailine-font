@@ -34,7 +34,7 @@ export default {
     height: calc(100vh - 342px);
     padding-top: 60px;
     min-height: 630px;
-    padding-bottom: 60px;
+    padding-bottom: 30px;
   }
 }
 </style>
