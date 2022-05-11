@@ -5,16 +5,23 @@
     <div class="clearfix w">
       <div class="flaght-box fl boxshadow">
         <div class="flaght-info-title">
-          单程：{{ city.beginCity }} - {{ city.endCity }} <span>{{ date }}</span>
+          单程：{{ city.beginCity }} - {{ city.endCity }}
+          <span>{{ date }}</span>
         </div>
         <ul class="sort-box">
           <li class="fr button">其他排序</li>
-          <li class="fr button" @click="time" ref="time"><span class="iconfont">&#xe8c5;</span>出发时刻从早到晚</li>
-          <li class="fr button" @click="price" ref="price"><span class="iconfont">&#xe8ba;</span> 价格从低到高</li>
+          <li class="fr button" @click="time" ref="time">
+            <span class="iconfont">&#xe8c5;</span>出发时刻从早到晚
+          </li>
+          <li class="fr button" @click="price" ref="price">
+            <span class="iconfont">&#xe8ba;</span> 价格从低到高
+          </li>
         </ul>
         <div v-if="dataList.length != 0">
           <div v-for="item in dataList" :key="item.flightId">
-            <div class="title"><img src="@/assets/image/smalllogo.png" alt="" /></div>
+            <div class="title">
+              <img src="@/assets/image/smalllogo.png" alt="" />
+            </div>
             <!-- <div v-for="item in dataList" :key="item.flightId"> -->
             <div class="flaght-info">
               <div class="info fl clearfix">
@@ -35,25 +42,28 @@
                 <div
                   class="price-conbin button"
                   @click="
-                    item.status = !item.status
-                    chang($event, item.status)
-                    ticketnum($event, item.flightId)
+                    item.status = !item.status;
+                    chang($event, item.status);
+                    ticketnum($event, item.flightId);
                   "
                 >
                   全部
                 </div>
-                <div class="price-num"><span class="icon">￥</span> {{ item.lastPrice }} <span class="icon">起</span></div>
+                <div class="price-num">
+                  <span class="icon">￥</span> {{ item.lastPrice }}
+                  <span class="icon">起</span>
+                </div>
               </li>
             </div>
-            <div v-show="item.status">
+            <div v-if="item.status">
               <div class="cabin-item">
                 <div class="site fl">普通舱</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.economyPrice }}</strong
+                  <span>￥</span><strong>{{ item.firstPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr">还剩{{ num.firstSeat }}张</div>
-                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId, num.firstSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
+                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].firstSeat}}张</div>
+                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId,  item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">经济舱</div>
@@ -61,8 +71,8 @@
                   <span>￥</span><strong>{{ item.businessPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr">还剩{{ num.economySeat }}张</div>
-                <div class="fr button" @click="pay($event, item.economyPrice, 1, item.flightId, num.economySeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
+                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].economySeat}}张</div>
+                <div class="fr button" @click="pay($event, item.economyPrice, 1, item.flightId, num[item.flightId].economySeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">商务仓</div>
@@ -70,10 +80,11 @@
                   <span>￥</span><strong>{{ item.firstPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr">还剩{{ num.businessSeat }}张</div>
-                <div class="fr button" @click="pay($event, item.businessPrice, 2, item.flightId, num.businessSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
-              </div>
+                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].businessSeat }}张</div>
+                <div class="fr button" @click="pay($event, item.businessPrice, 2, item.flightId, num[item.flightId].businessSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
+              </div> 
             </div>
+            <!-- <seat :Childitem="Childitem" :key="item.flightId"></seat> -->
           </div>
         </div>
         <div class="select-box" v-else>
@@ -91,21 +102,21 @@
 </template>
 
 <script>
-import { time } from '@/util/time.js'
-import Topbar from '@/components/Home/Tool/Topbar.vue'
-import Search from '@/components/Home/Select/Search.vue'
-import Pricetabel from '@/components/Home/Select/Pricetabel.vue'
-import Swiper from '@/components/Home/Swiper.vue'
-import bus from '@/components/eventBus.js'
+import { time } from "@/util/time.js";
+import Topbar from "@/components/Home/Tool/Topbar.vue";
+import Search from "@/components/Home/Select/Search.vue";
+import Pricetabel from "@/components/Home/Select/Pricetabel.vue";
+import Swiper from "@/components/Home/Swiper.vue";
+import bus from "@/components/eventBus.js";
 export default {
   created() {
-    let d = new Date()
-    const today = d.getDate()
-    const month = d.getMonth()
-    this.date = month + 1 + '-' + today
-    console.log(this.date)
-    localStorage.setItem('day', this.date)
-    this.init()
+    let d = new Date();
+    const today = d.getDate();
+    const month = d.getMonth();
+    this.date = month + 1 + "-" + today;
+    console.log(this.date);
+    localStorage.setItem("day", this.date);
+    this.init();
   },
   props: {
     pageSize: {
@@ -115,20 +126,27 @@ export default {
     pageNum: {
       type: Number,
       default: 1,
-    },
+    }
   },
   data() {
     return {
       dataList: [],
       flag: false,
       city: {
-        beginCity: '1',
-        endCity: '1',
+        beginCity: "1",
+        endCity: "1",
       },
       num: {},
-      date: '',
-      history: '',
-    }
+      date: "",
+      history: "",
+      Childitem: {
+        flightId: "",
+        beginCity: "",
+        endCity: "",
+        endTime: "",
+        lastPrice: "",
+      },
+    };
   },
   components: {
     Topbar,
@@ -139,7 +157,7 @@ export default {
   methods: {
     async init() {
       await this.$http
-        .post('flight/search', {
+        .post("flight/search", {
           beginCity: this.city.beginCity,
           endCity: this.city.endCity,
           pageSize: this.pageSize,
@@ -147,94 +165,94 @@ export default {
           day: this.date,
         })
         .then(({ data: res }) => {
-          console.log('最开始')
-          console.log(res)
-          this.dataList = res.data.dataList
-        })
+          console.log("最开始");
+          console.log(res);
+          this.dataList = res.data.dataList;
+        });
     },
     price(e) {
-      e.target.style.color = '#257fd9'
-      this.$refs.time.style.color = '#999999'
-      console.log('price-select')
+      e.target.style.color = "#257fd9";
+      this.$refs.time.style.color = "#999999";
+      console.log("price-select");
       //冒泡排序
-      var arr = this.dataList
-      var low = 0
-      var high = arr.length - 1
-      var temp
+      var arr = this.dataList;
+      var low = 0;
+      var high = arr.length - 1;
+      var temp;
       while (low < high) {
         for (let j = low; j < high; j++) {
           if (arr[j].lastPrice > arr[j + 1].lastPrice) {
-            temp = arr[j + 1].lastPrice
-            arr[j + 1].lastPrice = arr[j].lastPrice
-            arr[j].lastPrice = temp
+            temp = arr[j + 1].lastPrice;
+            arr[j + 1].lastPrice = arr[j].lastPrice;
+            arr[j].lastPrice = temp;
           }
         }
-        --high
+        --high;
       }
       while (low > high) {
         //找到最小值
         for (var j = high; j > low; j--) {
           if (arr[j].lastPrice > arr[j + 1].lastPrice) {
-            temp = arr[j + 1].lastPrice
-            arr[j + 1].lastPrice = arr[j].lastPrice
-            arr[j].lastPrice = temp
+            temp = arr[j + 1].lastPrice;
+            arr[j + 1].lastPrice = arr[j].lastPrice;
+            arr[j].lastPrice = temp;
           }
         }
-        ++low //修改low值，往后移动一位
+        ++low; //修改low值，往后移动一位
       }
     },
     time(e) {
-      e.target.style.color = '#257fd9'
-      this.$refs.price.style.color = '#999999'
-      console.log('time-select')
+      e.target.style.color = "#257fd9";
+      this.$refs.price.style.color = "#999999";
+      console.log("time-select");
     },
     chang(e, flag) {
       if (flag) {
-        e.target.parentNode.style.backgroundColor = '#ffffff'
+        e.target.parentNode.style.backgroundColor = "#ffffff";
       } else {
-        e.target.parentNode.style.backgroundColor = '#e1f0fd'
+        e.target.parentNode.style.backgroundColor = "#e1f0fd";
       }
     },
     getCity(val) {
-      this.city.beginCity = val.beginCity
-      this.city.endCity = val.endCity
+      this.city.beginCity = val.beginCity;
+      this.city.endCity = val.endCity;
     },
     async ticketnum(e, id) {
-      console.log(id)
+      console.log(id);
       await this.$http({
-        url: '/flight/seat',
-        method: 'post',
+        url: "/flight/seat",
+        method: "post",
         data: {
           flightId: id,
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          alert(res.msg);
         } else {
-          this.num = res.data
-          console.log(this.num)
+          this.$set(this.num, id, res.data)
+          console.log(this.num);
         }
-      })
+      });
     },
     pay(e, price, grade, id, seat, beginTime, endTime, beginCity, endCity) {
-      localStorage.setItem('price', price)
-      localStorage.setItem('grade', grade)
-      localStorage.setItem('flightId', id)
-      localStorage.setItem('seat', seat)
-      localStorage.setItem('beginTime', beginTime)
-      localStorage.setItem('endTime', endTime)
-      localStorage.setItem('beginCity', beginCity)
-      localStorage.setItem('endCity', endCity)
-      this.$router.push('/home/order')
+      localStorage.setItem("price", price);
+      localStorage.setItem("grade", grade);
+      localStorage.setItem("flightId", id);
+      localStorage.setItem("seat", seat);
+      localStorage.setItem("beginTime", beginTime);
+      localStorage.setItem("endTime", endTime);
+      localStorage.setItem("beginCity", beginCity);
+      localStorage.setItem("endCity", endCity);
+      this.$router.push("/home/order");
     },
   },
   mounted() {
-    bus.$on('getFlight', (res) => {
-      this.dataList = res.dataList
-      console.log(this.dataList)
-    })
+    bus.$on("getFlight", (res) => {
+      this.dataList = res.dataList;
+      console.log(this.dataList);
+    });
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -311,14 +329,14 @@ export default {
         }
         .start::before {
           position: absolute;
-          font-family: 'iconfont' !important;
+          font-family: "iconfont" !important;
           top: 10px;
           left: -20px;
           font-size: 20px;
           font-style: normal;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          content: '';
+          content: "";
           color: #b0cade;
         }
         .active {
@@ -331,7 +349,7 @@ export default {
             text-align: center;
           }
           .line {
-            background: url('~@/assets/image/ticket/arrive.png') no-repeat;
+            background: url("~@/assets/image/ticket/arrive.png") no-repeat;
             background-size: 100% 100%;
             height: 4px;
             margin: 0 16px;
@@ -358,14 +376,14 @@ export default {
         }
         .end::before {
           position: absolute;
-          font-family: 'iconfont' !important;
+          font-family: "iconfont" !important;
           top: 10px;
           left: -20px;
           font-size: 20px;
           font-style: normal;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          content: '';
+          content: "";
           color: #b0cade;
         }
       }
@@ -380,8 +398,8 @@ export default {
           color: #242424;
         }
         .price-conbin::after {
-          font-family: 'iconfont' !important;
-          content: '';
+          font-family: "iconfont" !important;
+          content: "";
           color: #42a9fe;
         }
         .price-num {
