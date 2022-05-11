@@ -5,20 +5,20 @@
     </div>
     <div class="text-btu">
       <div class="section-input text-first">
-        <el-select v-model="index1" filterable placeholder="出发城市">
+        <el-select v-model="city.beginCity" filterable placeholder="出发城市" @click.native="getOption1">
           <template #prefix>
             <span class="iconfont icon-chengshi"></span>
           </template>
-          <el-option v-for="(item, index) in options1" :key="index" :label="item" :value="index + 1" @focus="getindex1(index)"> </el-option>
+          <el-option v-for="(item, index) in options1" :key="index" :label="item" v-model="city.beginCity" @click.native="getBeginCity(item)"> </el-option>
         </el-select>
         <!-- <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" /> -->
       </div>
       <div class="section-input">
-        <el-select v-model="index2" filterable placeholder="到达城市">
+        <el-select v-model="city.endCity" filterable placeholder="到达城市" @click.native="getOption2">
           <template #prefix>
             <span class="iconfont icon-chengshi"></span>
           </template>
-          <el-option v-for="(item, index) in options2" :key="index" :label="item" :value="index + 1" @focus="getindex2(index)"> </el-option>
+          <el-option v-for="(item, index) in options2" :key="index" :label="item" v-model="city.beginCity" @click.native="getEndCity(item)"> </el-option>
         </el-select>
         <!-- <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="city.endCity" /> -->
       </div>
@@ -47,37 +47,19 @@ export default {
   data() {
     return {
       city: {
-        beginCity: '',
-        endCity: '',
+        beginCity: '福州',
+        endCity: '上海',
       },
       data: '30',
       res: {},
       day: 30,
       options1: [],
       options2: [],
-      index1: '',
-      index2: '',
     }
   },
   methods: {
-    /*  async search() {
-      await this.$http({
-        method: 'POST',
-        url: 'flight/search',
-        body: {
-          beginCity: this.beginCity,
-          endCity: this.endCity,
-          pageSize: this.pageSize,
-          pageNum: this.pageNum,
-          day: this.day,
-        },
-      }).then(({ data: res }) => {
-        return {
-          res,
-        }
-      })
-    }, */
     async search() {
+      console.log('@' + this.city.beginCity);
       await this.$http
         .post('flight/search', {
           beginCity: this.city.beginCity,
@@ -93,22 +75,20 @@ export default {
         })
     },
     async getOption1() {
-      await this.$http.get('/flight/city/begin', {}).then(({ data: res }) => {
+      await this.$http.get('/flight/city/begin').then(({ data: res }) => {
         this.options1 = res.data
-        console.log(this.options1)
       })
     },
     async getOption2() {
-      await this.$http.get('flight/city/end', {}).then(({ data: res }) => {
+      await this.$http.get('flight/city/end').then(({ data: res }) => {
         this.options2 = res.data
-        console.log(this.options2)
       })
     },
-    getindex1(i) {
-      this.index1 = i
+    getBeginCity(city) {
+      this.city.beginCity = city
     },
-    getindex2(i) {
-      this.index2 = i
+    getEndCity(city) {
+      this.city.endCity = city
     },
   },
   created() {
