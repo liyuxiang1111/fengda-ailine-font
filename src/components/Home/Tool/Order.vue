@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="member-top">乘机人</div>
-        <el-form class="member-body" :model="menuberForm" :rules="menuberRules" label-width="100px" :show-message="false" ref="form">
+        <el-form class="member-body" :model="menuberForm" :rules="menuberRules" label-width="100px" :show-message="true" ref="form">
           <div class="list-group">
             <el-form-item label="乘客姓名：" prop="username">
               <el-input class="input-name" v-model="menuberForm.username" placeholder="请输入乘客姓名"></el-input>
@@ -30,12 +30,12 @@
           </div>
           <div class="list-group">
             <el-form-item label="手机号码：" prop="tel">
-              <el-input class="input-tel" v-model="menuberForm.tel" placeholder="手机号码" type="text" autocomplete="off" autofocus="true"></el-input>
+              <el-input class="input-tel" v-model="menuberForm.tel" placeholder="手机号码" type="text" autocomplete="off" ></el-input>
             </el-form-item>
           </div>
           <div class="list-group">
             <el-form-item label="E-mail：" prop="email">
-              <el-input class="input-email" v-model="menuberForm.email" placeholder="请填写邮箱" type="text" autocomplete="off" autofocus="true"></el-input>
+              <el-input class="input-email" v-model="menuberForm.email" placeholder="请填写邮箱" type="text" autocomplete="off" ></el-input>
             </el-form-item>
           </div>
           <div class="list-group"></div>
@@ -108,7 +108,7 @@ export default {
           { pattern: /^[\u4e00-\u9fa5]{0,}$/, message: '请输入中文姓名' },
         ],
         certificate: [
-          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { required: true, message: '请输入身份证', trigger: 'blur' },
           { pattern: /^\d{15}|\d{18}$/, message: '请输入合法身份证号' },
         ],
         email: [

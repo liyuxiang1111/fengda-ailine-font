@@ -65,14 +65,17 @@ export default {
         url: 'buyer/again',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           payId: localStorage.getItem('payId'),
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert('支付成功')
+          this.$message({
+                message: res.msg,
+                type: 'success',
+          })
           this.$router.push('/home')
         }
       })
