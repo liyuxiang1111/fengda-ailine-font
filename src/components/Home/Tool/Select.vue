@@ -115,7 +115,8 @@ export default {
     const month = d.getMonth();
     this.date = month + 1 + "-" + today;
     console.log(this.date);
-    localStorage.setItem("day", this.date);
+    this.$store.state.day = this.date
+    // localStorage.setItem("day", this.date);
     this.init();
   },
   props: {
@@ -235,14 +236,16 @@ export default {
       });
     },
     pay(e, price, grade, id, seat, beginTime, endTime, beginCity, endCity) {
-      localStorage.setItem("price", price);
-      localStorage.setItem("grade", grade);
-      localStorage.setItem("flightId", id);
-      localStorage.setItem("seat", seat);
-      localStorage.setItem("beginTime", beginTime);
-      localStorage.setItem("endTime", endTime);
-      localStorage.setItem("beginCity", beginCity);
-      localStorage.setItem("endCity", endCity);
+      // this.$store.state.name = "";
+      this.$store.state.price = price
+      this.$store.state.grade = grade
+      this.$store.state.flightId = id
+      this.$store.state.seat = seat
+      this.$store.state.beginTime = beginTime
+      this.$store.state.endTime = endTime
+      this.$store.state.beginCity = beginCity
+      this.$store.state.endCity = endCity
+
       this.$router.push("/home/order");
     },
   },
