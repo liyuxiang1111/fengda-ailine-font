@@ -133,8 +133,8 @@ export default {
       dataList: [],
       flag: false,
       city: {
-        beginCity: "1",
-        endCity: "1",
+        beginCity: '福州',
+        endCity: '上海',
       },
       num: {},
       date: "",

@@ -57,9 +57,11 @@ export default {
     this.certificate = this.$store.state.certificate
     this.telephone = this.$store.state.telephone
     this.email = this.$store.state.email
+    this.certificateType = this.$store.state.certificateType
   },
   data() {
     return {
+      certificateType:'',
       payId: '',
       passengerName: '',
       certificate: '',
@@ -83,7 +85,7 @@ export default {
         url: 'buyer',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization')
         },
         data: {
           price: localStorage.getItem('price'),
@@ -91,17 +93,31 @@ export default {
           flightId: localStorage.getItem('flightId'),
           seat: localStorage.getItem('seat'),
           day: localStorage.getItem('day'),
+          passengerName:this.passengerName,
+          certificate: this.certificate,
+           telephone: this.telephone,
+           email: this.email,
+           certificateType:this.certificateType
         },
       }).then(({ data: res }) => {
         if (res.msg === 'success') {
-          alert('订单生成成功')
+          this.$message({
+          message: '生成订单成功！',
+          type: 'success',
+          })
           this.payId = res.data
           console.log(res.data)
           localStorage.setItem('payId', this.payId)
           this.$router.push('/home/end')
         } else {
-          alert('失败')
+          this.$message({
+          message: '生成订单失败！',
+          type: 'error',
+          })
+          console.log(res);
         }
+      }).catch((err) => {
+        console.log(err);
       })
     },
   },
