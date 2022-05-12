@@ -18,13 +18,15 @@
             <span class="button iconfont pen" @click="flag.nameflag = !flag.nameflag">&#xe600;修改</span>
           </div>
         </div>
-        <div class="gender box" @mouseleave="pen('flag.genderflag',false,'1')">
+        <div class="gender box" @mouseleave="pen('genderflag',false,'1')">
           <h3 class="fl">性别</h3>
           <div class="fl">
-            <span v-if="flag.genderflag"><span v-if="userinfo.gender">男</span><span v-else>女</span></span>
-            <div v-else class="gender-input" >
-              <el-radio v-model="sex" label="1" class="fl" style="height: 30px">男</el-radio>
-              <el-radio v-model="sex" label="0" class="fl" style="height: 30px">女</el-radio>
+            <span v-show="flag.genderflag"><span v-if="sex == 1">男</span><span v-if="sex == 0">女</span></span>
+            <div  v-show="!flag.genderflag" class="gender-input" style="height: 20px">
+              <el-radio-group v-model="sex">
+              <el-radio  v-model="sex" :label="1" class="fl" style="height: 20px" >男</el-radio>
+              <el-radio  v-model="sex" :label="0" class="fl" style="height: 20px" >女</el-radio>
+              </el-radio-group>
             </div>
             <span class="button iconfont pen" @click="flag.genderflag = !flag.genderflag">&#xe600;修改</span>
           </div>
@@ -60,6 +62,7 @@ export default {
   },
   data() {
     return {
+      radio: '1',
       loading:true,
       // img 请求参数
       avatarHeader: {},
@@ -126,6 +129,7 @@ export default {
      * @returns token
      */
     async post(e, phone, email, nickname, gender, realname) {
+      console.log(gender);
       await this.$http({
         url: 'passenger/informations',
         method: 'post',
@@ -143,6 +147,11 @@ export default {
         if (res.msg === 'success') {
           this.token = res.data
           localStorage.setItem('Authorization', this.token)
+          this.$message({
+            message: "修改信息成功！",
+            type: 'success',
+          })
+          this.getInformation()
         } else {
           this.$message({
             message: res.msg,
@@ -150,16 +159,12 @@ export default {
           })
         }
       })
-      this.$nextTick(() => {
-        this.$router.go(0)
-      })
     },
     /**
      * 文本框失去焦点
      */
     pen(flagName, flag, index) {
       this.flag[flagName] = !flag
-      const pen = document.getElementsByClassName('pen');
     }
   },
 }
@@ -226,8 +231,8 @@ export default {
           line-height: 36px;
         }
         .gender-input {
-          width: 80px;
-          margin-right: 10px;
+          width: 60px;
+          margin: 0 !important;
         }
         .emil-input {
           width: 200px;

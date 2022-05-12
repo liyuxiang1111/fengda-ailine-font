@@ -44,7 +44,7 @@ export default {
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          return
         } else {
           this.ticketList = res.data.dataList
           this.loading = false

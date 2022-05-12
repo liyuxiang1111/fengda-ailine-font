@@ -44,7 +44,10 @@ export default {
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          this.$message({
+            message: "退票成功",
+            type: 'success',
+          })
         } else {
           this.backList = res.data.dataList
           // console.log(this.backList)

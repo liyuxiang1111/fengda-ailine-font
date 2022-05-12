@@ -49,7 +49,6 @@ export default {
 <style lang="less" scoped>
 .flight-container {
   height: 140px;
-  box-shadow: 0 8px 12px 0 rgb(0 0 0 / 5%);
   .minTit {
     position: relative;
     padding: 0 20px 0 12px;

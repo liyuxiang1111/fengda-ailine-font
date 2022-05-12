@@ -2,7 +2,7 @@
   <div class="flight-container">
     <div v-for="item in ticketList" :key="item.id">
       <div class="minTit">
-        <span class="num">订单号：{{ item.payId }}</span>
+        <span class="num">订单号：{{ item.id }}</span>
         <span class="time">机票号：{{ item.ticketId }}</span>
         <span class="price">￥780</span>
       </div>
@@ -29,7 +29,7 @@
             <td class="modify">
               <p>
                 <span v-if="item.ispay">已购无需操作</span>
-                <el-popconfirm title="是否要重新购买？" v-else @confirm="pay($event, item.payId)"><span class="button" slot="reference">去购买</span></el-popconfirm>
+                <el-popconfirm title="是否要重新购买？" v-else @confirm="pay(item.id)"><span class="button" slot="reference">去购买</span></el-popconfirm>
               </p>
             </td>
           </tr>
@@ -45,26 +45,31 @@ export default {
     ticketList: [],
   },
   methods: {
-    async pay(e, id) {
+    async pay(id) {
       console.log('pay')
+      console.log(id);
+      console.log(this.ticketList);
       await this.$http({
         url: '/buyer/again',
         method: 'post',
         headers: {
-          Authorization: localStorage.getItem('Authorizatio'),
+          Authorization: localStorage.getItem('Authorization'),
         },
         data: {
           payId: id,
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert('成功')
+          this.$message({
+            message: "购买成功！",
+            type: 'success',
+          })
         } else {
-          console.log(res.data)
+          this.$message({
+            message: "购买失败！",
+            type: 'error',
+          })
         }
-      })
-      this.$nextTick(() => {
-        this.$router.go(0)
       })
     },
   },
@@ -74,7 +79,6 @@ export default {
 <style lang="less" scoped>
 .flight-container {
   height: 140px;
-  box-shadow: 0 8px 12px 0 rgb(0 0 0 / 5%);
   .minTit {
     position: relative;
     padding: 0 20px 0 12px;

@@ -44,11 +44,12 @@ export default {
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          this.$message({
+            message: "购买成功！",
+            type: 'success',
+          })
         } else {
-          // console.log(res.data)
           this.history = res.data.dataList
-          // console.log('ok')
           this.loading = false
         }
       })

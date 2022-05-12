@@ -54,9 +54,29 @@ export default {
     ticketList: [],
   },
   methods: {
+    async initTicketList() {
+      this.loading = true
+      await this.$http({
+        url: '/ticket/search/normal',
+        method: 'post',
+        headers: {
+          Authorization: localStorage.getItem('Authorization'),
+        },
+        data: {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          return
+        } else {
+          this.ticketList = res.data.dataList
+          this.loading = false
+          // console.log(this.ticketList)
+        }
+      })
+    },
     async back(e, id) {
-      console.log('退票')
-      console.log(this.token)
       await this.$http({
         url: '/ticket/return',
         method: 'post',
@@ -69,17 +89,19 @@ export default {
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          this.$message({
+            message: "退票成功！",
+            type: 'success',
+          })
         } else {
-          console.log(res.data)
+          this.$message({
+            message: "退票失败！",
+            type: 'error',
+          })
         }
       })
-      this.$nextTick(() => {
-        this.$router.go(0)
-      })
     },
-    async change(e, day, id) {
-      console.log(day)
+    async change(e, day, id) { 
       // 修改日期
       var arr = day.split('-')
       var ans = ''
@@ -107,13 +129,16 @@ export default {
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          this.$message({
+            message: "改签成功！",
+            type: 'success',
+          })
         } else {
-          console.log(res.data)
+          this.$message({
+            message: "改签成功！",
+            type: 'error',
+          })
         }
-      })
-      this.$nextTick(() => {
-        this.$router.go(0)
       })
     },
   },
@@ -123,7 +148,6 @@ export default {
 <style lang="less" scoped>
 .flight-container {
   height: 140px;
-  box-shadow: 0 8px 12px 0 rgb(0 0 0 / 5%);
   .minTit {
     position: relative;
     padding: 0 20px 0 12px;
