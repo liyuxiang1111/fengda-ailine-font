@@ -1,5 +1,5 @@
 <template>
-  <div class="flight-container">
+  <div class="flight-container" >
     <div v-for="item in ticketList" :key="item.ticketId">
       <div class="minTit">
         <span class="num">订单号：{{ item.ticketId }}</span>

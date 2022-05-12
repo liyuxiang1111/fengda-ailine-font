@@ -1,5 +1,5 @@
 <template>
-  <div class="back-container fr boxshadow">
+  <div class="back-container fr boxshadow" v-loading="loading">
     <div class="back-box">退票处理</div>
     <Flight :ticketList="backList"></Flight>
     <div class="page-box">
@@ -22,6 +22,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       backList: [],
       token: '',
       pageNum: 0,
@@ -30,6 +31,7 @@ export default {
   },
   methods: {
     async initBackList() {
+      this.loading = true,
       await this.$http({
         url: '/ticket/search/return',
         method: 'post',
@@ -46,6 +48,7 @@ export default {
         } else {
           this.backList = res.data.dataList
           // console.log(this.backList)
+          this.loading = false
         }
       })
     },

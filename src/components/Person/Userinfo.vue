@@ -1,5 +1,5 @@
 <template>
-  <div class="Userinfo-container fr boxshadow">
+  <div class="Userinfo-container fr boxshadow" v-loading="loading">
     <div class="title">
       <el-upload class="avatar-uploader fl" action="http://localhost:8888/uploadFile" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
@@ -60,6 +60,7 @@ export default {
   },
   data() {
     return {
+      loading:true,
       // img 请求参数
       avatarHeader: {},
       token: '',
@@ -101,6 +102,7 @@ export default {
     },
     // 获取用户信息
     async getInformation() {
+      this.loading = true
       await this.$http({
         url: 'passenger',
         method: 'get',
@@ -114,6 +116,7 @@ export default {
         this.sex = res.data.gender
         this.userinfo.email = res.data.email
         this.userinfo.telephone = res.data.telephone
+        this.loading = false
         // this.userinfo = res.data
       })
     },

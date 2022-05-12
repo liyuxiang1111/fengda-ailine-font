@@ -1,5 +1,5 @@
 <template>
-  <div class="history-container fr boxshadow">
+  <div class="history-container fr boxshadow" v-loading="loading">
     <div class="history-box">我的历史订单</div>
     <Flaght :ticketList="history"></Flaght>
     <div class="page-box">
@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       history: [],
       token: '',
       pageNum: 0,
@@ -30,6 +31,7 @@ export default {
   },
   methods: {
     async initHistory() {
+      this.loading = true
       await this.$http({
         url: '/pay/search',
         method: 'post',
@@ -47,6 +49,7 @@ export default {
           // console.log(res.data)
           this.history = res.data.dataList
           // console.log('ok')
+          this.loading = false
         }
       })
     },

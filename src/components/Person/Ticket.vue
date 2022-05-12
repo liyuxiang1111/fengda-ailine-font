@@ -1,5 +1,5 @@
 <template>
-  <div class="ticket-container fr boxshadow">
+  <div class="ticket-container fr boxshadow" v-loading="loading">
     <div class="ticket-box">我的机票信息</div>
     <Flaght :ticketList="ticketList"></Flaght>
     <div class="page-box">
@@ -22,6 +22,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       ticketList: [],
       token: '',
       pageNum: 0,
@@ -30,6 +31,7 @@ export default {
   },
   methods: {
     async initTicketList() {
+      this.loading = true
       await this.$http({
         url: '/ticket/search/normal',
         method: 'post',
@@ -45,6 +47,7 @@ export default {
           alert(res.msg)
         } else {
           this.ticketList = res.data.dataList
+          this.loading = false
           // console.log(this.ticketList)
         }
       })
