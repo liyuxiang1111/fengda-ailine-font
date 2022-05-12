@@ -1,7 +1,14 @@
 <template>
   <div class="history-container fr boxshadow" v-loading="loading">
     <div class="history-box">我的历史订单</div>
-    <Flaght :ticketList="history"></Flaght>
+    <Flaght :ticketList="history">
+      <template #pay="scope">
+        <p>
+          <span v-if="scope.ispay">已购无需操作</span>
+          <el-popconfirm title="是否要重新购买？" v-else @confirm="pay(scope.id)"><span class="button" slot="reference">去购买</span></el-popconfirm>
+        </p>
+      </template>
+    </Flaght>
     <div class="page-box">
       <!-- <Page></Page> -->
     </div>
@@ -51,6 +58,35 @@ export default {
         } else {
           this.history = res.data.dataList
           this.loading = false
+        }
+      })
+    },
+    // 去购买
+   async pay(id) {
+      console.log('pay')
+      console.log(id);
+      console.log(this.ticketList);
+      await this.$http({
+        url: '/buyer/again',
+        method: 'post',
+        headers: {
+          Authorization: localStorage.getItem('Authorization'),
+        },
+        data: {
+          payId: id,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          this.$message({
+            message: "购买成功！",
+            type: 'success',
+          })
+          this.initHistory()
+        } else {
+          this.$message({
+            message: "购买失败！",
+            type: 'error',
+          })
         }
       })
     },

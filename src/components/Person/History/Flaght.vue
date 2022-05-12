@@ -27,10 +27,7 @@
             </td>
             <td style="line-height: 25px"><span v-if="item.ispay"> 已购 </span><span v-else> 已取消 </span></td>
             <td class="modify">
-              <p>
-                <span v-if="item.ispay">已购无需操作</span>
-                <el-popconfirm title="是否要重新购买？" v-else @confirm="pay(item.id)"><span class="button" slot="reference">去购买</span></el-popconfirm>
-              </p>
+              <slot name="pay" :id="item.id" :ispay="item.ispay"></slot>  
             </td>
           </tr>
         </table>
@@ -43,35 +40,6 @@
 export default {
   props: {
     ticketList: [],
-  },
-  methods: {
-    async pay(id) {
-      console.log('pay')
-      console.log(id);
-      console.log(this.ticketList);
-      await this.$http({
-        url: '/buyer/again',
-        method: 'post',
-        headers: {
-          Authorization: localStorage.getItem('Authorization'),
-        },
-        data: {
-          payId: id,
-        },
-      }).then(({ data: res }) => {
-        if (res.data === null) {
-          this.$message({
-            message: "购买成功！",
-            type: 'success',
-          })
-        } else {
-          this.$message({
-            message: "购买失败！",
-            type: 'error',
-          })
-        }
-      })
-    },
   },
 }
 </script>

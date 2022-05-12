@@ -1,7 +1,15 @@
 <template>
   <div class="ticket-container fr boxshadow" v-loading="loading">
     <div class="ticket-box">我的机票信息</div>
-    <Flaght :ticketList="ticketList"></Flaght>
+    <Flaght :ticketList="ticketList">
+      <template #defalt="scope">
+        <p>
+          <el-popconfirm title="是否要退票吗？" @confirm="back($event, scope.ticketId)"><span class="button" slot="reference">退票</span></el-popconfirm>
+          <span> | </span>
+          <el-popconfirm title="是否要延期一天？" @confirm="change($event, scope.ticketDay, scope.ticketId)"><span class="button" slot="reference">改签</span></el-popconfirm>
+        </p>
+      </template>
+    </Flaght>
     <div class="page-box">
       <!-- <Page></Page> -->
     </div>

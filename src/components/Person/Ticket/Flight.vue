@@ -27,6 +27,7 @@
             </td>
             <td style="line-height: 25px"><span> 已取消 </span></td>
             <td class="modify">
+              <slot name="defalt" :ticketId="item.ticketId" :ticketDay="item.ticketDay"></slot>
               <p>
                 <el-popconfirm title="是否要退票吗？" @confirm="back($event, item.ticketId)"><span class="button" slot="reference">退票</span></el-popconfirm>
                 <span> | </span>
