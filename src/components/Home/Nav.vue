@@ -19,7 +19,7 @@
         </li>
       </ul>
       <div class="userInfo nav-right" @mouseover="show = true">
-        <router-link v-if="this.token === null" to="/login"><span class="nav-login">登录</span></router-link>
+        <router-link v-if="flag" to="/login"><span class="nav-login">登录</span></router-link>
         <router-link v-else to="/person"
           ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span>{{ $store.state.name }}</span></router-link
         >
@@ -50,11 +50,14 @@
 
 <script>
 export default {
+  created(){
+    this.getToken()
+  },
   data() {
     return {
       show: false,
       flag: true,
-      token: null ,
+      token: '',
     }
   },
   components: {},
@@ -65,12 +68,25 @@ export default {
     img() {
       console.log('img')
     },
-    getToken(){
+    async getToken(){
       this.token = localStorage.getItem('Authorization');
+      // 获取用户信息接口：
+      await this.$http({
+        url: 'passenger',
+        method: 'get',
+        headers: {
+          Authorization: this.token,
+        },
+      }).then(({ data: res }) => {
+        // userinfo
+        if (!res.success) {
+          this.flag = true
+        } else {
+          this.flag = false
+          this.$store.state.name = res.data.nickName
+        }
+      })
     }
-  },
-  created(){
-    this.getToken()
   },
 }
 </script>

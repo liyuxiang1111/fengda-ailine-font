@@ -3,14 +3,14 @@
     <div class="back-box">退票处理</div>
     <Flight :ticketList="backList"></Flight>
     <div class="page-box">
-      <Page></Page>
+      <!-- <Page></Page> -->
     </div>
   </div>
 </template>
 
 <script>
 import Flight from '@/components/Person/Back/Flight.vue'
-import Page from '@/components/Person/Page.vue'
+// import Page from '@/components/Person/Page.vue'
 export default {
   created() {
     this.token = localStorage.getItem('Authorization')
@@ -18,7 +18,7 @@ export default {
   },
   components: {
     Flight,
-    Page,
+    // Page,
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
           alert(res.msg)
         } else {
           this.backList = res.data.dataList
-          console.log(this.backList)
+          // console.log(this.backList)
         }
       })
     },

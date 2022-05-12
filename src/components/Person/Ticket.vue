@@ -3,14 +3,14 @@
     <div class="ticket-box">我的机票信息</div>
     <Flaght :ticketList="ticketList"></Flaght>
     <div class="page-box">
-      <Page></Page>
+      <!-- <Page></Page> -->
     </div>
   </div>
 </template>
 
 <script>
 import Flaght from '@/components/Person/Ticket/Flight.vue'
-import Page from '@/components/Person/Page.vue'
+// import Page from '@/components/Person/Page.vue'
 export default {
   created() {
     this.token = localStorage.getItem('Authorizatio')
@@ -18,7 +18,7 @@ export default {
   },
   components: {
     Flaght,
-    Page,
+    //Page,
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
           alert(res.msg)
         } else {
           this.ticketList = res.data.dataList
-          console.log(this.ticketList)
+          // console.log(this.ticketList)
         }
       })
     },
@@ -70,7 +70,6 @@ export default {
   .page-box {
     position: absolute;
     left: 50%;
-    margin: 0 -200px;
     bottom: 10px;
   }
 }

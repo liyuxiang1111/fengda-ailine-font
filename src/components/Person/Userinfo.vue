@@ -57,7 +57,6 @@ export default {
   created() {
     this.token = localStorage.getItem('Authorization')
     this.getInformation()
-    console.log(this.token)
   },
   data() {
     return {
@@ -85,7 +84,6 @@ export default {
   methods: {
     // 头像上传成功
     handleAvatarSuccess(res, file) {
-      console.log(res)
       this.imageUrl = URL.createObjectURL(file.raw)
     },
     // 用户图片
@@ -103,7 +101,6 @@ export default {
     },
     // 获取用户信息
     async getInformation() {
-      console.log(this.token)
       await this.$http({
         url: 'passenger',
         method: 'get',
@@ -118,7 +115,6 @@ export default {
         this.userinfo.email = res.data.email
         this.userinfo.telephone = res.data.telephone
         // this.userinfo = res.data
-        console.log('@', res)
       })
     },
     // 修改密码
@@ -127,7 +123,6 @@ export default {
      * @returns token
      */
     async post(e, phone, email, nickname, gender, realname) {
-      console.log(this.token)
       await this.$http({
         url: 'passenger/informations',
         method: 'post',

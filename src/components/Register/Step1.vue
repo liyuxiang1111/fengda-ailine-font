@@ -2,10 +2,10 @@
   <div class="step1-container w white boxshadow">
     <Title></Title>
     <div class="information">
-      <el-form :model="registerList" :rules="registerListRules" :show-message="true" ref="registerList">
+      <el-form :model="registerList" :rules="registerListRules"  ref="registerList">
         <div class="form-group">
           <el-form-item label="用户名：" prop="userName">
-            <el-input id="userName" class="input-box" v-model="registerList.userName" placeholder="请输入用户名"></el-input>
+            <el-input  id="userName" class="input-box" v-model="registerList.userName" placeholder="请输入用户名"></el-input>
           </el-form-item>
         </div>
         <div class="form-group">
@@ -115,7 +115,6 @@ export default {
   watch:{
     registerList: {
       handler() {
-        console.log('监听')
         this.$refs['registerList'].validate((valid) => {
           if (valid) {
             this.nextFlag = false
@@ -126,7 +125,7 @@ export default {
       },
       deep: true,
     },
-  }
+  },
 }
 </script>
 

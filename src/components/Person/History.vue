@@ -3,18 +3,18 @@
     <div class="history-box">我的历史订单</div>
     <Flaght :ticketList="history"></Flaght>
     <div class="page-box">
-      <Page></Page>
+      <!-- <Page></Page> -->
     </div>
   </div>
 </template>
 
 <script>
 import Flaght from '@/components/Person/History/Flaght.vue'
-import Page from '@/components/Person/Page.vue'
+// import Page from '@/components/Person/Page.vue'
 export default {
   components: {
     Flaght,
-    Page,
+    // Page,
   },
   data() {
     return {
@@ -44,9 +44,9 @@ export default {
         if (res.data === null) {
           alert(res.msg)
         } else {
-          console.log(res.data)
+          // console.log(res.data)
           this.history = res.data.dataList
-          console.log('ok')
+          // console.log('ok')
         }
       })
     },
@@ -69,8 +69,7 @@ export default {
   }
   .page-box {
     position: absolute;
-    left: 50%;
-    margin: 0 -200px;
+    left: 40%;
     bottom: 10px;
   }
 }

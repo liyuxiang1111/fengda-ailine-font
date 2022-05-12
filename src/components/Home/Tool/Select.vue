@@ -3,7 +3,7 @@
     <Topbar></Topbar>
     <Search @shareCity="getCity"></Search>
     <div class="clearfix w">
-      <div class="flaght-box fl boxshadow">
+      <div class="flaght-box fl boxshadow" v-loading="loading">
         <div class="flaght-info-title">
           单程：{{ city.beginCity }} - {{ city.endCity }}
           <span>{{ date }}</span>
@@ -55,7 +55,7 @@
                 </div>
               </li>
             </div>
-            <div v-if="item.status">
+            <div v-if="item.status" v-loading="loadingNum[item.flightId]">
               <div class="cabin-item">
                 <div class="site fl">普通舱</div>
                 <div class="price fl">
@@ -114,7 +114,6 @@ export default {
     const today = d.getDate();
     const month = d.getMonth();
     this.date = month + 1 + "-" + today;
-    console.log(this.date);
     this.$store.state.day = this.date
     // localStorage.setItem("day", this.date);
     this.init();
@@ -131,6 +130,9 @@ export default {
   },
   data() {
     return {
+      loading: true, // 加载
+      loadingSeat: true, // 座位加载
+      loadingNum: {},
       dataList: [],
       flag: false,
       city: {
@@ -157,6 +159,7 @@ export default {
   },
   methods: {
     async init() {
+      this.loading = true
       await this.$http
         .post("flight/search", {
           beginCity: this.city.beginCity,
@@ -166,9 +169,8 @@ export default {
           day: this.date,
         })
         .then(({ data: res }) => {
-          console.log("最开始");
-          console.log(res);
           this.dataList = res.data.dataList;
+          this.loading = false
         });
     },
     price(e) {
@@ -219,7 +221,7 @@ export default {
       this.city.endCity = val.endCity;
     },
     async ticketnum(e, id) {
-      console.log(id);
+      this.$set(this.loadingNum, id, true);
       await this.$http({
         url: "/flight/seat",
         method: "post",
@@ -231,7 +233,7 @@ export default {
           alert(res.msg);
         } else {
           this.$set(this.num, id, res.data)
-          console.log(this.num);
+          this.$set(this.loadingNum, id, false);
         }
       });
     },
@@ -252,7 +254,6 @@ export default {
   mounted() {
     bus.$on("getFlight", (res) => {
       this.dataList = res.dataList;
-      console.log(this.dataList);
     });
   },
 };

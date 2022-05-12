@@ -59,7 +59,6 @@ export default {
   },
   methods: {
     async search() {
-      console.log('@' + this.city.beginCity);
       await this.$http
         .post('flight/search', {
           beginCity: this.city.beginCity,
@@ -69,7 +68,6 @@ export default {
           day: this.day,
         })
         .then(({ data: res }) => {
-          console.log(res)
           bus.$emit('getFlight', res.data)
           this.$emit('shareCity', this.city)
         })

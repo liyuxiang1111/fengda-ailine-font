@@ -61,11 +61,9 @@ export default {
     },
     getPwd(val) {
       this.password = val
-      console.log(this.password)
     },
     getCode(val) {
       this.code = val
-      console.log(this.code)
     },
     // 账号是否存在验证
     async login() {
