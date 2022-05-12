@@ -1,13 +1,6 @@
 <template>
-  <div class="step1-container w white boxshadow">
-    <div class="title">
-      <h2 class="fl">凤达航空会员注册</h2>
-      <ul class="fr">
-        <li class="fl"><span>1</span> 基本信息</li>
-        <li class="fl"><span>2</span>联系信息</li>
-        <li class="fl step-box"><span class="step">3</span>注册完成</li>
-      </ul>
-    </div>
+  <div class="step3-container w white boxshadow">
+    <Title></Title>
     <div class="information">
       <div class="text">
         <div class="ico-success fl icon iconfont">&#xe608;</div>
@@ -22,6 +15,7 @@
 </template>
 
 <script>
+import Title from '@/components/Register/Title.vue'
 export default {
   data() {
     return {
@@ -35,57 +29,23 @@ export default {
       this.$router.push('/login')
     },
   },
+    components:{
+    Title,
+  },
 }
 </script>
 
 <style lang="less" scoped>
-.step1-container {
+.step3-container {
   height: 539px;
   padding: 10px;
   background-color: #ffffff;
-  .title {
-    height: 50px;
-    padding: 5px 10px;
-    border-bottom: 3px solid #004385;
-    h2 {
-      margin-top: 10px;
-    }
-    ul {
-      margin-top: 10px;
-      li {
-        width: 130px;
-        margin-right: 10px;
-        height: 36px;
-        line-height: 36px;
-        color: #b8b8b8;
-        span {
-          display: inline-block;
-          height: 36px;
-          width: 36px;
-          margin-right: 10px;
-          text-align: center;
-          font-size: 14px;
-          background-color: #b8b8b8;
-          border-radius: 50%;
-          color: #ffffff;
-        }
-      }
-      .step-box {
-        margin-top: 0;
-        color: #004385;
-        .step {
-          background-color: #004385;
-          border-radius: 50%;
-          color: #ffffff;
-        }
-      }
-    }
-  }
   .information {
     margin: auto;
     height: 110px;
     background-color: #ffffff;
     padding: 20px;
+    margin-top: 100px;
     .text {
       position: relative;
       height: 70px;

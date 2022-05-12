@@ -3,7 +3,7 @@
     <!-- 头部栏 -->
     <Nav></Nav>
     <div class="step-box">
-      <keep-alive>
+      <keep-alive :include='cashViews'>
         <router-view></router-view>
       </keep-alive>
     </div>
@@ -27,6 +27,11 @@ export default {
     Step3,
     Footer,
   },
+  data(){
+    return{
+      cashViews:['Step1','Step2']
+    }
+  }
 }
 </script>
 

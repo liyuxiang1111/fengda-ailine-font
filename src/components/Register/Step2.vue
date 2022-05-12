@@ -1,33 +1,41 @@
 <template>
-  <div class="step1-container w white boxshadow">
-    <div class="title">
-      <h2 class="fl">凤达航空会员注册</h2>
-      <ul class="fr">
-        <li class="fl"><span>1</span>基本信息</li>
-        <li class="fl step-box"><span class="step">2</span>联系信息</li>
-        <li class="fl"><span>3</span>注册完成</li>
-      </ul>
-    </div>
+  <div class="step2-container w white boxshadow">
+    <Title></Title>
     <div class="information">
-      <form action="">
-        <div class="form-group"><label for="">真实姓名：</label><el-input class="input-box" v-model="realname" placeholder="请您的真实姓名"></el-input></div>
-        <div class="form-group"><label for="">邮箱：</label><el-input class="input-box" v-model="mail" placeholder="请输入邮箱"></el-input></div>
-        <div class="form-group"><label for="">电话：</label><el-input class="input-box" v-model="telephone" placeholder="请输入联系电话"></el-input></div>
+      <el-form :model="realmessage" :rules="realmessageRules" :show-message="true" ref="realmessage">
         <div class="form-group">
-          <div class="notice fr"><input type="checkbox" class="fl" />我同意接收凤达航空的最新资讯（会员权限可以随时退订）</div>
+          <el-form-item label="真实姓名：" prop="realname">
+            <el-input id="realname" class="input-box" v-model="realmessage.realname" placeholder="请输入您的真实姓名"></el-input>
+          </el-form-item>
+        </div>
+        <div class="form-group">
+          <el-form-item label="邮箱：" prop="mail">
+            <el-input id="mail" class="input-box" v-model="realmessage.mail" placeholder="请输入邮箱"></el-input>
+          </el-form-item>
+        </div>
+        <div class="form-group">
+          <el-form-item label="电话：" prop="telephone">
+            <el-input id="telephone" class="input-box" v-model="realmessage.telephone" placeholder="请输入电话号码"></el-input>
+          </el-form-item>
+        </div>
+        <div class="form-group">
+          <el-form-item prop="userManual">
+            <div class="notice fr"><input type="checkbox"/><span>我同意接收凤达航空的最新资讯（会员权限可以随时退订）</span></div>
+          </el-form-item>
         </div>
         <div class="form-group">
           <div class="notice fr">
-            <div class="button next" @click="next">下一步</div>
+            <button class="button next" @click.prevent="next" :disabled="nextFlag">下一步</button>
           </div>
         </div>
-      </form>
+      </el-form>
     </div>
   </div>
 </template>
 
 <script>
 import bus from '@/components/eventBus.js'
+import Title from '@/components/Register/Title.vue'
 export default {
   created() {
     bus.$on('getRegisterList', (val) => {
@@ -39,12 +47,43 @@ export default {
   },
   data() {
     return {
-      realname: '',
-      telephone: '',
-      mail: '',
+      realmessage:{realname: '',telephone: '', mail: '',userManual:''},
       registerList: {},
       token: '',
+      nextFlag: true,
+      realmessageRules: {
+        realname: [
+          { required: true, message: '请输入姓名', trigger: 'blur' },
+          { pattern: /^[\u4e00-\u9fa5]{0,}$/, message: '请输入中文姓名' },
+        ],
+        mail: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '请输入合法邮箱' },
+        ],
+        telephone: [
+          { required: true, message: '请输入手机号码', trigger: 'blur' },
+          { pattern: /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-3,5-8])|(9[1,8,9]))\d{8}$/, message: '请输入正确的手机号码' },
+        ],
+        userManual:[
+          { required: false, message: '请阅读用户条款', trigger: 'blur'},
+        ],
+  },
     }
+  },
+  watch: {
+    realmessage: {
+      handler() {
+        console.log('监听')
+        this.$refs['realmessage'].validate((valid) => {
+          if (valid) {
+            this.nextFlag = false
+          } else {
+            this.nextFlag = true
+          }
+        })
+      },
+      deep: true,
+    },
   },
   methods: {
     async next() {
@@ -54,70 +93,38 @@ export default {
         data: {
           nickName: this.registerList.userName,
           userPwd: this.registerList.passwd,
-          telephone: this.telephone,
-          email: this.mail,
+          telephone: this.realmessage.telephone,
+          email: this.realmessage.mail,
           gender: this.registerList.userSex,
-          realName: this.realname,
+          realName: this.realmessage.realname,
           certificate: this.registerList.id,
           certificateType: this.registerList.idType,
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
-          alert(res.msg)
+          this.$message({
+          message: res.msg,
+          type: 'error',
+          })
         } else {
           this.token = res.data
-          localStorage.setItem('Authorizatio', res.data)
+          localStorage.setItem('Authorization', res.data)
           this.$router.push('/register/step3')
         }
       })
     },
   },
+  components:{
+    Title,
+  },
 }
 </script>
 
-<style lang="less">
-.step1-container {
+<style lang="less" scoped>
+.step2-container {
   height: 539px;
   padding: 10px;
   background-color: #ffffff;
-  .title {
-    height: 50px;
-    padding: 5px 10px;
-    border-bottom: 3px solid #004385;
-    h2 {
-      margin-top: 10px;
-    }
-    ul {
-      margin-top: 10px;
-      li {
-        width: 130px;
-        margin-right: 10px;
-        height: 36px;
-        line-height: 36px;
-        color: #b8b8b8;
-        span {
-          display: inline-block;
-          height: 36px;
-          width: 36px;
-          margin-right: 10px;
-          text-align: center;
-          font-size: 14px;
-          background-color: #b8b8b8;
-          border-radius: 50%;
-          color: #ffffff;
-        }
-      }
-      .step-box {
-        margin-top: 0;
-        color: #004385;
-        .step {
-          background-color: #004385;
-          border-radius: 50%;
-          color: #ffffff;
-        }
-      }
-    }
-  }
   .information {
     margin-top: 50px;
     padding: 0 15px;
@@ -125,14 +132,22 @@ export default {
     height: 429px;
     form {
       .form-group {
-        height: 34px;
+        float: right;
+        height: 40px;
+        width: 400px;
         margin-bottom: 15px;
-        label {
-          float: left;
-          display: block;
-          width: 186px;
-          padding: 7px 15px 0;
-          text-align: right;
+        margin-top: 15px;
+        text-align: right;
+        /deep/.el-form-item__label{
+          display: inline-block;
+          float: none;
+          padding: 0 15px 0 0;
+        }
+        /deep/.el-form-item__content{
+          display: inline-block;
+          /deep/.el-form-item__error{
+            left: 200px;
+          }
         }
         .input-box {
           width: 281px;
@@ -149,7 +164,7 @@ export default {
           }
         }
         .notice {
-          width: 485px;
+          width: 395px;
           height: 27px;
           padding: 0 15px;
           input {
@@ -161,6 +176,9 @@ export default {
             height: 40px;
             background-color: #ff8400;
             border-radius: 5px;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 100px;
           }
         }
       }

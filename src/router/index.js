@@ -31,7 +31,8 @@ const routes = [
     path: '/register',
     component: Register,
     children: [
-      { path: '', component: Step1},
+      { path: '', redirect: '/register/step1' },
+      { path: 'step1', component: Step1 },
       { path: 'step2', component: Step2 },
       { path: 'step3', component: Step3 },
     ],
