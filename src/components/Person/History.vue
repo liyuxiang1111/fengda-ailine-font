@@ -57,15 +57,13 @@ export default {
           })
         } else {
           this.history = res.data.dataList
+          console.log('@' + JSON.stringify(res.data.dataList));
           this.loading = false
         }
       })
     },
     // 去购买
    async pay(id) {
-      console.log('pay')
-      console.log(id);
-      console.log(this.ticketList);
       await this.$http({
         url: '/buyer/again',
         method: 'post',
@@ -76,7 +74,7 @@ export default {
           payId: id,
         },
       }).then(({ data: res }) => {
-        if (res.data === null) {
+        if (res.success) {
           this.$message({
             message: "购买成功！",
             type: 'success',

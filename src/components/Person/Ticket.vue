@@ -60,6 +60,73 @@ export default {
         }
       })
     },
+    // 子组件
+    async back(e, id) {
+      await this.$http({
+        url: '/ticket/return',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          ticketId: id,
+          resource: '七天无理由',
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          this.$message({
+            message: "退票成功！",
+            type: 'success',
+          })
+          this.initTicketList()
+        } else {
+          this.$message({
+            message: "退票失败！",
+            type: 'error',
+          })
+        }
+      })
+    },
+    async change(e, day, id) { 
+      // 修改日期
+      var arr = day.split('-')
+      var ans = ''
+      var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+      if (month[arr[0] - 1] === parseInt(arr[1])) {
+        if (arr[0] === '12') {
+          ans = '1-'
+        } else {
+          ans = parseInt(arr[0]) + 1 + '-1'
+        }
+      } else {
+        var flag = parseInt(arr[1]) + 1
+        ans = arr[0] + '-' + flag
+      }
+      // http请求
+      await this.$http({
+        url: '/ticket/modify',
+        method: 'post',
+        headers: {
+          Authorization: this.token,
+        },
+        data: {
+          ticketDay: ans,
+          ticketId: id,
+        },
+      }).then(({ data: res }) => {
+        if (res.data === null) {
+          this.$message({
+            message: "改签成功！",
+            type: 'success',
+          })
+        } else {
+          this.$message({
+            message: "改签成功！",
+            type: 'error',
+          })
+        }
+      })
+    },
   },
 }
 </script>

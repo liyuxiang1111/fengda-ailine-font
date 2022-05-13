@@ -28,11 +28,6 @@
             <td style="line-height: 25px"><span> 已取消 </span></td>
             <td class="modify">
               <slot name="defalt" :ticketId="item.ticketId" :ticketDay="item.ticketDay"></slot>
-              <p>
-                <el-popconfirm title="是否要退票吗？" @confirm="back($event, item.ticketId)"><span class="button" slot="reference">退票</span></el-popconfirm>
-                <span> | </span>
-                <el-popconfirm title="是否要延期一天？" @confirm="change($event, item.ticketDay, item.ticketId)"><span class="button" slot="reference">改签</span></el-popconfirm>
-              </p>
             </td>
           </tr>
         </table>
@@ -55,28 +50,6 @@ export default {
     ticketList: [],
   },
   methods: {
-    async initTicketList() {
-      this.loading = true
-      await this.$http({
-        url: '/ticket/search/normal',
-        method: 'post',
-        headers: {
-          Authorization: localStorage.getItem('Authorization'),
-        },
-        data: {
-          pageNum: this.pageNum,
-          pageSize: this.pageSize,
-        },
-      }).then(({ data: res }) => {
-        if (res.data === null) {
-          return
-        } else {
-          this.ticketList = res.data.dataList
-          this.loading = false
-          // console.log(this.ticketList)
-        }
-      })
-    },
     async back(e, id) {
       await this.$http({
         url: '/ticket/return',

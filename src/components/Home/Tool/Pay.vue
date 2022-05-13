@@ -10,16 +10,16 @@
           <div class="passenger">
             <p class="aut">乘机人信息</p>
             <td>
-              姓名：<span>{{ passengerName }}</span>
+              姓名：<span>{{ $store.state.menberName }}</span>
             </td>
             <td>
-              证件信息：<span>{{ certificate }}</span>
+              证件信息：<span>{{ $store.state.certificate }}</span>
             </td>
             <td>
-              手机号码：<span>{{ telephone }}</span>
+              手机号码：<span>{{ $store.state.telephone }}</span>
             </td>
             <td>
-              邮箱：<span>{{ email }}</span>
+              邮箱：<span>{{ $store.state.email }}</span>
             </td>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default {
             });
             this.payId = res.data;
             console.log(res.data);
-            localStorage.setItem("payId", this.payId);
+            this.$store.state.payId = this.payId
             this.$router.push("/home/end");
           } else {
             this.$message({

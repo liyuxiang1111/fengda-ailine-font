@@ -63,7 +63,7 @@
                   ><span>起</span>
                 </div>
                 <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].firstSeat}}张</div>
-                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId,  item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
+                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId,num[item.flightId].firstSeat,  item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">经济舱</div>

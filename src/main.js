@@ -26,7 +26,8 @@ import { formatDate, formatDateTimeSec } from '@/util/formatDate.js'
 Vue.filter('formatDate', formatDate)
 Vue.filter('formatDateTime', formatDateTimeSec)
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
+// Vue.config.silent = true
 
 new Vue({
   router,

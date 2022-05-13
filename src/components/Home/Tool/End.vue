@@ -40,10 +40,11 @@ import Success from '@/components/Home/End/Success.vue'
 import Top from '@/components/Home/Order/Top.vue'
 export default {
   created() {
-    this.price = localStorage.getItem('price')
-    this.name = localStorage.getItem('price')
+    console.log(this.$store.state.price);
+    this.price = this.$store.state.price
+    this.name = this.$store.state.menberName
     this.total = parseInt(this.price) + 50 + 20
-    this.payId = localStorage.getItem('payId')
+    this.payId = this.$store.state.payId
   },
   data() {
     return {
@@ -68,12 +69,12 @@ export default {
           Authorization: localStorage.getItem('Authorization'),
         },
         data: {
-          payId: localStorage.getItem('payId'),
+          payId: this.payId,
         },
       }).then(({ data: res }) => {
         if (res.data === null) {
           this.$message({
-                message: res.msg,
+                message: "订单支付成功！",
                 type: 'success',
           })
           this.$router.push('/home')

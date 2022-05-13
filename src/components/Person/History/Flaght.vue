@@ -2,7 +2,7 @@
   <div class="flight-container">
     <div v-for="item in ticketList" :key="item.id">
       <div class="minTit">
-        <span class="num">订单号：{{ item.id }}</span>
+        <span class="num">订单号：{{ item.payId }}</span>
         <span class="time">机票号：{{ item.ticketId }}</span>
         <span class="price">￥780</span>
       </div>
@@ -27,7 +27,7 @@
             </td>
             <td style="line-height: 25px"><span v-if="item.ispay"> 已购 </span><span v-else> 已取消 </span></td>
             <td class="modify">
-              <slot name="pay" :id="item.id" :ispay="item.ispay"></slot>  
+              <slot name="pay" :id="item.payId" :ispay="item.ispay"></slot>  
             </td>
           </tr>
         </table>
@@ -38,6 +38,9 @@
 
 <script>
 export default {
+  mounted() {
+    console.log(this.ticketList);
+  },
   props: {
     ticketList: [],
   },
