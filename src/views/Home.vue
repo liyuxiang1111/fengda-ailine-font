@@ -2,7 +2,10 @@
   <div class="home-container">
     <!-- 首页导航栏 -->
     <Nav></Nav>
-        <router-view></router-view>
+    <keep-alive v-if="$route.meta.keepAlive">
+      <router-view></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
     <div class="footer-box">
       <Footer></Footer>
     </div>

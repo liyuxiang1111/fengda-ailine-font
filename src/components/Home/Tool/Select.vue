@@ -59,16 +59,16 @@
               <div class="cabin-item">
                 <div class="site fl">普通舱</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.firstPrice }}</strong
+                  <span>￥</span><strong>{{ item.businessPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].firstSeat}}张</div>
-                <div class="fr button" @click="pay($event, item.firstPrice, 0, item.flightId,num[item.flightId].firstSeat,  item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
+                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].businessSeat}}张</div>
+                <div class="fr button" @click="pay($event, item.businessPrice, 0, item.flightId,num[item.flightId].businessSeat,  item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div>
               <div class="cabin-item">
                 <div class="site fl">经济舱</div>
                 <div class="price fl">
-                  <span>￥</span><strong>{{ item.businessPrice }}</strong
+                  <span>￥</span><strong>{{ item.economyPrice }}</strong
                   ><span>起</span>
                 </div>
                 <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].economySeat}}张</div>
@@ -80,8 +80,8 @@
                   <span>￥</span><strong>{{ item.firstPrice }}</strong
                   ><span>起</span>
                 </div>
-                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].businessSeat }}张</div>
-                <div class="fr button" @click="pay($event, item.businessPrice, 2, item.flightId, num[item.flightId].businessSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
+                <div class="residue fr" v-if="num[item.flightId] != null">还剩{{ num[item.flightId].firstSeat }}张</div>
+                <div class="fr button" @click="pay($event, item.firstPrice, 2, item.flightId, num[item.flightId].firstSeat, item.beginTime, item.endTime, item.beginCity, city.endCity)">预定</div>
               </div> 
             </div>
             <!-- <seat :Childitem="Childitem" :key="item.flightId"></seat> -->

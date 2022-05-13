@@ -42,10 +42,34 @@ const routes = [
     path: '/home',
     component: Home,
     children: [
-      { path: '', component: Select },
-      { path: 'order', component: Order },
-      { path: 'pay', component: Pay },
-      { path: 'end', component: End },
+      {
+        path: '',
+        component: Select,
+        meta: {
+          keepAlive: true, // 需要缓存
+        },
+      },
+      {
+        path: 'order',
+        component: Order,
+        meta: {
+          keepAlive: true, // 需要缓存
+        },
+      },
+      {
+        path: 'pay',
+        component: Pay,
+        meta: {
+          keepAlive: true, // 需要缓存
+        },
+      },
+      {
+        path: 'end',
+        component: End,
+        meta: {
+          keepAlive: true, // 需要缓存
+        },
+      },
       { path: 'error', component: Error404 },
     ],
     meta: { title: 'Home' },

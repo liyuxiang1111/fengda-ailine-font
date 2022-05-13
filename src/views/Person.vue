@@ -30,6 +30,7 @@ export default {
 <style lang="less" scoped>
 .person-container {
   background-color: #ecf2f7;
+  width: 100%;
   .person-box {
     height: calc(100vh - 342px);
     padding-top: 60px;
