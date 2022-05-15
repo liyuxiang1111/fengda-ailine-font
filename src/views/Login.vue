@@ -31,9 +31,9 @@ export default {
   .login-imag {
     position: relative;
     width: 100%;
+    min-width: 1170px;
     height: calc(100vh - 224px);
     min-height: 700px;
-    min-width: 600px;
     img {
       position: absolute;
       left: 0;

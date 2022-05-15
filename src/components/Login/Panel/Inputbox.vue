@@ -61,6 +61,9 @@ export default {
     color: #5f6368;
     pointer-events: none;
     transition: all 0.15s ease; /*给div设置过渡动画*/
+    -moz-transition:all 0.15s ease;
+    -webkit-transition:all 0.15s ease;
+    -o-transition:all 0.15s ease;
   }
 }
 </style>

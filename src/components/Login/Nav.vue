@@ -14,6 +14,7 @@ export default {}
 <style lang="less">
 .nav-container {
   nav {
+    min-width: 1140px;
     height: 60px;
     padding: 20px 0 0 30px;
     background-color: #ffffff;

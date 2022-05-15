@@ -104,8 +104,10 @@ router.beforeEach((to, from, next) => {
     } else {
       next('/login') //访问的是后台主页，但是没有token 的值
     }
+  } else if (to.path === '/register') {
+    next('/register') //访问的不是后台主页，直接放行
   } else {
-    next() //访问的不是后台主页，直接放行
+    next()
   }
   // 注册的逻辑
   // 在第一步不能跳到第二步以及第三步

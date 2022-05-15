@@ -24,7 +24,7 @@
           ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span>{{ $store.state.name }}</span></router-link
         >
         <!-- <ul > -->
-        <transition v-if="this.token !== null" name="el-fade-in-linear">
+        <transition v-if="!flag" name="el-fade-in-linear">
           <ul ref="info" v-show="show" @mouseleave="show = false">
             <li>
               <router-link to="/person/userinfo">个人信息</router-link>
