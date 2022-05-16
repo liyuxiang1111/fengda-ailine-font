@@ -108,6 +108,7 @@ import Search from "@/components/Home/Select/Search.vue";
 import Pricetabel from "@/components/Home/Select/Pricetabel.vue";
 import Swiper from "@/components/Home/Swiper.vue";
 import bus from "@/components/eventBus.js";
+import Vue from "vue";
 export default {
   created() {
     let d = new Date();
@@ -181,13 +182,13 @@ export default {
       var arr = this.dataList;
       var low = 0;
       var high = arr.length - 1;
-      var temp;
+      let temp = {};
       while (low < high) {
         for (let j = low; j < high; j++) {
           if (arr[j].lastPrice > arr[j + 1].lastPrice) {
-            temp = arr[j + 1].lastPrice;
-            arr[j + 1].lastPrice = arr[j].lastPrice;
-            arr[j].lastPrice = temp;
+            temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
           }
         }
         --high;
@@ -196,13 +197,15 @@ export default {
         //找到最小值
         for (var j = high; j > low; j--) {
           if (arr[j].lastPrice > arr[j + 1].lastPrice) {
-            temp = arr[j + 1].lastPrice;
-            arr[j + 1].lastPrice = arr[j].lastPrice;
-            arr[j].lastPrice = temp;
+            temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
           }
         }
         ++low; //修改low值，往后移动一位
       }
+      this.dataList = arr;
+      this.$forceUpdate();
     },
     time(e) {
       e.target.style.color = "#257fd9";

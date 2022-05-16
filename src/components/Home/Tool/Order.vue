@@ -135,7 +135,7 @@ export default {
         this.$store.state.menberName = this.menuberForm.username
         this.$store.state.certificate = this.menuberForm.certificate
         this.$store.state.certificateType = this.menuberForm.value
-        this.$store.state.telephone = this.menuberForm.tel
+        this.$store.state.telephone = this.menuberForm.tel  
         this.$store.state.email = this.menuberForm.email
         // localStorage.setItem('passengerName', this.menuberForm.username)
         // localStorage.setItem('certificate', this.menuberForm.certificate)
