@@ -1,7 +1,7 @@
 <template>
   <div class="Userinfo-container fr boxshadow" v-loading="loading">
     <div class="title">
-      <el-upload class="avatar-uploader fl" action="http://localhost:8888/uploadFile" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+      <el-upload class="avatar-uploader fl" action="http://heyongqiang:8888/uploadFile" :data="{id:userinfo.id}" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
