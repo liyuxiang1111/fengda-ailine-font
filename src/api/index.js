@@ -22,7 +22,7 @@ ali.interceptors.request.use(
   },
   function (error) {
     // Do something with request error
-    return Promise.reject(error)
+    Vue.$router.push('/login')
   }
 )
 
