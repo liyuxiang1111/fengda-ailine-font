@@ -1,8 +1,8 @@
 <template>
   <div class="Userinfo-container fr boxshadow" v-loading="loading">
     <div class="title">
-      <el-upload class="avatar-uploader fl" action="http://heyongqiang:8888/uploadFile" :data="{id:userinfo.id}" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+      <el-upload class="avatar-uploader fl" action="http://heyongqiang:8888/uploadFile" :data="{userId:userinfo.useId}" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+        <img v-if="imageUrl" :src="userinfo.userImg" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
       <div class="basic fl">
@@ -76,11 +76,13 @@ export default {
         tel: true,
       },
       userinfo: {
+        useId:'',
         nickName:'',
         realName:'',
         gender:'',
         email:'',
         telephone:'',
+        userImg:'',
       },
       sex: '',
     }
@@ -88,7 +90,7 @@ export default {
   methods: {
     // 头像上传成功
     handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
+      this.userinfo.userImg = URL.createObjectURL(file.raw)
     },
     // 用户图片
     beforeAvatarUpload(file) {
@@ -114,8 +116,10 @@ export default {
         },
       }).then(({ data: res }) => {
         // userinfo
+        this.userinfo.useId = res.data.useId
         this.userinfo.nickName = res.data.nickName
         this.userinfo.realName = res.data.realName
+        this.userinfo.userImg = res.data.userImg
         this.sex = res.data.gender
         this.userinfo.email = res.data.email
         this.userinfo.telephone = res.data.telephone
