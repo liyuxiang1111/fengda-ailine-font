@@ -99,7 +99,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let token = localStorage.getItem('Authorization') || ''
-  console.log(token)
   if (token) {
     // 有token时直接放行
     next()
