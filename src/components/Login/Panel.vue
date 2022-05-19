@@ -50,7 +50,7 @@ export default {
       // 验证码初始值
       identifyCode: 'm6a8', // 这个就是随机生成的验证码
       // 验证码的随机取值范围
-      identifyCodes: '123456789abcdefghjkmnpqrstuvwxyz',
+      identifyCodes: '!@#$%^&*123456789abcdefghjkmnpqrstuvwxyz',
     }
   },
   methods: {

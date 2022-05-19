@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container">
+  <div class="nav-container" >
     <div class="w">
       <div class="fl nav-left">
         <span class="fl"><img src="@/assets/image/logo.png" alt="" /></span>
@@ -18,10 +18,10 @@
           <router-link to="/person/history"><div>查看历史</div></router-link>
         </li>
       </ul>
-      <div class="userInfo nav-right" @mouseover="show = true">
-        <router-link v-if="flag" to="/login"><span class="nav-login">登录</span></router-link>
-        <router-link v-else to="/person"
-          ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span>{{ $store.state.name }}</span></router-link
+      <div class="userInfo nav-right" @mouseover="show = true" >
+        <router-link v-show="flag" to="/login" ><span class="nav-login">登录</span></router-link>
+        <router-link v-show="!flag" to="/person"
+          ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span v-cloak>{{ $store.state.name }}</span></router-link
         >
         <!-- <ul > -->
         <transition v-if="!flag" name="el-fade-in-linear">
@@ -64,12 +64,13 @@ export default {
   methods: {
     logout() {
       this.$router.push('/login')
+      localStorage.removeItem('Authorization')
     },
     img() {
       console.log('img')
     },
     async getToken(){
-      this.token = localStorage.getItem('Authorization');
+      this.token = localStorage.getItem('Authorization')
       // 获取用户信息接口：
       await this.$http({
         url: 'passenger',
@@ -94,6 +95,9 @@ export default {
 <style lang="less" scoped>
 @import url(../../assets/less/value.less);
 .nav-container {
+  [v-cloak] {
+    display:none !important;
+  }
   height: 80px;
   background-color: #ffffff;
   border: 1px solid #d7d7d7;

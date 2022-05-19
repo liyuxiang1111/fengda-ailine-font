@@ -77,5 +77,8 @@
     width: 1170px;
     margin: 0 auto;
   }
+  [v-cloak] {
+    display:none !important;
+  }
 }
 </style>
