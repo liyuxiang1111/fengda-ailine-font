@@ -94,9 +94,9 @@ export default {
               localStorage.setItem('Authorization', res.data)
               this.$router.push('/home')
             }
-          }).catch(
-            console.error('连接超时')
-          )
+          }, err => {
+            console.log(err);
+          }).catch()
       }
     },
     //  下一步按钮 拿到code值跟随机生成的验证码进行对比

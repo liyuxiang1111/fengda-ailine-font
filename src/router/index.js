@@ -26,7 +26,7 @@ import End from '@/components/Home/Tool/End.vue'
 import Error404 from '@/components/Common/404.vue' //404
 const routes = [
   { path: '/', redirect: '/home' },
-  { path: '/login', name: 'Login', component: Login, meta: { title: 'Login', requiresAuth: false } },
+  { path: '/login', name: 'Login', component: Login, meta: { isAuth: true } },
   {
     path: '/register',
     component: Register,
@@ -36,7 +36,6 @@ const routes = [
       { path: 'step2', component: Step2 },
       { path: 'step3', component: Step3 },
     ],
-    meta: { title: 'Register' },
   },
   {
     path: '/home',
@@ -47,6 +46,7 @@ const routes = [
         component: Select,
         meta: {
           keepAlive: true, // 需要缓存
+          isAuth: true, // 需要登录
         },
       },
       {
@@ -54,6 +54,7 @@ const routes = [
         component: Order,
         meta: {
           keepAlive: true, // 需要缓存
+          isAuth: true, // 需要登录
         },
       },
       {
@@ -61,6 +62,7 @@ const routes = [
         component: Pay,
         meta: {
           keepAlive: true, // 需要缓存
+          isAuth: true, // 需要登录
         },
       },
       {
@@ -68,23 +70,24 @@ const routes = [
         component: End,
         meta: {
           keepAlive: true, // 需要缓存
+          isAuth: true, // 需要登录
         },
       },
       { path: 'error', component: Error404 },
     ],
-    meta: { title: 'Home' },
+    meta: { isAuth: true },
   },
   {
     path: '/person',
     component: Person,
     children: [
-      { path: '', component: Ticket },
-      { path: 'history', component: Histroy },
-      { path: 'userinfo', component: Userinfo },
-      { path: 'ticket', component: Ticket },
-      { path: 'back', component: Back },
+      { path: '', component: Ticket, meta: { isAuth: true } },
+      { path: 'history', component: Histroy, meta: { isAuth: true } },
+      { path: 'userinfo', component: Userinfo, meta: { isAuth: true } },
+      { path: 'ticket', component: Ticket, meta: { isAuth: true } },
+      { path: 'back', component: Back, meta: { isAuth: true } },
     ],
-    meta: { title: 'Person' },
+    meta: { isAuth: true },
   },
 ]
 
@@ -95,22 +98,23 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/home') {
-    next() //访问的是主页，直接放行
-  } else if (to.path !== '/login') {
-    const token = localStorage.getItem('Authorization')
-    if (token) {
-      next() //访问的是后台主页，且有token 的值
-    } else {
-      next('/login') //访问的是后台主页，但是没有token 的值
-    }
-  } else if (to.path === '/register') {
-    next('/register') //访问的不是后台主页，直接放行
-  } else {
+  let token = localStorage.getItem('Authorization') || ''
+  console.log(token)
+  if (token) {
+    // 有token时直接放行
     next()
+  } else {
+    // 没有token时需要登录
+    if (to.path == '/login' || to.path == '/register' || to.path == '/home') {
+      next()
+    } else {
+      if (to.meta.isAuth) {
+        router.replace('/login')
+      } else {
+        next()
+      }
+    }
   }
-  // 注册的逻辑
-  // 在第一步不能跳到第二步以及第三步
 })
 
 export default router
