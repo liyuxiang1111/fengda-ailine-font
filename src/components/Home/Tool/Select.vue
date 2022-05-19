@@ -193,8 +193,19 @@ export default {
         }
         --high;
       }
+      while (low > high) {
+        //找到最小值
+        for (var j = high; j > low; j--) {
+          if (arr[j].lastPrice > arr[j + 1].lastPrice) {
+            temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
+          }
+        }
+        ++low; //修改low值，往后移动一位
+      }
       this.dataList = arr;
-      this.$forceUpdate();  
+      this.$forceUpdate();
     },
     time(e) {
       e.target.style.color = "#257fd9";
