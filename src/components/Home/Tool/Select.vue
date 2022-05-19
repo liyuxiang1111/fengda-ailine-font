@@ -178,7 +178,7 @@ export default {
       e.target.style.color = "#257fd9";
       this.$refs.time.style.color = "#999999";
       console.log("price-select");
-      //快速排序
+      //冒泡排序的优化
       var arr = this.dataList;
       var low = 0;
       var high = arr.length - 1;
@@ -186,19 +186,18 @@ export default {
       while (low < high) {
         for (let j = low; j < high; j++) {
           if (arr[j].lastPrice > arr[j + 1].lastPrice) {
+            // 前面的数大于后面的数交换
             temp = arr[j + 1];
             arr[j + 1] = arr[j];
             arr[j] = temp;
           }
         }
         --high;
-      }
-      while (low > high) {
-        //找到最小值
         for (var j = high; j > low; j--) {
-          if (arr[j].lastPrice > arr[j + 1].lastPrice) {
-            temp = arr[j + 1];
-            arr[j + 1] = arr[j];
+          if (arr[j].lastPrice < arr[j - 1].lastPrice) {
+            // 后的数小于前面的数交换
+            temp = arr[j - 1];
+            arr[j - 1] = arr[j];
             arr[j] = temp;
           }
         }
