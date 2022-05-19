@@ -18,7 +18,7 @@
       ><li class="history" :class="{ active: $route.path === '/person/history' }"><span class="iconfont">&#xe8d5;</span>历史订单</li></router-link
     >
     <router-link to=""
-      ><li><span class="iconfont">&#xe8ba;</span>积分越换</li></router-link
+      ><li><span class="iconfont">&#xe8ba;</span>积分兑换</li></router-link
     >
     <router-link to=""
       ><li><span class="iconfont">&#xe886;</span>会员专区</li></router-link

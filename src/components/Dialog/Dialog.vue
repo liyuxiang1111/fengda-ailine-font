@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog title="是否修改密码" :visible.sync="dialogVisible" width="30%">
-      <el-input v-model="origin" clearable placeholder="源密码" class="input"></el-input>
+      <el-input v-model="origin" clearable placeholder="原密码" class="input"></el-input>
       <el-input v-model="passwd" clearable placeholder="新密码" class="input"></el-input>
       <el-input v-model="second" show-password placeholder="再次确认"></el-input>
       <span slot="footer" class="dialog-footer">
