@@ -1,5 +1,5 @@
 <template>
-  <div class="pricetabel-contaienr w">
+  <div id="pricetabel-container" class="w">
     <div class="pricetabel-box fl">
       <ul class="tabel">
         <li class="bule">
@@ -37,18 +37,35 @@
           <p class="data">星期二</p>
           <p class="price">￥3</p>
         </li>
-        <li class="end">end</li>
+        <li class="end">
+          <i class="el-icon-date" @click="calendarFlag = !calendarFlag"></i>
+          <transition name="el-fade-in-linear">
+            <el-calendar v-if="calendarFlag" v-model="calendarValue" class="calendar" 
+            style=
+            "user-select:none;-webkit-user-select:none;
+            -moz-user-select:none;
+            -o-user-select:none;">
+            </el-calendar>
+          </transition>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      calendarFlag: false,
+      calendarValue: new Date()
+    }
+  },
+}
 </script>
 
-<style lang="less" scopde>
-.pricetabel-contaienr {
+<style lang="less" scoped>
+#pricetabel-container {
   margin-top: 15px;
   height: 99px;
   padding: 5px 10px;
@@ -80,12 +97,36 @@ export default {}
         }
       }
       .end {
+        display: block;
+        position: relative;
         float: left;
         width: 91px;
         height: 88px;
         padding: 5px;
         line-height: 88px;
         text-align: center;
+        // :deep(.calendar)
+        .calendar {
+          position: absolute;
+          left: -400px;
+          user-seletct: none !important;
+          -webkit-user-seletct: none;
+          -moz-user-seletct: none;
+          -ms-user-seletct: none;
+        }
+        .calendar /deep/  .el-calendar-table {
+          th {
+            padding: 0;
+          }
+          td {
+            border: none;
+          }
+          .el-calendar-day{
+            width: 65px;
+            height: 40px;
+            line-height: 20px;
+          }
+        }
       }
     }
   }

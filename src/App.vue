@@ -7,6 +7,8 @@
 <style lang="less">
 @import url(./assets/less/value.less);
 * {
+  margin: 0;
+  padding: 0;
   @font-face {
     font-family: 'iconfont';
     src: url('./assets/fonts/iconfont.woff2?t=1639906299268') format('woff2'), url('./assets/fonts/iconfont.woff?t=1639906299268') format('woff'),
@@ -19,14 +21,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  body {
-    height: 100%;
+  html {
     width: 100%;
+    height: 100%;
+    font-size: 62.5%!important;
+    color: #474747;
   }
-  margin: 0;
-  padding: 0;
+  body {
+    font-family: 'Microsoft YaHei', 'Hiragino Sans GB', 'Arail';
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    background: #eee;
+  }
   a {
     text-decoration: none;
+    color: #4778A7;
   }
   li {
     list-style: none;
@@ -59,7 +68,6 @@
     content: '';
     display: table;
   }
-
   .clearfix:after {
     clear: both;
   }

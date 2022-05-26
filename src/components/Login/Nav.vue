@@ -18,7 +18,7 @@ export default {}
     height: 60px;
     padding: 20px 0 0 30px;
     background-color: #ffffff;
-    border-bottom: 4px solid #004385;
+    border-bottom: 4px solid #0c7ced;
     img {
       height: 40px;
       float: left;

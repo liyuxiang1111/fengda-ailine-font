@@ -15,7 +15,7 @@
 <script>
 import Nav from '@/components/Home/Nav.vue'
 import Sidebar from '@/components/Person/Sidebar.vue'
-import Footer from '@/components/Login/Footer.vue'
+import Footer from '@/components/Common/Footer.vue'
 import Dialog from '@/components/Dialog/Dialog.vue'
 export default {
   components: {

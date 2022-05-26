@@ -6,21 +6,25 @@
       <router-view></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
-    <div class="footer-box">
-      <Footer></Footer>
-    </div>
+    <Sidebar class="sidebar"></Sidebar>
+    <Footer class="footer-box"></Footer>
+    <Bottom class="bottom"></Bottom>
   </div>
 </template>
 
 <script>
 import Nav from '@/components/Home/Nav.vue'
 import Select from '@/components/Home/Tool/Select.vue'
-import Footer from '@/components/Login/Footer.vue'
+import Footer from '@/components/Common/Footer.vue'
+import Sidebar from '@/components/Home/Sidebar.vue'
+import Bottom from '@/components/Home/Bottom.vue'
 export default {
   components: {
     Nav,
     Select,
     Footer,
+    Sidebar,
+    Bottom
   },
 }
 </script>
@@ -36,6 +40,11 @@ export default {
   } */
   .footer-box {
     margin-top: 60px;
+  }
+  .sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
   }
 }
 </style>

@@ -3,7 +3,8 @@
     <!-- 头部导航 -->
     <Nav></Nav>
     <div class="login-imag">
-      <img src="@/assets/image/sky/4.png" alt="" />
+      <img src="@/assets/image/sky/6.png" alt="" />
+      <img src="@/assets/image/air/air.png" alt="" class="air">
       <Panel></Panel>
     </div>
     <!-- 注册表 -->
@@ -32,14 +33,22 @@ export default {
     position: relative;
     width: 100%;
     min-width: 1170px;
-    height: calc(100vh - 224px);
+    height: calc(100vh - 200px);
     min-height: 700px;
+    border-bottom: 1px solid #0c7ced;
     img {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
+    }
+    .air {
+      position: absolute;
+      left: 15%;
+      top: 30%;
+      width: 600px;
+      height: 450px;
     }
   }
 }

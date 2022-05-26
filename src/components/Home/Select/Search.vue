@@ -2,6 +2,7 @@
   <div class="search-container w boxshadow">
     <div class="top-btu">
       <div class="btn">单程</div>
+      <div class="btn">往返</div>
     </div>
     <div class="text-btu">
       <div class="section-input text-first">
@@ -113,8 +114,10 @@ export default {
       text-align: center;
       margin-top: 9px;
       margin-left: 10px;
+      margin-right: 20px;
       border-radius: 20px;
       background-color: orange;
+      cursor: pointer;
     }
   }
   .text-btu {

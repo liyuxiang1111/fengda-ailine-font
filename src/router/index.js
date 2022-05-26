@@ -18,6 +18,7 @@ import Userinfo from '@/components/Person/Userinfo.vue'
 import Ticket from '@/components/Person/Ticket.vue'
 import Back from '@/components/Person/Back.vue'
 //导入home页面需要的组件
+import Index from '@/components/Home/Index.vue'
 import Select from '@/components/Home/Tool/Select.vue'
 import Order from '@/components/Home/Tool/Order.vue'
 import Pay from '@/components/Home/Tool/Pay.vue'
@@ -42,7 +43,15 @@ const routes = [
     component: Home,
     children: [
       {
-        path: '',
+        path: '/',
+        component: Index,
+        meta: {
+          keepAlive: true, // 需要缓存
+          isAuth: true, // 需要登录
+        },
+      },
+      {
+        path: 'select',
         component: Select,
         meta: {
           keepAlive: true, // 需要缓存

@@ -2,6 +2,7 @@
   <div class="select-container">
     <Topbar></Topbar>
     <Search @shareCity="getCity"></Search>
+    <Pricetabel></Pricetabel>
     <div class="clearfix w">
       <div class="flaght-box fl boxshadow" v-loading="loading">
         <div class="flaght-info-title">
@@ -107,8 +108,8 @@ import Topbar from "@/components/Home/Tool/Topbar.vue";
 import Search from "@/components/Home/Select/Search.vue";
 import Pricetabel from "@/components/Home/Select/Pricetabel.vue";
 import Swiper from "@/components/Home/Swiper.vue";
+import BigSwiper from '@/components/Home/BigSwiper.vue'
 import bus from "@/components/eventBus.js";
-import Vue from "vue";
 export default {
   created() {
     let d = new Date();
@@ -157,6 +158,7 @@ export default {
     Search,
     Pricetabel,
     Swiper,
+    BigSwiper,
   },
   methods: {
     async init() {

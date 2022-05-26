@@ -2,7 +2,7 @@
   <div class="Userinfo-container fr boxshadow" v-loading="loading">
     <div class="title">
       <el-upload class="avatar-uploader fl" action="http://heyongqiang.work:8888/uploadFile" :data="{userId:userinfo.useId}" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-        <img v-if="imageUrl" :src="userinfo.userImg" class="avatar" />
+        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
       <div class="basic fl">
@@ -67,7 +67,7 @@ export default {
       // img 请求参数
       avatarHeader: {},
       token: '',
-      imageUrl: require(`@/assets/image/头像.png`),
+      imageUrl: '',
       flag: {
         name: true,
         nameflag: true,
@@ -90,7 +90,7 @@ export default {
   methods: {
     // 头像上传成功
     handleAvatarSuccess(res, file) {
-      this.userinfo.userImg = URL.createObjectURL(file.raw)
+      this.imageUrl = URL.createObjectURL(file.raw);
     },
     // 用户图片
     beforeAvatarUpload(file) {
@@ -119,7 +119,7 @@ export default {
         this.userinfo.useId = res.data.useId
         this.userinfo.nickName = res.data.nickName
         this.userinfo.realName = res.data.realName
-        this.userinfo.userImg = res.data.userImg
+        this.imageUrl = res.data.userImg
         this.sex = res.data.gender
         this.userinfo.email = res.data.email
         this.userinfo.telephone = res.data.telephone
