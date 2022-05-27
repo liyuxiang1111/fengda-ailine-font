@@ -52,7 +52,7 @@ export default {
     // }
   },
   mounted() {
-    this.timer = setInterval(this.nextPic,3000)
+    // this.timer = setInterval(this.nextPic,3000)
   },
 }
 </script>

@@ -6,16 +6,16 @@
       </div>
       <ul class="tool fl">
         <li class="fl">
-          <router-link to="/home"><div>回到主页</div></router-link>
+          <router-link to=""><div>凤航会员</div></router-link>
         </li>
         <li class="fl">
-          <router-link to="/person/ticket"><div>我的机票</div></router-link>
+          <router-link to=""><div>预定管理</div></router-link>
         </li>
         <li class="fl">
-          <router-link to="/person/back"><div>退票处理</div></router-link>
+          <router-link to=""><div>互动专区</div></router-link>
         </li>
         <li class="fl">
-          <router-link to="/person/history"><div>查看历史</div></router-link>
+          <router-link to=""><div>出行帮助</div></router-link>
         </li>
       </ul>
       <div class="userInfo nav-right" @mouseover="show = true" >
@@ -45,22 +45,55 @@
         </transition>
       </div>
     </div>
+    <Imformation class="clearfix">
+      <template #left>
+        <div class="imformation-left fl">
+          <p class="title">经常出差?</p>
+          <p class="title-tip">称为凤航会员</p>
+          <div class="btns clearfix">
+            <router-link class="fl sign" to="">注册</router-link>
+            <router-link class="fr login" to="">登录</router-link>
+          </div>
+          <p class="title-tip">使用手机快速买票</p>
+          <router-link class="large-btn" to="">非会员快速购票</router-link>
+        </div>
+      </template>
+      <template #right>
+        <div class="imformation-right fr clearfix">
+          <span class="content fl" v-for="item,index in imformation" :key="index">
+            <router-link to="" class="title-tip">{{ item.title }}</router-link>
+            <p>{{ item.introduce }}</p>
+          </span>
+        </div>
+      </template>
+    </Imformation>
   </div>
 </template>
 
 <script>
+import Imformation from '@/components/Home/Index/Imformathion.vue'
 export default {
   created(){
     this.getToken()
   },
   data() {
     return {
+      imformation: [
+        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+      ],
       show: false,
       flag: true,
       token: '',
     }
   },
-  components: {},
+  components: {
+    Imformation
+  },
   methods: {
     logout() {
       this.$router.push('/login')
@@ -94,13 +127,12 @@ export default {
 
 <style lang="less" scoped>
 @import url(../../assets/less/value.less);
+@import url(../../assets/less/mixture.less);
 .nav-container {
-  [v-cloak] {
-    display:none !important;
-  }
+  position: relative;
   height: 80px;
   background-color: #ffffff;
-  border: 1px solid #d7d7d7;
+  border-bottom: 2px solid #999;
   .nav-left {
     margin: 26px 60px 25px 0;
     span {
@@ -120,9 +152,8 @@ export default {
         div {
           height: 76px;
           line-height: 76px;
-          transition: all 0.1s;
           &:hover {
-            border-bottom: 5px solid #1781b5;
+            border-bottom: 3px solid #1781b5;
           }
         }
       }
@@ -195,5 +226,72 @@ export default {
   .tool-box {
     margin-top: 81px;
   }
+  .imformation {
+    .imformation-left {
+    height: 200px;
+    width: 220px;
+    margin-right: 40px;
+    .title {
+      font-size: 22px;
+      color: #456191;
+      line-height: 22px;
+      margin-bottom: 10px;
+    }
+    .title-tip {
+      font-size: 12px;
+      line-height: 16px;
+      color: #456191;
+    }
+    .btns {
+      height: 59px;
+      border-bottom: 1px solid gray;
+      margin-bottom: 20px;
+      .sign,.login {
+        width: 90px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 20px;
+        margin: 18px 0 10px;
+        background-color: pink;
+        font-size: 12px;
+      }
+      .login {
+        background-color: blue;
+      }
+    }
+    .large-btn {
+      display: block;
+      margin-top: 10px; 
+      .wh(130px, 30px);
+      .bgc(pink);
+      .border(20px);
+      .fc(30px);
+      .font(12px)
+    }
+    }
+    .imformation-right {
+      .wh(740px, 247px);
+      .content {
+        margin: 0 20px 30px 0;
+        width: 226px;
+        .title-tip {
+          display: block;
+          font-size: 14px;
+          line-height: 14px;
+          color: #0b325e;
+          border-bottom: 1px solid rgb(202, 214, 233);
+          padding-bottom: 15px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #888888;
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+  
 }
 </style>

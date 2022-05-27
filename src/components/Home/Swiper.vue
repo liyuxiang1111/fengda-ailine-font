@@ -24,7 +24,6 @@
 require('@/assets/css/swiper.css')
 import '@/assets/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
 export default {
   components: {
     swiper,
