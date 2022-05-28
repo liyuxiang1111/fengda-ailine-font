@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="rool-container">
     <swiper :options="swiperOption" class="swiper-container swiper-pagination1 w" ref="mySwiper">
     <!-- 添加的图片 -->
     <div class="block"></div>

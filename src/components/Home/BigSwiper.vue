@@ -5,7 +5,7 @@
     </transition>
     <div class="content-box w">
       <div class="notice-box">
-        <div class="notice fl" ref="notice">
+        <div class="notice fl" ref="notice" :style="bottom">
           <div v-for="item,index in notices" :key="index">
             <i class="el-icon-message-solid"></i><span>{{ item }}</span>
           </div>
@@ -26,6 +26,7 @@
 export default {
   data() {
     return {
+      bottom: {bottom: 120 + 'px'},
       show: true,
       timer: null, // 轮播图计时器
       noticeTimer: null,
@@ -38,33 +39,15 @@ export default {
         require("@/assets/image/sky/4.png"),
       ],
       notices: [
-        "经济发展具有强大韧性和活力",
-        "辽宁63名中小银行一把手缘何被查？",
-        "辽宁63名中小银行一把手缘何被查？",
-        "辽宁63名中小银行一把手缘何被查？",
-        "经济发展具有强大韧性和活力",
+        "经济发展具有强大韧性和活力4",
+        "经济发展具有强大韧性和活力1",
+        "经济发展具有强大韧性和活力2",
+        "经济发展具有强大韧性和活力3",
+        "经济发展具有强大韧性和活力4",
       ]
     }
   },
   methods: {
-    // 封装过渡动画
-    animation(ele, target) {
-      clearInterval(ele.timer);
-      ele.timer = setInterval(() => {
-        //获取起使位置
-        leader= ele.offsetLeft;
-        //获取缓动动画步长
-        var step = (target-leader)/10;
-        //支持不同方向的移动，所以步长有正有负
-        step = step >0? Math.ceil(step):Math.floor(step);
-        //当前位置= 盒子的位置+步长
-        leader = leader +step;
-        ele.style.left = leader+"px";
-        if(ele.offsetLeft === target) {
-          clearInterval(ele.timer);
-        }
-      }, 30)
-    },
     nextPic() {
       this.i++;
       if (this.i == 4) {
@@ -74,8 +57,11 @@ export default {
     nextTip() {
       if (this.j == 4) {
         this.j = 0
-      }
-      this.notice.style.transform = `translateY(${30 * this.j ++}px)`
+        this.notice.style.transitionDuration = "0s"
+        this.notice.style.bottom = 120 + 'px'
+      } 
+      this.j++
+      this.notice.style.bottom = 120 -  30 * this.j  + 'px'
     }
     // async interval(delay, callback) {
     //   return await new Promise((resolve, reject) => {
@@ -90,10 +76,18 @@ export default {
     // this.timer = setInterval(this.nextPic,3000)
     this.noticeTimer = setInterval(this.nextTip, 2000)
   },
+
   computed: {
     notice() {
       return this.$refs.notice
+    },
+    bottomLength() {
+      console.log(this.notices.length);
+      return this.notices.length * 30
     }
+  },
+  destroyed() {
+    clearInterval(this.noticeTimer)
   }
 }
 </script>
@@ -135,7 +129,6 @@ export default {
       .notice {
         transition: all 1s;
         position: relative;
-        bottom: 90px;
         i {
           margin-left: 15px;
           margin-right: 5px;
