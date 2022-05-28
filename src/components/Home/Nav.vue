@@ -45,7 +45,7 @@
         </transition>
       </div>
     </div>
-    <Imformation class="clearfix">
+    <!-- <Imformation class="clearfix">
       <template #left>
         <div class="imformation-left fl">
           <p class="title">经常出差?</p>
@@ -66,7 +66,7 @@
           </span>
         </div>
       </template>
-    </Imformation>
+    </Imformation> -->
   </div>
 </template>
 

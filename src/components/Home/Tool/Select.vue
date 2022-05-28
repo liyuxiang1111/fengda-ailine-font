@@ -266,6 +266,7 @@ export default {
 <style lang="less" scoped>
 .select-container {
   background-color: #ecf2f7;
+  margin-bottom: 40px;
   .flaght-box {
     margin-top: 15px;
     width: 872px;

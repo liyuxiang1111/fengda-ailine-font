@@ -38,9 +38,6 @@ export default {
   /* .content {
     margin-bottom: 60px;
   } */
-  .footer-box {
-    margin-top: 60px;
-  }
   .sidebar {
     position: fixed;
     top: 50%;
