@@ -53,7 +53,7 @@ export default {
   background-color: #ffffff;
   .man {
     padding: 15px;
-    border-bottom: 1px solid #cddeea;
+    border-bottom: 1px solid #9F7070;
     img {
       width: 45px;
       height: 45px;
@@ -69,16 +69,18 @@ export default {
       height: 30px;
       line-height: 30px;
       font-size: 14px;
-      color: #999;
+      color: #709F73;
       span {
         margin-right: 10px;
       }
       &:hover {
-        background-color: #90d7ec;
+        background-color: #709F73;
+        color: #fff;
       }
     }
     .active {
-      background-color: #90d7ec;
+      background-color: #709F73;
+      color: #fff;
     }
   }
 }

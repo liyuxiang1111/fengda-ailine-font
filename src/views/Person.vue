@@ -29,7 +29,8 @@ export default {
 
 <style lang="less" scoped>
 .person-container {
-  background-color: #ecf2f7;
+  background: url("../assets/image/person/gulanyu.jpg") no-repeat;
+  background-size: cover;
   width: 100%;
   .person-box {
     height: calc(100vh - 342px);

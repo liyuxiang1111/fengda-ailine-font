@@ -213,8 +213,11 @@ export default {
     .basic {
       width: 390px;
       padding: 10px 15px;
+      background: url("../../assets/image/person/金色祥云.png") no-repeat;
+      background-size: cover;
       .name {
         margin-right: 30px;
+        
       }
       .name-input {
         width: 200px;

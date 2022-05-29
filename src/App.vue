@@ -55,7 +55,7 @@
     background-color: #ffffff;
   }
   .boxshadow {
-    box-shadow: 0px 0px 3px 3px #e2e3e3;
+    box-shadow: 0px 0px 3px 3px rgba(246, 112, 112, 0.6);
   }
   button,
   input {

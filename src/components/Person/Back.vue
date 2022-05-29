@@ -1,24 +1,19 @@
 <template>
   <div class="back-container fr boxshadow" v-loading="loading">
     <div class="back-box">退票处理</div>
+    <el-empty v-show="backList.length === 0" :image="require('@/assets/image/index/pre-flightFoot.webp')" description="哦！你没有需要退票的订单" :image-size="300"></el-empty>
     <Flight :ticketList="backList"></Flight>
-    <div class="page-box">
-      <!-- <Page></Page> -->
-    </div>
   </div>
 </template>
 
 <script>
 import Flight from '@/components/Person/Back/Flight.vue'
-// import Page from '@/components/Person/Page.vue'
 export default {
   created() {
-    this.token = localStorage.getItem('Authorization')
     this.initBackList()
   },
   components: {
     Flight,
-    // Page,
   },
   data() {
     return {
@@ -35,9 +30,6 @@ export default {
       await this.$http({
         url: '/ticket/search/return',
         method: 'post',
-        headers: {
-          Authorization: localStorage.getItem('Authorization'),
-        },
         data: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,

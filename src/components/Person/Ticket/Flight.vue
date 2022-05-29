@@ -33,13 +33,15 @@
         </table>
       </div>
     </div>
+    <Page class="page"></Page>
   </div>
 </template>
 
 <script>
+import Page from '@/components/Person/Page.vue'
 export default {
-  created() {
-    this.token = localStorage.getItem('Authorizatio')
+  components: {
+     Page
   },
   data() {
     return {
@@ -47,7 +49,9 @@ export default {
     }
   },
   props: {
-    ticketList: [],
+    ticketList: {
+      type: Array
+    },
   },
   methods: {
     async back(e, id) {

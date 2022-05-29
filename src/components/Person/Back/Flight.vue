@@ -35,13 +35,20 @@
         </table>
       </div>
     </div>
+    <Page class="page"></Page>
   </div>
 </template>
 
 <script>
+import Page from '@/components/Person/Page.vue'
 export default {
+  components: {
+    Page
+  },
   props: {
-    ticketList: [],
+    ticketList: {
+      type: Array
+    },
   },
 }
 </script>
@@ -102,6 +109,10 @@ export default {
         }
       }
     }
+  }
+  .page {
+    padding-top: 50px;
+    text-align: center;
   }
 }
 </style>

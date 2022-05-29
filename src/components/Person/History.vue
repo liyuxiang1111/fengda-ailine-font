@@ -1,6 +1,7 @@
 <template>
   <div class="history-container fr boxshadow" v-loading="loading">
     <div class="history-box">我的历史订单</div>
+    <el-empty v-show="history.length === 0" :image="require('@/assets/image/index/pre-flightFoot.webp')" description="鹅！你的历史没有订单" :image-size="300"></el-empty>
     <Flaght :ticketList="history">
       <template #pay="scope">
         <p>
@@ -9,31 +10,24 @@
         </p>
       </template>
     </Flaght>
-    <div class="page-box">
-      <!-- <Page></Page> -->
-    </div>
   </div>
 </template>
 
 <script>
 import Flaght from '@/components/Person/History/Flaght.vue'
-// import Page from '@/components/Person/Page.vue'
 export default {
   components: {
     Flaght,
-    // Page,
   },
   data() {
     return {
       loading: true,
       history: [],
-      token: '',
       pageNum: 0,
       pageSize: 3,
     }
   },
   created() {
-    this.token = localStorage.getItem('Authorization')
     this.initHistory()
   },
   methods: {
@@ -42,9 +36,6 @@ export default {
       await this.$http({
         url: '/pay/search',
         method: 'post',
-        headers: {
-          Authorization: localStorage.getItem('Authorization'),
-        },
         data: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -57,7 +48,6 @@ export default {
           })
         } else {
           this.history = res.data.dataList
-          console.log('@' + JSON.stringify(res.data.dataList));
           this.loading = false
         }
       })

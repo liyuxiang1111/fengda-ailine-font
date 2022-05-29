@@ -1,7 +1,5 @@
 <template>
-  <div class="page-container">
     <el-pagination background layout="prev, pager, next" :total="50" @prev-click="prev" @next-click="next"> </el-pagination>
-  </div>
 </template>
 
 <script>
@@ -16,5 +14,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

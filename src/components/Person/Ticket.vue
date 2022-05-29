@@ -1,7 +1,8 @@
 <template>
   <div class="ticket-container fr boxshadow" v-loading="loading">
     <div class="ticket-box">我的机票信息</div>
-    <Flaght :ticketList="ticketList">
+    <el-empty v-if="ticketList.length === 0" :image="require('@/assets/image/index/pre-flightFoot.webp')" description="鹅！快去购买机票吧" :image-size="300"></el-empty>
+    <Flaght v-else :ticketList="ticketList">
       <template #defalt="scope">
         <p>
           <el-popconfirm title="是否要退票吗？" @confirm="back($event, scope.ticketId)"><span class="button" slot="reference">退票</span></el-popconfirm>
@@ -10,23 +11,17 @@
         </p>
       </template>
     </Flaght>
-    <div class="page-box">
-      <!-- <Page></Page> -->
-    </div>
   </div>
 </template>
 
 <script>
 import Flaght from '@/components/Person/Ticket/Flight.vue'
-// import Page from '@/components/Person/Page.vue'
 export default {
   created() {
-    this.token = localStorage.getItem('Authorizatio')
     this.initTicketList()
   },
   components: {
     Flaght,
-    //Page,
   },
   data() {
     return {
@@ -43,9 +38,6 @@ export default {
       await this.$http({
         url: '/ticket/search/normal',
         method: 'post',
-        headers: {
-          Authorization: localStorage.getItem('Authorization'),
-        },
         data: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -56,7 +48,7 @@ export default {
         } else {
           this.ticketList = res.data.dataList
           this.loading = false
-          // console.log(this.ticketList)
+          // console.log(this.ticketList.length)
         }
       })
     },

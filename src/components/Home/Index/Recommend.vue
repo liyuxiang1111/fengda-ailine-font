@@ -55,7 +55,19 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      recommendList: []
+    }
+  },
+  mounted() {
+    
+  },
+  methods: {
+    getRecommendList() {
+      
+    }
+  }
 }
 </script>
 
@@ -104,6 +116,14 @@ export default {
           color: #8e8e8e;
           font-size: 12px;
           line-height: 16px;
+          span {
+            display: inline-block;
+            width: 10px;
+            height: 9px;
+            margin: 0 2px;
+            background: url("../../../assets/image/index/goandback.png") no-repeat;
+            background-size: cover;
+          }
         }
         .price {
           color: #ff9522;
