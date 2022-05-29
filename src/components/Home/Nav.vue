@@ -5,7 +5,7 @@
         <span class="fl"><img src="@/assets/image/logo.png" alt="" /></span>
       </div>
       <ul class="tool fl">
-        <li class="fl" @mouseover="member = true">
+        <li class="fl" @mouseenter="member = true">
           <router-link to=""><div>凤航会员</div></router-link>
         </li>
         <li class="fl">
@@ -18,7 +18,7 @@
           <router-link to=""><div>出行帮助</div></router-link>
         </li>
       </ul>
-      <div class="userInfo nav-right" @mouseover="show = true" >
+      <div class="userInfo nav-right" @mouseenter="show = true" >
         <router-link v-show="flag" to="/login" ><span class="nav-login">登录</span></router-link>
         <router-link v-show="!flag" to="/person"
           ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span v-cloak>{{ $store.state.name }}</span></router-link
@@ -46,9 +46,9 @@
       </div>
     </div>
     <transition name="fade">
-      <Imformation v-show="member" @mouseleave.native="member = false">
+      <Imformation v-if="member" @mouseleave.native="member = false" class="imformation clearfix">
       <template #left>
-        <div class="imformation-left clearfix fl">
+        <div class="imformation-left fl">
           <p class="title">经常出差?</p>
           <p class="title-tip">称为凤航会员</p>
           <div class="btns clearfix">
@@ -65,7 +65,6 @@
             <router-link to="" class="title-tip">{{ item.title }}</router-link>
             <p>{{ item.introduce }}</p>
           </span>
-          <button @click="menber = false">关闭</button>
         </div>
       </template>
     </Imformation>
@@ -234,14 +233,8 @@ export default {
     margin-top: 81px;
   }
   .imformation {
-    animation: appear 4s linear infinite;
-    @keyframes appear {
-      0%{
-      }
-      100%{
-        opacity: 1;
-      }
-    }
+    overflow: hidden;
+    transition: all .3s;
     .imformation-left {
     height: 200px;
     width: 220px;
@@ -307,11 +300,13 @@ export default {
       }
     }
   }
-//   .fade-enter-active, .fade-leave-active {
-//   	transition: opacity .25s
-//  }
-//  .fade-enter, .fade-leave-to  {
-//   	opacity: 0
-//   } 
+  .fade-enter-active, .fade-leave-active {
+    height: 274px;
+    transition: height .3s;
+ }
+ .fade-enter, .fade-leave-to  {
+    height: 0;
+  }
+  
 }
 </style>
