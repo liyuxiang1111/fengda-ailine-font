@@ -5,7 +5,7 @@
         <span class="fl"><img src="@/assets/image/logo.png" alt="" /></span>
       </div>
       <ul class="tool fl">
-        <li class="fl">
+        <li class="fl" @mouseover="member = true">
           <router-link to=""><div>凤航会员</div></router-link>
         </li>
         <li class="fl">
@@ -45,9 +45,10 @@
         </transition>
       </div>
     </div>
-    <!-- <Imformation class="clearfix">
+    <transition name="fade">
+      <Imformation v-show="member" @mouseleave.native="member = false">
       <template #left>
-        <div class="imformation-left fl">
+        <div class="imformation-left clearfix fl">
           <p class="title">经常出差?</p>
           <p class="title-tip">称为凤航会员</p>
           <div class="btns clearfix">
@@ -59,14 +60,16 @@
         </div>
       </template>
       <template #right>
-        <div class="imformation-right fr clearfix">
+        <div class="imformation-right clearfix fr">
           <span class="content fl" v-for="item,index in imformation" :key="index">
             <router-link to="" class="title-tip">{{ item.title }}</router-link>
             <p>{{ item.introduce }}</p>
           </span>
+          <button @click="menber = false">关闭</button>
         </div>
       </template>
-    </Imformation> -->
+    </Imformation>
+    </transition>
   </div>
 </template>
 
@@ -89,6 +92,7 @@ export default {
       show: false,
       flag: true,
       token: '',
+      member: false,
     }
   },
   components: {
@@ -122,6 +126,9 @@ export default {
       })
     }
   },
+  watch:{
+
+  }
 }
 </script>
 
@@ -227,6 +234,14 @@ export default {
     margin-top: 81px;
   }
   .imformation {
+    animation: appear 4s linear infinite;
+    @keyframes appear {
+      0%{
+      }
+      100%{
+        opacity: 1;
+      }
+    }
     .imformation-left {
     height: 200px;
     width: 220px;
@@ -261,7 +276,7 @@ export default {
       }
     }
     .large-btn {
-      display: block;
+      // display: block;
       margin-top: 10px; 
       .wh(130px, 30px);
       .bgc(pink);
@@ -292,6 +307,11 @@ export default {
       }
     }
   }
-  
+//   .fade-enter-active, .fade-leave-active {
+//   	transition: opacity .25s
+//  }
+//  .fade-enter, .fade-leave-to  {
+//   	opacity: 0
+//   } 
 }
 </style>
