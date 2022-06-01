@@ -55,12 +55,12 @@
     <!-- 左右导航栏 -->
     <!-- <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div> -->
-    <template #button-prev>
+    <!-- <template #button-prev>
       <div class="swiper-button-prev"></div>
     </template>
     <template #button-next>
       <div class="swiper-button-next"></div>
-    </template>
+    </template> -->
     
   </swiper>
   <div class="advertisement w">更多特色服务<i class="el-icon-caret-right"></i></div>
