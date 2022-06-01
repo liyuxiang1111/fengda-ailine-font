@@ -5,37 +5,37 @@
         <li class="bule">
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li>
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li>
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li>
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li>
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li>
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li>
           <p class="data">2021-12-13</p>
           <p class="data">星期二</p>
-          <p class="price">￥3</p>
+          <p class="price">￥500</p>
         </li>
         <li class="end">
           <i class="el-icon-date" @click="calendarFlag = !calendarFlag"></i>

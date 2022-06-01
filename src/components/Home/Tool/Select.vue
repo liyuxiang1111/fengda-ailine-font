@@ -103,7 +103,6 @@
 </template>
 
 <script>
-import { time } from "@/util/time.js";
 import Topbar from "@/components/Home/Tool/Topbar.vue";
 import Search from "@/components/Home/Select/Search.vue";
 import Pricetabel from "@/components/Home/Select/Pricetabel.vue";
@@ -112,12 +111,13 @@ import BigSwiper from '@/components/Home/BigSwiper.vue'
 import bus from "@/components/eventBus.js";
 export default {
   created() {
-    let d = new Date();
-    const today = d.getDate();
-    const month = d.getMonth();
-    this.date = month + 1 + "-" + today;
+    let d = new Date()
+    const today = d.getDate()
+    const month = d.getMonth()
+    this.date = month + 1 + "-" + today
     this.$store.state.day = this.date
-    // localStorage.setItem("day", this.date);
+    let city = JSON.parse(localStorage.getItem('city'))
+    this.city = city
     this.init();
   },
   props: {
@@ -138,8 +138,8 @@ export default {
       dataList: [],
       flag: false,
       city: {
-        beginCity: '福州',
-        endCity: '上海',
+        beginCity: "",
+        endCity: "",
       },
       num: {},
       date: "",
@@ -161,10 +161,28 @@ export default {
     BigSwiper,
   },
   methods: {
+    // 搜索初始化
     async init() {
+      
       this.loading = true
       await this.$http
         .post("flight/search", {
+          beginCity: this.city.beginCity,
+          endCity: this.city.endCity,
+          pageSize: this.pageSize,
+          pageNum: this.pageNum,
+          day: this.date,
+        })
+        .then(({ data: res }) => {
+          this.dataList = res.data.dataList;
+          this.loading = false
+        });
+    },
+    // 推荐航班搜索
+    async recommend() {
+      this.loading = true
+      await this.$http
+        .post("/recommend/search", {
           beginCity: this.city.beginCity,
           endCity: this.city.endCity,
           pageSize: this.pageSize,
@@ -251,13 +269,16 @@ export default {
       this.$store.state.endTime = endTime
       this.$store.state.beginCity = beginCity
       this.$store.state.endCity = endCity
-
       this.$router.push("/home/order");
     },
   },
   mounted() {
     bus.$on("getFlight", (res) => {
       this.dataList = res.dataList;
+    });
+    bus.$on("getCity", (res) => {
+      this.city = res
+      this.recommend();
     });
   },
 };

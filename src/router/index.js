@@ -46,8 +46,8 @@ const routes = [
         path: '/',
         component: Index,
         meta: {
-          keepAlive: true, // 需要缓存
-          isAuth: true, // 需要登录
+          keepAlive: false, // 需要缓存
+          isAuth: false, // 需要登录
         },
       },
       {

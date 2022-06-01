@@ -2,30 +2,32 @@
   <div class="nav-container" >
     <div class="w">
       <div class="fl nav-left">
-        <span class="fl"><img src="@/assets/image/logo.png" alt="" /></span>
+        <router-link to="/home"><span class="fl"><img src="@/assets/image/logo.png" alt="图片走丢了" /></span></router-link>
       </div>
       <ul class="tool fl">
-        <li class="fl" @mouseenter="member = true">
+        <li class="fl" @mouseenter="member">
           <router-link to=""><div>凤航会员</div></router-link>
         </li>
-        <li class="fl">
+        <li class="fl" @mouseenter="reserve">
           <router-link to=""><div>预定管理</div></router-link>
         </li>
-        <li class="fl">
+        <li class="fl" @mouseenter="interact"> 
           <router-link to=""><div>互动专区</div></router-link>
         </li>
-        <li class="fl">
+        <li class="fl" @mouseenter="trip">
           <router-link to=""><div>出行帮助</div></router-link>
         </li>
       </ul>
-      <div class="userInfo nav-right" @mouseenter="show = true" >
-        <router-link v-show="flag" to="/login" ><span class="nav-login">登录</span></router-link>
+      <div class="userInfo nav-right" @mouseenter="navFlag = false,show = true" >
+        <router-link v-show="flag" to="/login" >
+        <span class="nav-login">登录</span>
+        </router-link>
         <router-link v-show="!flag" to="/person"
           ><img ref="img" src="@/assets/image/头像.png" alt="" /> <span v-cloak>{{ $store.state.name }}</span></router-link
         >
         <!-- <ul > -->
         <transition v-if="!flag" name="el-fade-in-linear">
-          <ul ref="info" v-show="show" @mouseleave="show = false">
+          <ul ref="info" v-show="show" @mouseleave="navFlag = false,show = false">
             <li>
               <router-link to="/person/userinfo">个人信息</router-link>
             </li>
@@ -46,17 +48,20 @@
       </div>
     </div>
     <transition name="fade">
-      <Imformation v-if="member" @mouseleave.native="member = false" class="imformation clearfix">
+      <Imformation v-if="navFlag" @mouseleave.native="navFlag = false,imformation =[]" class="imformation clearfix">
       <template #left>
-        <div class="imformation-left fl">
+        <div v-if="flag" class="imformation-left fl">
           <p class="title">经常出差?</p>
-          <p class="title-tip">称为凤航会员</p>
+          <p class="title-tip">成为凤航会员</p>
           <div class="btns clearfix">
-            <router-link class="fl sign" to="">注册</router-link>
-            <router-link class="fr login" to="">登录</router-link>
+            <router-link class="fl sign" to="/register">注册</router-link>
+            <router-link class="fr login" to="/login">登录</router-link>
           </div>
           <p class="title-tip">使用手机快速买票</p>
           <router-link class="large-btn" to="">非会员快速购票</router-link>
+        </div>
+        <div v-else class="imformation-left fl">
+          <img class="qr-code" src="@/assets/image/index/qrcode_sanlulou107.top.png" alt="图片加载失败">
         </div>
       </template>
       <template #right>
@@ -80,40 +85,59 @@ export default {
   },
   data() {
     return {
-      imformation: [
-        {title:"白鹭会员", introduce: "白鹭俱乐部"},
-        {title:"白鹭会员", introduce: "白鹭俱乐部"},
-        {title:"白鹭会员", introduce: "白鹭俱乐部"},
-        {title:"白鹭会员", introduce: "白鹭俱乐部"},
-        {title:"白鹭会员", introduce: "白鹭俱乐部"},
-        {title:"白鹭会员", introduce: "白鹭俱乐部"},
+      imformation: [],
+      memberImformation: [
+        {title:"凤航会员", introduce: "管理您的账户，查看最新会员资讯"},
+        {title:"我的账户", introduce: "查看积分余额、乘机明细进行账户设置"},
+        {title:"我的订单", introduce: "在线管理厦航订单，可在网上进行更改与取消"},
+        {title:"赚取积分", introduce: "乘坐厦航集团航班、合作伙伴航空公司航班、乘坐合作商家处理消费即可累积"},
+        {title:"积分兑换", introduce: "兑换奖励机票及积分商城特色商品"},
+        {title:"优惠专区", introduce: "凤航会员专属折扣产品、额外奖励产品及专项优惠商家"},
+      ],
+      reserveImformation: [
+        {title:"机票预定", introduce: "在线预定机票，快捷更高效"},
+        {title:"我的账户", introduce: "在线查询航班动态，获取最新航班信息"},
+        {title:"办理登机", introduce: "在线办理登机手续，为您的出行提供更多方便"},
+        {title:"提前选座", introduce: "官网及95557购票用户，在线选择心仪的航班座位"},
+        {title:"附加服务", introduce: "购买更多附加服务，官网更实惠"},
+        {title:"客票验真", introduce: "在线查询机票真伪，安全更放心"},
+      ],
+      interactImformation: [
+        {title:"国内热门推荐", introduce: "私人定制式国内航班推荐"},
+        {title:"国外热门推荐", introduce: "私人定制式一站式服务"},
+        {title:"国内外优惠", introduce: "了解更多多内外航班优惠信息"},
+        {title:"低价早知道", introduce: "设置邮件及信息提醒服务，关系航线价格，低价早知道"},
+        {title:"我要报名", introduce: "在这里您可以了解厦航的最新活动信息"},
+        {title:"优惠信息", introduce: "了解最新促销信息，优惠产品"},
+      ],
+      tripImformation: [
+        {title:"购票服务", introduce: "查询附近销售网点"},
+        {title:"出行准备", introduce: "疫情期间无忧出行"},
+        {title:"中转服务", introduce: "了解您的中转出行秘书"},
+        {title:"地面服务", introduce: "办理登机服务、头等舱旅客休息室、延误行李查询、遗留物品领取须知"},
+        {title:"客舱服务", introduce: "温馨服务、座位布局图、机上餐食、机上娱乐"},
+        {title:"运输规定", introduce: "运输总条件、国内运输客票使用条件、航班超售处置规定、行李运输规定"},
       ],
       show: false,
-      flag: true,
-      token: '',
-      member: false,
+      flag: true, // 用户是否登录的判断
+      navFlag: false, // nav下拉选项
     }
   },
   components: {
     Imformation
   },
   methods: {
+    // 注销
     logout() {
       this.$router.push('/login')
       localStorage.removeItem('Authorization')
     },
-    img() {
-      console.log('img')
-    },
+    // 获得用户信息
     async getToken(){
-      this.token = localStorage.getItem('Authorization')
       // 获取用户信息接口：
       await this.$http({
         url: 'passenger',
         method: 'get',
-        headers: {
-          Authorization: this.token,
-        },
       }).then(({ data: res }) => {
         // userinfo
         if (!res.success) {
@@ -123,11 +147,28 @@ export default {
           this.$store.state.name = res.data.nickName
         }
       })
+    },
+    // 凤航会员
+    member() {
+      this.navFlag = true
+      this.imformation = this.memberImformation
+    },
+    // 预定管理修改
+    reserve() {
+      this.navFlag = true
+      this.imformation = this.reserveImformation
+    },
+    // 互动专区
+    interact() {
+      this.navFlag = true
+      this.imformation = this.interactImformation
+    },
+    // 出行帮助
+    trip() {
+      this.navFlag = true
+      this.imformation = this.tripImformation
     }
   },
-  watch:{
-
-  }
 }
 </script>
 
@@ -184,7 +225,7 @@ export default {
   .userInfo {
     float: right;
     position: relative;
-    z-index: 5;
+    z-index: 999;
     ul {
       top: 70px;
       left: -40px;
@@ -226,7 +267,7 @@ export default {
     }
     .nav-login {
       margin: 0;
-      padding: 29px 110px 25px 0;
+      padding: 29px 0px 25px 0;
     }
   }
   .tool-box {
@@ -235,10 +276,15 @@ export default {
   .imformation {
     overflow: hidden;
     transition: all .3s;
+    box-shadow: 0 4px 6px -2px #8e8e8e;
     .imformation-left {
     height: 200px;
     width: 220px;
     margin-right: 40px;
+    .qr-code {
+      height: 100%;
+      width: 100%;
+    }
     .title {
       font-size: 22px;
       color: #456191;
@@ -261,25 +307,31 @@ export default {
         line-height: 30px;
         border-radius: 20px;
         margin: 18px 0 10px;
-        background-color: pink;
+        background: url("../../assets/image/index/btn-orange.png");
+        background-size: cover;
+        color: #fff;
         font-size: 12px;
       }
       .login {
-        background-color: blue;
+        background: url("../../assets/image/index/btn-blue.png");
+        background-size: cover;
       }
     }
     .large-btn {
-      // display: block;
+      display: block;
       margin-top: 10px; 
       .wh(130px, 30px);
-      .bgc(pink);
+      color: #fff;
+      background: url("../../assets/image/index/btn-orange.png");
+      background-size: cover;
       .border(20px);
       .fc(30px);
-      .font(12px)
+      font-size: 12px;
     }
     }
     .imformation-right {
       .wh(740px, 247px);
+      margin-right: 50px;
       .content {
         margin: 0 20px 30px 0;
         width: 226px;
@@ -307,6 +359,5 @@ export default {
  .fade-enter, .fade-leave-to  {
     height: 0;
   }
-  
 }
 </style>

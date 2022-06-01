@@ -35,6 +35,13 @@
 import bus from '@/components/eventBus.js'
 
 export default {
+  created() {
+    let city = JSON.parse(localStorage.getItem('city'))
+    this.city = city
+    console.log(this.city);
+    this.getOption1()
+    this.getOption2()
+  },
   props: {
     pageSize: {
       default: 5,
@@ -48,8 +55,8 @@ export default {
   data() {
     return {
       city: {
-        beginCity: '福州',
-        endCity: '上海',
+        beginCity: '',
+        endCity: '',
       },
       data: '30',
       res: {},
@@ -89,10 +96,6 @@ export default {
     getEndCity(city) {
       this.city.endCity = city
     },
-  },
-  created() {
-    this.getOption1()
-    this.getOption2()
   },
 }
 </script>

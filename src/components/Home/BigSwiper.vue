@@ -13,10 +13,12 @@
         <div class="more fr"><router-link to="">查看更多</router-link></div>
       </div>
       <ul class="dot">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li 
+          v-for="(num,index) in imgs.length" 
+          :class="index == i ? 'select' : 'noselect'" 
+          :key="num" 
+          @click="i = index">
+        </li>
       </ul>
     </div>
   </div>
@@ -63,14 +65,6 @@ export default {
       this.j++
       this.notice.style.bottom = 120 -  30 * this.j  + 'px'
     }
-    // async interval(delay, callback) {
-    //   return await new Promise((resolve, reject) => {
-    //     let id = setInterval(() => {
-    //       callback(id, resolve)
-    //     }, delay)
-    //     return reject
-    //   }) 
-    // }
   },
   mounted() {
     // this.timer = setInterval(this.nextPic,3000)
@@ -157,6 +151,14 @@ export default {
         border-radius: 50%;
         margin: 3px 5px;
         background-color: #fff;
+      }
+      .select {
+        border-color: rgba(0, 0, 0, 0.4);
+        background-color: hsla(0, 0%, 100%, 0.3);
+      }
+      .noselect {
+        border-color: hsla(0, 0%, 100%, 0.3);
+        background: rgba(0, 0, 0, 0.4);
       }
     }
   }

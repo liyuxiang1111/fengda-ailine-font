@@ -18,8 +18,8 @@ export default {
   width: 100%;
   min-width: 1300px;
   top: 80px;
-  z-index: 999;
-  border-top: 1px solid pink;
+  z-index: 998;
+  border-top: 1px solid #8e8e8e;
   background-color: #fff;
   .imformation-content {
     height: calc(100% - 26px);

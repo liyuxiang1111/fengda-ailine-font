@@ -5,34 +5,12 @@
     </div>
     <div class="pre-flightTicket fl">
       <div class="pre-ticketlist clearfix">
-        <router-link to="" class="pre-ticketOne fl">
-          <p class="name">厦门<span></span>昆明</p>
-          <p class="price"><span>￥</span>1200</p>
-          <p class="data">2022-6-1</p>
-        </router-link>
-        <router-link to="" class="pre-ticketOne fl">
-          <p class="name">厦门<span></span>昆明</p>
-          <p class="price"><span>￥</span>1200</p>
-          <p class="data">2022-6-1</p>
-        </router-link>
-        <router-link to="" class="pre-ticketOne fl">
-          <p class="name">厦门<span></span>昆明</p>
-          <p class="price"><span>￥</span>1200</p>
-          <p class="data">2022-6-1</p>
-        </router-link>
-        <router-link to="" class="pre-ticketOne fl">
-          <p class="name">厦门<span></span>昆明</p>
-          <p class="price"><span>￥</span>1200</p>
-          <p class="data">2022-6-1</p>
-        </router-link>
-        <router-link to="" class="pre-ticketOne fl">
-          <p class="name">厦门<span></span>昆明</p>
-          <p class="price"><span>￥</span>1200</p>
-          <p class="data">2022-6-1</p>
-        </router-link>
-        <router-link to="" class="pre-ticketOne fl">
-          <p class="name">厦门<span></span>昆明</p>
-          <p class="price"><span>￥</span>1200</p>
+        <router-link to="/home/select" class="pre-ticketOne fl" 
+        v-for="item,index in recommendList" 
+        :key="index" 
+        @click.native="store(item.beginCity,item.endCity)">
+          <p class="name">{{ item.beginCity }}<span></span>{{ item.endCity }}</p>
+          <p class="price"><span>￥</span>500起</p>
           <p class="data">2022-6-1</p>
         </router-link>
       </div>
@@ -54,18 +32,25 @@
 </template>
 
 <script>
+import bus from '@/components/eventBus.js'
 export default {
-  data() {
-    return {
-      recommendList: []
+  props: {
+    recommendList: {
+      type: Array,
+      default() {
+        return [{beginCity:"无", endCity:"无"}];
+      }
     }
   },
-  mounted() {
-    
-  },
   methods: {
-    getRecommendList() {
-      
+    store(beginCity,endCity ) {
+      var city = {
+        beginCity: beginCity,
+        endCity: endCity,
+      }
+      bus.$emit('getCity', city)
+      var myJSON = JSON.stringify(city);
+      localStorage.setItem('city', myJSON)
     }
   }
 }
