@@ -179,7 +179,7 @@ export default {
   position: relative;
   height: 80px;
   background-color: #ffffff;
-  border-bottom: 2px solid #999;
+  border-bottom: 1px solid #fff;
   .nav-left {
     margin: 26px 60px 25px 0;
     span {
@@ -200,7 +200,7 @@ export default {
           height: 76px;
           line-height: 76px;
           &:hover {
-            border-bottom: 3px solid #1781b5;
+            border-bottom: 4px solid #1781b5;
           }
         }
       }

@@ -6,20 +6,35 @@
     </div>
     <div class="text-btu">
       <div class="section-input text-first">
-        <el-select v-model="city.beginCity" filterable placeholder="出发城市" @click.native="getOption1">
+        <el-select
+          v-model="city.beginCity"  
+          placeholder="出发城市">
           <template #prefix>
             <span class="iconfont icon-chengshi"></span>
           </template>
-          <el-option v-for="(item, index) in options1" :key="index" :label="item" v-model="city.beginCity" @click.native="getBeginCity(item)"> </el-option>
+          <el-option 
+            v-for="(item, index) in options1" 
+            :key="index" 
+            :label="item" 
+            :value="item" 
+            @click.native="getBeginCity(item)"> 
+          </el-option>
         </el-select>
         <!-- <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" /> -->
       </div>
       <div class="section-input">
-        <el-select v-model="city.endCity" filterable placeholder="到达城市" @click.native="getOption2">
+        <el-select 
+          v-model="city.endCity" 
+          placeholder="到达城市">
           <template #prefix>
             <span class="iconfont icon-chengshi"></span>
           </template>
-          <el-option v-for="(item, index) in options2" :key="index" :label="item" v-model="city.beginCity" @click.native="getEndCity(item)"> </el-option>
+          <el-option 
+            v-for="(item, index) in options2" 
+            :key="index" :label="item"
+            :value="item" 
+            @click.native="getEndCity(item)">
+          </el-option>
         </el-select>
         <!-- <input type="text" class="account" placeholder="到达城市" tabindex="4" v-model="city.endCity" /> -->
       </div>
@@ -38,7 +53,6 @@ export default {
   created() {
     let city = JSON.parse(localStorage.getItem('city'))
     this.city = city
-    console.log(this.city);
     this.getOption1()
     this.getOption2()
   },
@@ -91,10 +105,10 @@ export default {
       })
     },
     getBeginCity(city) {
-      this.city.beginCity = city
+      this.$set(this.city, "beginCity", city)
     },
     getEndCity(city) {
-      this.city.endCity = city
+      this.$set(this.city, "endCity", city)
     },
   },
 }

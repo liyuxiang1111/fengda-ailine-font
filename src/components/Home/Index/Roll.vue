@@ -6,51 +6,44 @@
     <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave">
       <div class="slide-container">
         <div class="img-box"><img class="banner-img" :src="imag1" /></div>
-        <p class="title">丽江古城</p>
-        <p class="info">阿瓦达久违的看我</p>
+        <p class="title">故宫</p>
+        <p class="info">北京故宫是中国明清两代的皇家宫殿，旧称紫禁城</p>
         <div class="detail">详细信息</div>
       </div>
     </swiper-slide>
     <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave"> 
       <div class="slide-container">
-        <div class="img-box"><img class="banner-img" :src="imag6" /></div>
-        <p class="title">丽江古城</p>
-        <p class="info">阿瓦达久违的看我</p>
-        <div class="detail">详细信息</div>
-      </div>
-    </swiper-slide>
-    <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave">
-      <div class="slide-container">
-        <div class="img-box"><img class="banner-img" :src="imag1" /></div>
-        <p class="title">丽江古城</p>
-        <p class="info">阿瓦达久违的看我</p>
-        <div class="detail">详细信息</div>
-      </div>
-    </swiper-slide>
-    <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave">
-      <div class="slide-container">
         <div class="img-box"><img class="banner-img" :src="imag2" /></div>
-        <p class="title">丽江古城</p>
-        <p class="info">阿瓦达久违的看我</p>
+        <p class="title">九寨沟</p>
+        <p class="info">四川九寨沟</p>
         <div class="detail">详细信息</div>
       </div>
     </swiper-slide>
     <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave">
       <div class="slide-container">
         <div class="img-box"><img class="banner-img" :src="imag3" /></div>
-        <p class="title">丽江古城</p>
-        <p class="info">阿瓦达久违的看我</p>
+        <p class="title">上海</p>
+        <p class="info">上海大都市</p>
         <div class="detail">详细信息</div>
       </div>
     </swiper-slide>
     <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave">
       <div class="slide-container">
         <div class="img-box"><img class="banner-img" :src="imag4" /></div>
-        <p class="title">丽江古城</p>
-        <p class="info">阿瓦达久违的看我</p>
+        <p class="title">重庆</p>
+        <p class="info">山城 重庆</p>
         <div class="detail">详细信息</div>
       </div>
     </swiper-slide>
+    <swiper-slide class="slide-box" @mouseenter.native="on_bot_enter" @mouseleave.native="on_bot_leave">
+      <div class="slide-container">
+        <div class="img-box"><img class="banner-img" :src="imag5" /></div>
+        <p class="title">长城</p>
+        <p class="info">不到长城非好汉</p>
+        <div class="detail">详细信息</div>
+      </div>
+    </swiper-slide>
+    
 
     <!-- 左右导航栏 -->
     <!-- <div class="swiper-button-prev" slot="button-prev"></div>
@@ -79,12 +72,11 @@ export default {
   data() {
     return {
       nextTransForm:'',
-      imag1: require(`@/assets/image/scenery/故宫.jpg`),
+      imag1: require(`@/assets/image/scenery/gugong.jpg`),
       imag2: require(`@/assets/image/scenery/九寨沟.jpg`),
-      imag3: require(`@/assets/image/scenery/雷峰塔.jpg`),
-      imag4: require(`@/assets/image/scenery/雷峰塔.jpg`),
-      imag5: require(`@/assets/image/scenery/丽江古城.jpg`),
-      imag6: require(`@/assets/image/scenery/丽江古城.jpg`),
+      imag3: require(`@/assets/image/scenery/shanghai.jpeg`),
+      imag4: require(`@/assets/image/scenery/chongqing.jpg`),
+      imag5: require(`@/assets/image/scenery/changcheng.jpg`),
       swiperOption: {
         freeMode: true,
         pagination: '.swiper-pagination1',

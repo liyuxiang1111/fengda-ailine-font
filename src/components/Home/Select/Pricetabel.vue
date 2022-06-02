@@ -37,12 +37,13 @@
           <p class="data">星期二</p>
           <p class="price">￥500</p>
         </li>
-        <li class="end">
+        <li class="end" @mouseleave="calendarFlag = false">
           <i class="el-icon-date" @click="calendarFlag = !calendarFlag"></i>
           <transition name="el-fade-in-linear">
             <el-calendar v-if="calendarFlag" v-model="calendarValue" class="calendar" 
             style=
             "user-select:none;-webkit-user-select:none;
+            box-shadow: 0px 0px 3px 3px rgba(193, 187, 187, .4);
             -moz-user-select:none;
             -o-user-select:none;">
             </el-calendar>
@@ -113,10 +114,15 @@ export default {
           -webkit-user-seletct: none;
           -moz-user-seletct: none;
           -ms-user-seletct: none;
+          /deep/ .el-calendar__body {
+            padding-bottom: 10px;
+          }
         }
         .calendar /deep/  .el-calendar-table {
-          th {
-            padding: 0;
+          thead {
+            th {
+              padding: 0;
+            }
           }
           td {
             border: none;
@@ -124,7 +130,7 @@ export default {
           .el-calendar-day{
             width: 65px;
             height: 40px;
-            line-height: 20px;
+            line-height: 25px;
           }
         }
       }

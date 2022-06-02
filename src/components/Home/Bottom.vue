@@ -23,7 +23,8 @@ export default {
   .img-box {
     width: 100%;
     height: 170px;
-    background: url('../../assets/image/air/contact-us-bg.png') no-repeat center;
+    background: url('../../assets/image/index/plane.jpg') no-repeat center;
+    background-size: cover;
   }
   .copyright {
     height: 50px;

@@ -5,13 +5,14 @@
     </transition>
     <div class="content-box w">
       <div class="notice-box">
-        <div class="notice fl" ref="notice" :style="bottom">
+        <div class="notice fl" ref="notice" :class="{top:isTop}">
           <div v-for="item,index in notices" :key="index">
             <i class="el-icon-message-solid"></i><span>{{ item }}</span>
           </div>
         </div>
         <div class="more fr"><router-link to="">查看更多</router-link></div>
       </div>
+      <Search class="advertise" :i="i"></Search>
       <ul class="dot">
         <li 
           v-for="(num,index) in imgs.length" 
@@ -25,27 +26,30 @@
 </template>
 
 <script>
+import Search from '@/components/Home/Index/Search.vue'
 export default {
+  components : {
+    Search
+  },
   data() {
     return {
-      bottom: {bottom: 120 + 'px'},
+      isTop: false,
       show: true,
       timer: null, // 轮播图计时器
       noticeTimer: null,
       i :0, // 轮播图的
       j :0,
       imgs : [
-        require("@/assets/image/sky/1.png"),
-        require("@/assets/image/sky/2.png"),
-        require("@/assets/image/sky/3.png"),
-        require("@/assets/image/sky/4.png"),
+        require("@/assets/image/season/chuntian.jpg"),
+        require("@/assets/image/season/xiatian.jpg"),
+        require("@/assets/image/season/qiutian.jpg"),
+        require("@/assets/image/season/dongtian.jpg"),
       ],
       notices: [
-        "经济发展具有强大韧性和活力4",
-        "经济发展具有强大韧性和活力1",
-        "经济发展具有强大韧性和活力2",
-        "经济发展具有强大韧性和活力3",
-        "经济发展具有强大韧性和活力4",
+        "关于调整国内航线旅客运输燃油附加费的通告（2022年5月）",
+        "关于新冠肺炎疫情期间乘机出行注意事项的通知（2022年4月26日更新）",
+        "关于更新北京航线国内客票特殊处理规则的通知",
+        "关于更新长春、郑州航线国内客票特殊处理规则的通知",
       ]
     }
   },
@@ -57,20 +61,18 @@ export default {
       }
     },
     nextTip() {
-      if (this.j == 4) {
-        this.j = 0
-        this.notice.style.transitionDuration = "0s"
-        this.notice.style.bottom = 120 + 'px'
-      } 
-      this.j++
-      this.notice.style.bottom = 120 -  30 * this.j  + 'px'
+      this.isTop = true
+      setTimeout(() => {
+        this.notices.push(this.notices[0])
+        this.notices.shift()
+        this.isTop = false
+      }, 5000)
     }
   },
   mounted() {
-    // this.timer = setInterval(this.nextPic,3000)
+    this.timer = setInterval(this.nextPic,8000)
     this.noticeTimer = setInterval(this.nextTip, 2000)
   },
-
   computed: {
     notice() {
       return this.$refs.notice
@@ -82,16 +84,28 @@ export default {
   },
   destroyed() {
     clearInterval(this.noticeTimer)
+    clearInterval(this.timer)
   }
 }
 </script>
 
 <style lang="less" scoped>
+@keyframes faded {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .big-swiper {
   position: relative;
   height: 590px;
   width: 100%;
   min-width: 1170px;
+  .photoshow {
+    animation: faded 8s;
+  }
   .content-img {
     display: block;
     width: inherit;
@@ -104,6 +118,9 @@ export default {
     -webkit-transition: opacity 2s; /* Safari 和 Chrome */
     -o-transition: opacity 2s; /* Opera */  
   }
+  .photo-show {
+    animation: faded 2s;
+  }
   .content-box {
     position: absolute;
     display:  inline-block;
@@ -111,6 +128,12 @@ export default {
     top: 0;
     left: 50%;
     margin-left: -585px;
+    .advertise {
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      width: 500px;
+    }
     .notice-box {
       overflow: hidden;
       margin-top: 15px;
@@ -121,13 +144,16 @@ export default {
       color: #fff;
       font-size: 12px;
       .notice {
-        transition: all 1s;
         position: relative;
         i {
           margin-left: 15px;
           margin-right: 5px;
           color: orange;
         }
+      }
+      .top {
+        transition: all 0.5s;
+        margin-top: -30px;
       }
       .more {
         background-color: #1a84d5;

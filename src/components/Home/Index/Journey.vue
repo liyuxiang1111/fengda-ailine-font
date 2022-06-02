@@ -1,10 +1,16 @@
 <template>
   <div class="journey-container">
     <div class="w">
-      <div class="tile">旅游优惠信息<router-link class="fr" to="">更多<i class="el-icon-search"></i></router-link></div>
+      <div class="tile">凤航文化<router-link class="fr" to="">更多<i class="el-icon-search"></i></router-link></div>
+      <div class="content">
+        <p>The ongoing way is long and rough.</p>
+        <p>I can see no end.</p>
+        <p>But I will devote myself to the endless seeking of truth.</p>
+        <p>路漫漫其修远兮。</p>
+        <p>吾将上下而求索。---屈原</p>
+      </div>
     </div>
     <div class="travelInfo clearfix">
-
     </div>
   </div>
 </template>
@@ -33,6 +39,13 @@ export default {}
         color: #015c86;
         font-size: 12px;
         margin-right: 5px;
+      }
+    }
+    .content {
+      padding: 10px 0 10px 0;
+      p {
+        margin: 10px 0 10px 0;
+        color: #fff;
       }
     }
   }
