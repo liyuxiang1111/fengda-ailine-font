@@ -1,7 +1,7 @@
 <template>
   <div class="big-swiper">
     <transition name="el-fade-in-linear">
-      <a class="content-img" ref="img" :style="{background:'url('+imgs[i]+')'} "></a>
+      <a class="content-img" ref="img" :style="{background:'url('+imgs[i]+')'}"></a>
     </transition>
     <div class="content-box w">
       <div class="notice-box">
@@ -78,7 +78,6 @@ export default {
       return this.$refs.notice
     },
     bottomLength() {
-      console.log(this.notices.length);
       return this.notices.length * 30
     }
   },
@@ -90,14 +89,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@keyframes faded {
-  0% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .big-swiper {
   position: relative;
   height: 590px;

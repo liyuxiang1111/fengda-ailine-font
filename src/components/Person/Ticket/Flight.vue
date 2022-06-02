@@ -126,6 +126,10 @@ export default {
 <style lang="less" scoped>
 .flight-container {
   height: 140px;
+  .page {
+    padding-top: 50px;
+    text-align: center;
+  }
   .minTit {
     position: relative;
     padding: 0 20px 0 12px;

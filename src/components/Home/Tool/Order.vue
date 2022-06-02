@@ -165,6 +165,7 @@ export default {
 
 <style lang="less" scoped>
 .order-contaienr {
+  margin-bottom: 50px;
   .order-box {
     .passenger-box {
       width: 880px;
