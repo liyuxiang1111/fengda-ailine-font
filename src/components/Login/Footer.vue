@@ -2,8 +2,7 @@
   <div class="footer w">
     <div class="fl">
       <ul>
-        <li>Copyright © 2020 厦门航空有限公司版权所有2008-2020</li>
-        <li><a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021015104号-1</a></li>
+        <li><a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021015104号-2</a></li>
       </ul>
     </div>
     <div class="fr">

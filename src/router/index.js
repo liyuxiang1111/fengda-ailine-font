@@ -101,28 +101,28 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'history', // 历史模式
   base: process.env.BASE_URL,
   routes,
 })
 
-router.beforeEach((to, from, next) => {
-  let token = localStorage.getItem('Authorization') || ''
-  if (token) {
-    // 有token时直接放行
-    next()
-  } else {
-    // 没有token时需要登录
-    if (to.path == '/login' || to.path == '/register' || to.path == '/home') {
-      next()
-    } else {
-      if (to.meta.isAuth) {
-        router.replace('/login')
-      } else {
-        next()
-      }
-    }
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   let token = localStorage.getItem('Authorization') || ''
+//   if (token) {
+//     // 有token时直接放行
+//     next()
+//   } else {
+//     // 没有token时需要登录
+//     if (to.path == '/login' || to.path == '/register' || to.path == '/home') {
+//       next()
+//     } else {
+//       if (to.meta.isAuth) {
+//         router.replace('/login')
+//       } else {
+//         next()
+//       }
+//     }
+//   }
+// })
 
 export default router

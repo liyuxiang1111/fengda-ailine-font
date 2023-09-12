@@ -5,8 +5,7 @@
     </div>
     <div class="copyright">
       <div class="w">
-        地址：莆田学院 邮编：350001 电话：123456 传真：789456 邮箱:
-        nihaoxian.com 闽ICP备08001421号 闽公网安备110108007702
+        <a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021015104号-2</a>
       </div>
     </div>
   </div>

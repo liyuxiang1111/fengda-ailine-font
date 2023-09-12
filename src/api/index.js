@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from '../router'
 import { Message } from 'element-ui'
 const ali = axios.create({
-  baseURL: 'http://heyongqiang.work:8888',
+  baseURL: 'https://heyongqiang.work',
   timeout: 6000,
 })
 

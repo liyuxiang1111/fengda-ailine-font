@@ -17,6 +17,7 @@ import 'leaflet/dist/leaflet.css'
 // axios.defaults.baseURL = 'http://www.heyongqiang.work:8888'
 Vue.prototype.$http = api.ali
 //导入公用组件 如果多可以自行添加文件
+//
 import { Message } from 'element-ui'
 Vue.component(Message.name, Message)
 Vue.prototype.$message = Message
