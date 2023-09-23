@@ -72,9 +72,9 @@
     clear: both;
   }
 
-  .clearfix {
-    *zoom: 1;
-  }
+  // .clearfix {
+  //   *zoom: 1;
+  // }
   .fl {
     float: left;
   }

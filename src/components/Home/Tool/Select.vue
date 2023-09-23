@@ -1,7 +1,7 @@
 <template>
   <div class="select-container">
     <Topbar></Topbar>
-    <Search @shareCity="getCity"></Search>
+    <Search @getCity="getCity"></Search>
     <Pricetabel></Pricetabel>
     <div class="clearfix w">
       <div class="flaght-box fl boxshadow" v-loading="loading">
@@ -93,7 +93,6 @@
         </div>
       </div>
       <!-- <div class="advertisement fr">123</div> -->
-
       <div class="swiper-box fl">
         <Swiper></Swiper>
         <div class="advertisement boxshadow">广告位招租</div>

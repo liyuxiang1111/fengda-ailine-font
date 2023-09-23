@@ -29,7 +29,10 @@ export default {
   },
   methods: {
     recommend() {
-      this.$http.get('/recommend').then(({data:res})=> {
+      // this.$http.get('/recommend').then(({data:res})=> {
+      //   this.flightList = res.data
+      // })
+      this.$http.get('/flight/index').then(({data:res})=> {
         this.flightList = res.data
       })
     }

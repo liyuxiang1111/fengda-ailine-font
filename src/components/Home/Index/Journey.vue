@@ -23,7 +23,7 @@ export default {}
 .journey-container {
   background-color: #fff;
   background: url('../../../assets/image/index/xiamen.jpg') no-repeat;
-  background-size: cover;
+  background-size: 100% 600px; /* 宽度和高度分别为200px和150px */
   opacity: 0.9;
   .w {
     height: 390px;

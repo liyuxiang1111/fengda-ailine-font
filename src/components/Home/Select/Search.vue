@@ -1,10 +1,12 @@
 <template>
   <div class="search-container w boxshadow">
+    <!--按钮切换单程还是往返-->
     <div class="top-btu">
       <div class="btn">单程</div>
       <div class="btn">往返</div>
     </div>
     <div class="text-btu">
+      <!--存在问题-->
       <div class="section-input text-first">
         <el-select
           v-model="city.beginCity"  
@@ -23,6 +25,7 @@
         <!-- <input type="text" class="account" placeholder="出发城市" tabindex="4" v-model="city.beginCity" /> -->
       </div>
       <div class="section-input">
+        <!--存在问题-->
         <el-select 
           v-model="city.endCity" 
           placeholder="到达城市">
@@ -41,7 +44,7 @@
       <div class="data-box">
         <el-date-picker class="data" v-model="data" type="datetime" placeholder="选择日期时间" default-time="12:00:00"> </el-date-picker>
       </div>
-      <div class="section-btn fr button" @click="search">查询</div>
+      <div class="search-btn fr button" @click="search">查询</div>
     </div>
   </div>
 </template>
@@ -168,7 +171,7 @@ export default {
     .text-first {
       margin-left: 0;
     }
-    .section-btn {
+    .search-btn {
       display: inline-block;
       width: 160px;
       height: 40px;

@@ -58,10 +58,6 @@
           ><span class="icon iconfont icon-douyin"></span
         ></span>
       </div>
-      <!-- <div class="buttom-box">
-        地址：莆田学院 邮编：350001 电话：123456 传真：789456 邮箱:
-        nihaoxian.com 闽ICP备08001421号 闽公网安备110108007702
-      </div> -->
     </div>
   </div>
 </template>
